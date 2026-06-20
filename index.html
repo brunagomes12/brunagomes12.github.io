@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Bruna Gomes — Senior Product Manager</title>
-<meta name="description" content="Senior Product Manager · E-commerce, Checkout & Pagamentos · LatAm">
+<meta name="description" content="Senior Product Manager · E-commerce, Checkout & Pagamentos · LatAm. Conversão, receita e modernização de jornadas transacionais.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://brunagomes.me">
 <meta property="og:title" content="Bruna Gomes — Senior Product Manager">
@@ -18,340 +18,530 @@
 <meta name="twitter:title" content="Bruna Gomes — Senior Product Manager">
 <meta name="twitter:description" content="Senior Product Manager · E-commerce, Checkout & Pagamentos · LatAm">
 <meta name="twitter:image" content="https://brunagomes.me/assets/bruna.jpg">
+<meta name="theme-color" content="#F4F0E9">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Bruna Gomes","givenName":"Bruna","familyName":"Gomes","jobTitle":"Senior Product Manager","url":"https://brunagomes.me","image":"https://brunagomes.me/assets/bruna.jpg","email":"mailto:bruggomes79@gmail.com","sameAs":["https://www.linkedin.com/in/bruna-gomes-product-manager"],"knowsAbout":["Product Management","E-commerce","Checkout","Payments","PIX","Growth","Agile"],"alumniOf":{"@type":"CollegeOrUniversity","name":"UFLA"},"worksFor":{"@type":"Organization","name":"Dafiti Group"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@latest"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#080808;--surface:#121212;--ink:#ECECEC;--ink2:#A8A8A8;--muted:#666;
-  --line:#242424;--accent:#0D9488;--accent2:#0F766E;--accent3:rgba(13,148,136,.15);
-  --maxw:860px;--r:12px;
+  --bg:#F4F0E9;        /* warm paper */
+  --bg2:#EFEAE1;
+  --surface:#FBF9F5;
+  --ink:#211D18;       /* espresso */
+  --ink-soft:#5C544A;
+  --muted:#9A9085;
+  --line:#E2DBCF;
+  --line2:#D6CEBF;
+  --accent:#9A2B4F;    /* refined wine */
+  --accent-deep:#7C1F3E;
+  --accent-soft:#F1E2E7;
+  --maxw:1000px;
+  --r:14px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;background:var(--bg)}
-body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink2);line-height:1.65;font-size:.95rem;-webkit-font-smoothing:antialiased}
-h1,h2{font-family:'Space Grotesk',sans-serif;color:var(--ink);line-height:1.1}
-h1{font-size:clamp(2.4rem,6vw,4.2rem);font-weight:700;letter-spacing:-.02em}
-h2{font-size:clamp(1.3rem,3vw,1.7rem);font-weight:600}
-h3{font-size:1rem;font-weight:600;color:var(--ink)}
+html{scroll-behavior:smooth;background:var(--bg);-webkit-text-size-adjust:100%}
+body{
+  font-family:Inter,system-ui,-apple-system,sans-serif;
+  background:var(--bg);color:var(--ink-soft);
+  line-height:1.65;font-size:1rem;-webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;overflow-x:hidden;
+}
+::selection{background:var(--accent-soft);color:var(--accent-deep)}
+h1,h2,h3,.display{font-family:Fraunces,Georgia,serif;color:var(--ink);line-height:1.05;font-weight:600}
+h1{font-size:clamp(2.9rem,8vw,5.4rem);font-weight:600;letter-spacing:-.02em}
+h2{font-size:clamp(1.7rem,4vw,2.6rem);font-weight:600;letter-spacing:-.015em}
+h3{font-size:1.12rem;font-weight:600;letter-spacing:-.01em}
+p{max-width:64ch}
 a{color:var(--accent);text-decoration:none;transition:color .2s}
-a:hover{color:var(--accent2)}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-/* lang */
-.lang{position:fixed;top:16px;right:16px;z-index:100;display:flex;background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:3px;font-size:.78rem}
-.lang button{border:none;background:none;font-family:Inter,sans-serif;font-weight:600;font-size:inherit;padding:5px 14px;border-radius:99px;cursor:pointer;color:var(--ink2);transition:all .2s}
+a:hover{color:var(--accent-deep)}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.eyebrow{font-family:Inter,sans-serif;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.18em;color:var(--accent);display:inline-flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:22px;height:1.5px;background:var(--accent);display:inline-block}
+
+/* ---------- top bar ---------- */
+.bar{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid transparent;transition:border-color .3s}
+.bar.scrolled{border-color:var(--line)}
+.bar-in{max-width:var(--maxw);margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.mark{font-family:Fraunces,serif;font-weight:600;font-size:1.05rem;color:var(--ink);letter-spacing:-.01em}
+.mark b{color:var(--accent)}
+.lang{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:3px}
+.lang button{border:none;background:none;font-family:Inter,sans-serif;font-weight:600;font-size:.74rem;padding:5px 13px;border-radius:99px;cursor:pointer;color:var(--ink-soft);transition:all .2s;letter-spacing:.02em}
 .lang button.on{background:var(--accent);color:#fff}
-/* hero */
-.hero{text-align:center;padding:96px 0 56px}
-.hero img.ava{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid var(--line);margin-bottom:18px}
-.hero h1{margin-bottom:4px}
-.hero .role{font-weight:600;color:var(--accent);font-size:1rem;margin-bottom:4px}
-.hero .ctx{color:var(--muted);font-size:.88rem;margin-bottom:28px}
-.kpi{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.kpi>div{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;min-width:170px;flex:1;max-width:240px;text-align:left;transition:border-color .3s,transform .3s;cursor:default}
-.kpi>div:hover{border-color:var(--accent);transform:translateY(-2px)}
-.kpi .n{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:700;color:var(--ink)}
-.kpi .l{font-size:.8rem;color:var(--ink2);margin-top:2px}
-/* map */
-.map{display:flex;flex-direction:column;align-items:center;margin-top:16px}
-.map svg{width:120px;height:auto}
-.map p{font-size:.7rem;color:var(--muted);margin-top:6px}
-.map .br,.map .co{cursor:pointer;transition:fill-opacity .3s}
-.map .br:hover,.map .co:hover{fill-opacity:.55!important}
-/* sections */
-.sec{padding:clamp(40px,5vw,60px) 0}
-.sec .tag{display:inline-flex;align-items:center;gap:8px;margin-bottom:16px}
-.sec .dot{width:7px;height:7px;background:var(--accent);border-radius:50%}
-.sec .eyebrow{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
-.about p{max-width:68ch;line-height:1.7}
-/* timeline */
-.tl{position:relative;padding-left:28px}
-.tl::before{content:'';position:absolute;left:5px;top:4px;bottom:4px;width:1px;background:var(--line)}
-.tl .job{position:relative;padding-bottom:28px}
-.tl .job:last-child{padding-bottom:0}
-.tl .job::before{content:'';position:absolute;left:-24px;top:7px;width:8px;height:8px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
-.tl .job .head{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:4px}
-.tl .job .head img.logo{width:16px;height:16px;border-radius:3px;object-fit:contain;opacity:.7}
-.tl .job .head .meta{font-size:.78rem;color:var(--muted)}
-.tl .job ul{margin:0;padding-left:16px;list-style:none}
-.tl .job li{font-size:.88rem;line-height:1.55;margin-bottom:3px;position:relative}
-.tl .job li::before{content:'–';position:absolute;left:-14px;color:var(--muted)}
-/* skills */
-.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{font-size:.83rem;font-weight:500;padding:7px 15px;border-radius:99px;background:var(--accent3);color:var(--ink);border:none;cursor:default;transition:background .25s,transform .25s}
-.chip:hover{background:rgba(13,148,136,.28);transform:translateY(-2px)}
-.chip.o{background:none;border:1px solid var(--line);color:var(--ink2)}
-.chip.o:hover{border-color:var(--accent);color:var(--ink);background:none}
-.edu{margin-top:6px}
-.edu strong{display:block;font-weight:600;font-size:.92rem;color:var(--ink)}
-.edu span{font-size:.78rem;color:var(--muted)}
-/* contact */
-.contact-box{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:clamp(32px,5vw,48px);text-align:center;transition:border-color .3s}
-.contact-box:hover{border-color:var(--accent)}
-.contact-box img.ava{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid var(--line);margin-bottom:16px}
-.contact-box h2{margin-bottom:8px}
-.contact-box>p{max-width:42ch;margin:0 auto 22px;font-size:.92rem}
-.btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:6px;font-family:Inter,sans-serif;font-weight:600;font-size:.88rem;border-radius:99px;padding:11px 22px;cursor:pointer;text-decoration:none;transition:all .2s}
-.btn-p{background:var(--accent);color:#fff;border:none}
-.btn-p:hover{background:var(--accent2);color:#fff;transform:translateY(-1px)}
-.btn-g{background:none;border:1px solid var(--line);color:var(--ink)}
-.btn-g:hover{border-color:var(--accent);color:var(--accent)}
-/* footer */
-.ft{text-align:center;padding:0 0 44px;font-size:.76rem;color:var(--muted)}
-/* responsive */
-@media(max-width:700px){.skills-grid{grid-template-columns:1fr}}
-@media(max-width:500px){.hero{padding-top:72px}.hero img.ava{width:60px;height:60px}.kpi>div{flex:1 1 100%;max-width:none}}
-@media(prefers-reduced-motion:reduce){*{animation-duration:0s!important;transition-duration:0s!important}}
+.lang button:not(.on):hover{color:var(--ink)}
+
+/* ---------- hero ---------- */
+.hero{padding:clamp(48px,8vw,92px) 0 clamp(36px,5vw,56px)}
+.hero-grid{display:grid;grid-template-columns:1.5fr .85fr;gap:clamp(28px,5vw,64px);align-items:center}
+.hero .eyebrow{margin-bottom:22px}
+.hero h1{margin-bottom:18px}
+.hero h1 .em{font-style:italic;color:var(--accent);font-weight:500}
+.lede{font-size:clamp(1.05rem,2vw,1.22rem);color:var(--ink-soft);max-width:46ch;margin-bottom:26px}
+.lede b{color:var(--ink);font-weight:600}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:30px}
+.meta-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:.82rem;color:var(--muted)}
+.meta-row .pin{display:inline-flex;align-items:center;gap:7px}
+.meta-row svg{width:15px;height:15px;stroke:var(--accent)}
+.portrait{position:relative}
+.portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r);border:1px solid var(--line2);filter:saturate(1.02)}
+.portrait::after{content:"";position:absolute;inset:0;border-radius:var(--r);box-shadow:inset 0 0 0 1px rgba(33,29,24,.04);pointer-events:none}
+.portrait .tagchip{position:absolute;left:-14px;bottom:18px;background:var(--ink);color:#fff;font-size:.74rem;font-weight:600;letter-spacing:.04em;padding:9px 15px;border-radius:99px;box-shadow:0 10px 30px -12px rgba(33,29,24,.5)}
+.portrait .tagchip b{color:#F2B8C6}
+
+/* ---------- btns ---------- */
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:Inter,sans-serif;font-weight:600;font-size:.9rem;border-radius:99px;padding:12px 22px;cursor:pointer;transition:all .22s;border:1px solid transparent}
+.btn svg{width:17px;height:17px}
+.btn-p{background:var(--accent);color:#fff}
+.btn-p:hover{background:var(--accent-deep);color:#fff;transform:translateY(-2px);box-shadow:0 12px 26px -14px var(--accent)}
+.btn-g{background:transparent;border-color:var(--line2);color:var(--ink)}
+.btn-g:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+
+/* ---------- stat strip ---------- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:clamp(28px,4vw,44px)}
+.stats>div{padding:26px 24px 26px 0;border-left:1px solid var(--line);padding-left:24px}
+.stats>div:first-child{border-left:none;padding-left:0}
+.stats .n{font-family:Fraunces,serif;font-size:clamp(1.9rem,3vw,2.5rem);font-weight:600;color:var(--ink);line-height:1;letter-spacing:-.02em}
+.stats .n .accent{color:var(--accent)}
+.stats .l{font-size:.8rem;color:var(--ink-soft);margin-top:9px;line-height:1.45;max-width:22ch}
+
+/* ---------- section base ---------- */
+.sec{padding:clamp(54px,8vw,88px) 0}
+.sec-head{margin-bottom:clamp(28px,4vw,44px)}
+.sec-head .eyebrow{margin-bottom:16px}
+.sec-head h2{max-width:20ch}
+.sec-head .sub{margin-top:14px;font-size:1.02rem;max-width:58ch}
+
+/* ---------- impact ---------- */
+.impact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.icard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:30px 28px;transition:border-color .3s,transform .3s,box-shadow .3s;position:relative;overflow:hidden}
+.icard:hover{border-color:var(--line2);transform:translateY(-3px);box-shadow:0 22px 40px -28px rgba(33,29,24,.4)}
+.icard .big{font-family:Fraunces,serif;font-size:clamp(2rem,3.2vw,2.6rem);font-weight:600;color:var(--accent);line-height:1;letter-spacing:-.02em;margin-bottom:14px;display:block}
+.icard h3{margin-bottom:8px}
+.icard p{font-size:.92rem;line-height:1.6}
+
+/* ---------- about ---------- */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,56px);align-items:start}
+.about-grid .lead-q{font-family:Fraunces,serif;font-size:clamp(1.4rem,2.6vw,1.9rem);font-weight:500;color:var(--ink);line-height:1.3;letter-spacing:-.01em}
+.about-grid .lead-q .em{font-style:italic;color:var(--accent)}
+.about-body p{font-size:1rem;margin-bottom:16px}
+.about-body p:last-child{margin-bottom:0}
+
+/* ---------- experience ---------- */
+.tl{position:relative}
+.job{display:grid;grid-template-columns:170px 1fr;gap:28px;padding:28px 0;border-top:1px solid var(--line)}
+.job:first-child{border-top:none;padding-top:0}
+.job .when{font-size:.82rem;color:var(--muted);font-weight:500;padding-top:3px}
+.job .when .loc{display:block;margin-top:4px;color:var(--muted)}
+.job .role-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:3px}
+.job .role-row img{width:20px;height:20px;border-radius:5px;object-fit:contain;background:#fff;border:1px solid var(--line);padding:2px}
+.job .co{font-size:.9rem;color:var(--accent);font-weight:600;margin-bottom:12px}
+.job ul{list-style:none;display:grid;gap:7px}
+.job li{font-size:.92rem;line-height:1.55;padding-left:18px;position:relative}
+.job li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--accent-soft);border:1.5px solid var(--accent)}
+
+/* ---------- skills ---------- */
+.skills-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(28px,5vw,56px)}
+.kicker{font-size:.74rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:14px}
+.chips{display:flex;flex-wrap:wrap;gap:9px}
+.chip{font-size:.85rem;font-weight:500;padding:8px 15px;border-radius:99px;background:var(--accent-soft);color:var(--accent-deep);transition:transform .22s,background .22s;cursor:default}
+.chip:hover{transform:translateY(-2px);background:#EAD2DA}
+.chip.o{background:transparent;border:1px solid var(--line2);color:var(--ink-soft)}
+.chip.o:hover{border-color:var(--accent);color:var(--accent);background:transparent}
+.edu{padding:16px 0;border-top:1px solid var(--line);display:flex;gap:14px;align-items:flex-start}
+.edu:first-of-type{margin-top:6px}
+.edu img{width:30px;height:30px;border-radius:7px;object-fit:contain;background:#fff;border:1px solid var(--line);padding:4px;flex:none}
+.edu strong{display:block;font-weight:600;font-size:.95rem;color:var(--ink)}
+.edu span{font-size:.8rem;color:var(--muted)}
+
+/* ---------- contact ---------- */
+.contact{background:var(--ink);border-radius:calc(var(--r) + 6px);padding:clamp(40px,6vw,72px) clamp(28px,5vw,64px);color:#D9D2C7;position:relative;overflow:hidden}
+.contact::before{content:"";position:absolute;top:-60%;right:-10%;width:420px;height:420px;background:radial-gradient(circle,rgba(154,43,79,.55),transparent 65%);pointer-events:none}
+.contact .eyebrow{color:#F2B8C6}
+.contact .eyebrow::before{background:#F2B8C6}
+.contact h2{color:#fff;margin:16px 0 14px;max-width:18ch}
+.contact p{color:#C8BFB3;max-width:50ch;margin-bottom:28px}
+.contact .btns{display:flex;gap:12px;flex-wrap:wrap}
+.contact .btn-light{background:#fff;color:var(--ink)}
+.contact .btn-light:hover{background:#F2B8C6;color:var(--accent-deep);transform:translateY(-2px)}
+.contact .btn-ghost{border-color:rgba(255,255,255,.22);color:#fff}
+.contact .btn-ghost:hover{border-color:#F2B8C6;color:#F2B8C6;transform:translateY(-2px)}
+
+/* ---------- footer ---------- */
+.ft{padding:40px 0;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-size:.8rem;color:var(--muted)}
+.ft a{color:var(--ink-soft);font-weight:500}
+.ft a:hover{color:var(--accent)}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.2,.6,.2,1),transform .7s cubic-bezier(.2,.6,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+/* ---------- responsive ---------- */
+@media(max-width:860px){
+  .hero-grid{grid-template-columns:1fr;gap:36px}
+  .portrait{max-width:340px}
+  .stats{grid-template-columns:1fr 1fr}
+  .stats>div{padding:22px 18px}
+  .stats>div:nth-child(odd){border-left:none;padding-left:0}
+  .stats>div:nth-child(3),.stats>div:nth-child(4){border-top:1px solid var(--line)}
+  .about-grid,.skills-grid{grid-template-columns:1fr;gap:24px}
+}
+@media(max-width:620px){
+  .impact-grid{grid-template-columns:1fr}
+  .job{grid-template-columns:1fr;gap:8px}
+  .job .when{order:-1}
+}
+@media(max-width:420px){
+  .stats{grid-template-columns:1fr}
+  .stats>div{border-left:none!important;padding-left:0;border-top:1px solid var(--line)}
+  .stats>div:first-child{border-top:none}
+  .portrait .tagchip{left:0}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:0s!important;transition-duration:0s!important;scroll-behavior:auto!important}
+  .rv{opacity:1;transform:none}
+}
+@media print{
+  .bar,.hero-cta,.contact .btns,.portrait .tagchip{display:none!important}
+  body{background:#fff;color:#000;font-size:11pt}
+  .rv{opacity:1!important;transform:none!important}
+  .sec,.hero{padding:18px 0}
+  .icard,.contact{background:#fff;color:#000;border:1px solid #ccc}
+  .contact h2,.contact p{color:#000}
+  a{color:#000}
+}
 </style>
 </head>
 <body>
 
-<div class="lang">
-  <button id="bpt" class="on" onclick="sl('pt')">PT</button>
-  <button id="ben" onclick="sl('en')">EN</button>
+<div class="bar" id="bar">
+  <div class="bar-in">
+    <span class="mark">Bruna <b>Gomes</b></span>
+    <div class="lang">
+      <button id="bpt" class="on" onclick="sl('pt')">PT</button>
+      <button id="ben" onclick="sl('en')">EN</button>
+    </div>
+  </div>
 </div>
 
 <main class="wrap">
 
+<!-- HERO -->
 <header class="hero">
-  <img class="ava" src="assets/bruna.jpg" alt="Bruna Gomes" width="72" height="72">
-  <h1>Bruna Gomes</h1>
-  <p class="role" data-k="role">Senior Product Manager</p>
-  <p class="ctx"><span data-k="ctx1">E-commerce, Checkout &amp; Pagamentos</span> · <span data-k="ctx2">LatAm</span></p>
-  <div class="kpi">
-    <div><div class="n" data-k="k1n">6 anos</div><div class="l" data-k="k1l">escalando produtos B2B e B2C</div></div>
-    <div><div class="n" data-k="k2n">+2 dígitos</div><div class="l" data-k="k2l">de crescimento em conversão</div></div>
-    <div><div class="n" data-k="k3n">BR &amp; CO</div><div class="l" data-k="k3l">operações LatAm que lidero</div></div>
+  <div class="hero-grid">
+    <div>
+      <span class="eyebrow" data-k="hk">Senior Product Manager</span>
+      <h1>Bruna <span class="em">Gomes</span></h1>
+      <p class="lede" data-k="lede">Construo produto onde o impacto é <b>financeiro</b> e o erro custa caro — checkout, pagamentos e jornadas transacionais que movem conversão e receita na LatAm.</p>
+      <div class="hero-cta">
+        <a class="btn btn-p" href="mailto:bruggomes79@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+          <span data-k="cta1">Vamos conversar</span>
+        </a>
+        <a class="btn btn-g" href="https://www.linkedin.com/in/bruna-gomes-product-manager" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+      <div class="meta-row">
+        <span class="pin">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span data-k="loc">São Paulo · Brasil & Colômbia</span>
+        </span>
+        <span data-k="avail">· Aberta a desafios de produto</span>
+      </div>
+    </div>
+    <div class="portrait">
+      <img src="assets/bruna.jpg" alt="Bruna Gomes" width="800" height="1000">
+      <span class="tagchip"><b>●</b> <span data-k="chip">Dafiti Group · LatAm</span></span>
+    </div>
   </div>
-  <div class="map">
-    <svg viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg">
-      <path d="M100,15 C65,15 45,30 35,48 L20,65 L12,80 L8,100 L12,120 L22,140 L35,158 L48,172 L60,182 L70,188 L80,192 L90,195 L100,197 L115,195 L128,188 L140,178 L150,165 L155,148 L152,130 L148,118 L140,108 L130,100 L120,92 L112,80 L108,65 L105,45 L100,15Z" fill="none" stroke="var(--line)" stroke-width="1.2"/>
-      <path class="br" d="M95,75 L110,65 L125,70 L138,80 L145,95 L148,108 L145,122 L138,132 L128,138 L118,140 L108,138 L100,135 L92,128 L88,118 L87,105 L89,92 L92,82Z" fill="var(--accent)" fill-opacity="0.22" stroke="var(--accent)" stroke-width="1.5"/>
-      <path class="co" d="M82,63 L92,58 L100,62 L105,68 L102,78 L94,84 L86,82 L78,75 L76,68Z" fill="var(--accent)" fill-opacity="0.22" stroke="var(--accent)" stroke-width="1.5"/>
-      <text x="125" y="118" fill="var(--ink2)" font-family="Inter,sans-serif" font-size="5">BR</text>
-      <text x="82" y="68" fill="var(--ink2)" font-family="Inter,sans-serif" font-size="5">CO</text>
-    </svg>
-    <p data-k="mapl">Brasil &amp; Colômbia — operações LatAm</p>
+
+  <!-- STAT STRIP -->
+  <div class="stats rv">
+    <div><div class="n">6<span class="accent">+</span></div><div class="l" data-k="s1">anos escalando produtos B2B & B2C</div></div>
+    <div><div class="n"><span class="accent">+2</span> díg.</div><div class="l" data-k="s2">de crescimento em conversão no checkout</div></div>
+    <div><div class="n">R$ M<span class="accent">+</span></div><div class="l" data-k="s3">protegidos em incidentes críticos</div></div>
+    <div><div class="n">BR · CO</div><div class="l" data-k="s4">operações LatAm sob minha liderança</div></div>
   </div>
 </header>
 
-<section class="sec about">
-  <div class="tag"><div class="dot"></div><span class="eyebrow" data-k="atag">Sobre</span></div>
-  <h2 style="margin-bottom:12px" data-k="ah">Produto onde o impacto é financeiro e o erro custa caro</h2>
-  <p data-k="ap">Sou Product Manager Sênior com 6 anos de experiência escalando produtos digitais B2B e B2C. Atualmente lidero o ecossistema transacional — carrinho, login, cadastro e checkout — da Dafiti para Brasil e Colômbia, à frente de frentes de Growth, Lean e resposta a incidentes críticos, com foco em alavancar conversão, receita e cultura App-First.</p>
+<!-- IMPACT -->
+<section class="sec" id="impact">
+  <div class="sec-head rv">
+    <span class="eyebrow" data-k="ik">Impacto</span>
+    <h2 data-k="ih">Resultados que defendo numa sala de diretoria</h2>
+    <p class="sub" data-k="isub">Quando o produto é a camada transacional, cada decisão vira receita, perda evitada ou confiança. Alguns marcos:</p>
+  </div>
+  <div class="impact-grid">
+    <div class="icard rv">
+      <span class="big" data-k="i1n">+2 dígitos</span>
+      <h3 data-k="i1t">Checkout em Flutter + PIX</h3>
+      <p data-k="i1d">Liderei o novo checkout e a integração de PIX na Dafiti: crescimento de conversão de dois dígitos e forte alta na receita por sessão.</p>
+    </div>
+    <div class="icard rv">
+      <span class="big" data-k="i2n">R$ milhões</span>
+      <h3 data-k="i2t">Rollback antifraude na Black Friday</h3>
+      <p data-k="i2d">Arquitetei o rollback em tempo real de um provedor antifraude durante a Black Friday, evitando milhões em perdas financeiras.</p>
+    </div>
+    <div class="icard rv">
+      <span class="big" data-k="i3n">Zero perda</span>
+      <h3 data-k="i3t">Falhas de criação de pedido em legado</h3>
+      <p data-k="i3d">Conduzi a análise de causa-raiz de falhas em sistema legado de criação de pedidos, estancando milhões em perdas por semestre.</p>
+    </div>
+    <div class="icard rv">
+      <span class="big" data-k="i4n">App-First</span>
+      <h3 data-k="i4t">Migração de jornadas para nativo</h3>
+      <p data-k="i4d">Evangelista App-First: pesquisa, MVP e migração de jornadas nativas para Flutter, elevando a cultura mobile do time.</p>
+    </div>
+  </div>
 </section>
 
-<section class="sec">
-  <div class="tag"><div class="dot"></div><span class="eyebrow" data-k="etag">Trajetória</span></div>
-  <h2 style="margin-bottom:24px" data-k="eh">Experiência</h2>
+<!-- ABOUT -->
+<section class="sec" id="about">
+  <div class="sec-head rv"><span class="eyebrow" data-k="ak">Sobre</span></div>
+  <div class="about-grid">
+    <p class="lead-q rv" data-k="aq">“Produto bom em pagamentos é invisível: ninguém percebe quando funciona — <span class="em">e todo mundo percebe quando falha.</span>”</p>
+    <div class="about-body rv">
+      <p data-k="ap1">Sou Product Manager Sênior com 6 anos de experiência escalando produtos digitais B2B e B2C. Comecei como desenvolvedora, o que me dá fluência técnica para liderar modernização de legado e conversas profundas com engenharia.</p>
+      <p data-k="ap2">Hoje lidero o ecossistema transacional completo — carrinho, login, cadastro e checkout — da Dafiti para Brasil e Colômbia, à frente de frentes de Growth, Lean e resposta a incidentes críticos, com foco em conversão, receita e cultura App-First.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="sec" id="exp">
+  <div class="sec-head rv">
+    <span class="eyebrow" data-k="ek">Trajetória</span>
+    <h2 data-k="eh">Experiência</h2>
+  </div>
   <div class="tl">
 
-    <div class="job">
-      <div class="head">
-        <img class="logo" src="assets/dafiti_logo.png" alt="" width="16" height="16">
-        <h3 data-k="j1r">Senior Product Manager</h3>
-        <span class="meta">· <span data-k="j1c">Dafiti Group</span> · <span data-k="j1d">nov 2022 – Presente</span> · <span data-k="j1l">Brasil &amp; Colômbia</span></span>
-      </div>
-      <ul>
-        <li data-k="j1b1">Lidera o ecossistema transacional completo (carrinho, login, cadastro e checkout) em App, Web e Mobile Web para BR e CO.</li>
-        <li data-k="j1b2">Conduz simultaneamente três frentes: Growth (experimentação), Lean (eficiência) e Snipers (incidentes críticos).</li>
-        <li data-k="j1b3">À frente do rollout do checkout na Colômbia (Webview → Flutter) e do Milkrun 2.0.</li>
-      </ul>
-    </div>
-
-    <div class="job">
-      <div class="head">
-        <img class="logo" src="assets/dafiti_logo.png" alt="" width="16" height="16">
-        <h3 data-k="j2r">Product Manager</h3>
-        <span class="meta">· <span data-k="j2c">Dafiti Group</span> · <span data-k="j2d">ago 2021 – dez 2022</span></span>
+    <div class="job rv">
+      <div class="when"><span data-k="j1d">nov 2022 — Presente</span><span class="loc" data-k="j1l">Brasil & Colômbia</span></div>
+      <div>
+        <div class="role-row"><img src="assets/dafiti_logo.png" alt="" width="20" height="20"><h3 data-k="j1r">Senior Product Manager</h3></div>
+        <div class="co" data-k="j1c">Dafiti Group</div>
+        <ul>
+          <li data-k="j1b1">Lidera o ecossistema transacional completo (carrinho, login, cadastro e checkout) em App, Web e Mobile Web para BR e CO.</li>
+          <li data-k="j1b2">Conduz simultaneamente três frentes: Growth (experimentação), Lean (eficiência) e Snipers (incidentes críticos).</li>
+          <li data-k="j1b3">À frente do rollout do checkout na Colômbia (Webview → Flutter) e do Milkrun 2.0.</li>
+        </ul>
       </div>
     </div>
 
-    <div class="job">
-      <div class="head">
-        <img class="logo" src="assets/beyond_logo.png" alt="" width="16" height="16">
-        <h3 data-k="j3r">Product Manager</h3>
-        <span class="meta">· <span data-k="j3c">BEYOND Soluções</span> · <span data-k="j3d">jul 2021 – ago 2021</span></span>
+    <div class="job rv">
+      <div class="when"><span data-k="j2d">ago 2021 — dez 2022</span></div>
+      <div>
+        <div class="role-row"><img src="assets/dafiti_logo.png" alt="" width="20" height="20"><h3 data-k="j2r">Product Manager</h3></div>
+        <div class="co" data-k="j2c">Dafiti Group</div>
+        <ul><li data-k="j2b1">Evoluiu jornadas de checkout e pagamentos, consolidando a base para a liderança sênior do ecossistema transacional.</li></ul>
       </div>
-      <ul><li data-k="j3b1">Discovery e planejamento de delivery para o lançamento de seguros de vida no app da corretora Órama.</li></ul>
     </div>
 
-    <div class="job">
-      <div class="head">
-        <img class="logo" src="assets/dti_logo.png" alt="" width="16" height="16">
-        <h3 data-k="j4r">Product Manager</h3>
-        <span class="meta">· <span data-k="j4c">dti digital</span> · <span data-k="j4d">nov 2020 – jul 2021</span></span>
+    <div class="job rv">
+      <div class="when"><span data-k="j3d">jul 2021 — ago 2021</span></div>
+      <div>
+        <div class="role-row"><img src="assets/beyond_logo.png" alt="" width="20" height="20"><h3 data-k="j3r">Product Manager</h3></div>
+        <div class="co" data-k="j3c">BEYOND Soluções</div>
+        <ul><li data-k="j3b1">Discovery e planejamento de delivery para o lançamento de seguros de vida no app da corretora Órama.</li></ul>
       </div>
-      <ul>
-        <li data-k="j4b1">Ciclo de vida de sistema omnichannel de Customer Service (Hermes Pardini), via imersão operacional (shadowing).</li>
-        <li data-k="j4b2">Concepção e desenvolvimento de gateway de pagamentos proprietário, eliminando custos de licenciamento.</li>
-      </ul>
     </div>
 
-    <div class="job">
-      <div class="head">
-        <img class="logo" src="assets/zetta_logo.png" alt="" width="16" height="16">
-        <h3 data-k="j5r">Product Owner</h3>
-        <span class="meta">· <span data-k="j5c">Agência Zetta</span> · <span data-k="j5d">jan 2020 – nov 2020</span> · <span data-k="j5l">Lavras, MG</span></span>
+    <div class="job rv">
+      <div class="when"><span data-k="j4d">nov 2020 — jul 2021</span></div>
+      <div>
+        <div class="role-row"><img src="assets/dti_logo.png" alt="" width="20" height="20"><h3 data-k="j4r">Product Manager</h3></div>
+        <div class="co" data-k="j4c">dti digital</div>
+        <ul>
+          <li data-k="j4b1">Ciclo de vida de sistema omnichannel de Customer Service (Hermes Pardini), via imersão operacional (shadowing).</li>
+          <li data-k="j4b2">Concepção e desenvolvimento de gateway de pagamentos proprietário, eliminando custos de licenciamento.</li>
+        </ul>
       </div>
-      <ul>
-        <li data-k="j5b1">Criação do SIGERH-PA (gestão de recursos hídricos do Pará) do zero, mapeando regras de negócio sem documentação.</li>
-        <li data-k="j5b2">Gestão de stakeholders do setor público 100% remota, ambiente de forte resistência tecnológica.</li>
-        <li data-k="j5b3">Redução na emissão de outorgas de água de anos para dias — em alguns casos, horas.</li>
-      </ul>
     </div>
 
-    <div class="job">
-      <div class="head">
-        <img class="logo" src="assets/zetta_logo.png" alt="" width="16" height="16">
-        <h3 data-k="j6r">Desenvolvedora Web</h3>
-        <span class="meta">· <span data-k="j6c">Agência Zetta</span> · <span data-k="j6d">mar 2019 – dez 2019</span></span>
+    <div class="job rv">
+      <div class="when"><span data-k="j5d">jan 2020 — nov 2020</span><span class="loc" data-k="j5l">Lavras, MG</span></div>
+      <div>
+        <div class="role-row"><img src="assets/zetta_logo.png" alt="" width="20" height="20"><h3 data-k="j5r">Product Owner</h3></div>
+        <div class="co" data-k="j5c">Agência Zetta</div>
+        <ul>
+          <li data-k="j5b1">Criação do SIGERH-PA (gestão de recursos hídricos do Pará) do zero, mapeando regras de negócio sem documentação.</li>
+          <li data-k="j5b2">Gestão de stakeholders do setor público 100% remota, em ambiente de forte resistência tecnológica.</li>
+          <li data-k="j5b3">Redução na emissão de outorgas de água de anos para dias — em alguns casos, horas.</li>
+        </ul>
       </div>
-      <ul><li data-k="j6b1">Desenvolvedora web full stack do sistema de Licenciamento Ambiental do Amazonas.</li></ul>
     </div>
+
+    <div class="job rv">
+      <div class="when"><span data-k="j6d">mar 2019 — dez 2019</span></div>
+      <div>
+        <div class="role-row"><img src="assets/zetta_logo.png" alt="" width="20" height="20"><h3 data-k="j6r">Desenvolvedora Web</h3></div>
+        <div class="co" data-k="j6c">Agência Zetta</div>
+        <ul><li data-k="j6b1">Desenvolvedora web full stack do sistema de Licenciamento Ambiental do Amazonas.</li></ul>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<section class="sec">
-  <div class="tag"><div class="dot"></div><span class="eyebrow" data-k="stag">Competências</span></div>
-  <h2 style="margin-bottom:20px" data-k="sh">Skills &amp; Certificações</h2>
+<!-- SKILLS -->
+<section class="sec" id="skills">
+  <div class="sec-head rv">
+    <span class="eyebrow" data-k="sk">Competências</span>
+    <h2 data-k="sh">Skills & Certificações</h2>
+  </div>
   <div class="skills-grid">
-    <div>
-      <h3 style="margin-bottom:10px" data-k="st1">Principais competências</h3>
+    <div class="rv">
+      <div class="kicker" data-k="st1">Principais competências</div>
       <div class="chips">
-        <span class="chip" data-k="s1">Transformação digital</span>
-        <span class="chip" data-k="s2">Gestão de stakeholders</span>
-        <span class="chip" data-k="s3">Zero to One</span>
-        <span class="chip" data-k="s4">Checkout &amp; Pagamentos</span>
-        <span class="chip" data-k="s5">Growth &amp; Experimentação</span>
-        <span class="chip" data-k="s6">Modernização de legado</span>
-        <span class="chip" data-k="s7">App-First</span>
-        <span class="chip" data-k="s8">Discovery</span>
-        <span class="chip" data-k="s9">Métricas de Produto</span>
-        <span class="chip" data-k="s10">Agile / Scrum</span>
-        <span class="chip" data-k="s11">PIX</span>
+        <span class="chip" data-k="c1">Checkout & Pagamentos</span>
+        <span class="chip" data-k="c2">Growth & Experimentação</span>
+        <span class="chip" data-k="c3">Zero to One</span>
+        <span class="chip" data-k="c4">Modernização de legado</span>
+        <span class="chip" data-k="c5">App-First</span>
+        <span class="chip" data-k="c6">Transformação digital</span>
+        <span class="chip" data-k="c7">Gestão de stakeholders</span>
+        <span class="chip" data-k="c8">Discovery</span>
+        <span class="chip" data-k="c9">Métricas de Produto</span>
+        <span class="chip" data-k="c10">Agile / Scrum</span>
+        <span class="chip" data-k="c11">PIX</span>
+      </div>
+      <div class="kicker" style="margin-top:28px" data-k="st3">Certificações</div>
+      <div class="chips">
+        <span class="chip o" data-k="cc1">Fundamentos do Scrum</span>
+        <span class="chip o" data-k="cc2">Técnicas Avançadas de Scrum</span>
+        <span class="chip o" data-k="cc3">Histórias de Usuários Ágeis</span>
+        <span class="chip o" data-k="cc4">Retrospectivas Ágeis</span>
+        <span class="chip o" data-k="cc5">Métricas de Produto</span>
       </div>
     </div>
-    <div>
-      <h3 style="margin-bottom:10px" data-k="st2">Certificações &amp; Formação</h3>
-      <div class="chips" style="margin-bottom:16px">
-        <span class="chip o" data-k="c1">Fundamentos do Scrum</span>
-        <span class="chip o" data-k="c2">Técnicas Avançadas de Scrum</span>
-        <span class="chip o" data-k="c3">Histórias de Usuários Ágeis</span>
-        <span class="chip o" data-k="c4">Retrospectivas Ágeis</span>
-        <span class="chip o" data-k="c5">Métricas de Produto</span>
+    <div class="rv">
+      <div class="kicker" data-k="st2">Formação</div>
+      <div class="edu">
+        <img src="assets/pm3_logo.png" alt="PM3">
+        <div><strong data-k="e1n">Cursos PM3 — Product Manager</strong><span data-k="e1d">jan 2022 — mar 2022</span></div>
       </div>
-      <div class="edu"><strong data-k="e1n">Cursos PM3 — Product Manager</strong><span data-k="e1d">jan 2022 – mar 2022</span></div>
-      <div class="edu" style="margin-top:8px"><strong data-k="e2n">UFLA — Bacharelado em Sistemas de Informação</strong><span data-k="e2d">2014 – 2020</span></div>
+      <div class="edu">
+        <img src="assets/ufla_logo.png" alt="UFLA">
+        <div><strong data-k="e2n">UFLA — Bacharelado em Sistemas de Informação</strong><span data-k="e2d">2014 — 2020</span></div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="sec">
-  <div class="contact-box">
-    <img class="ava" src="assets/bruna.jpg" alt="Bruna Gomes" width="72" height="72">
-    <h2 data-k="ct">Vamos conversar?</h2>
-    <p data-k="cp">Aberta a desafios de produto em jornadas transacionais, pagamentos e modernização de legado.</p>
+<!-- CONTACT -->
+<section class="sec" id="contact">
+  <div class="contact rv">
+    <span class="eyebrow" data-k="ck">Contato</span>
+    <h2 data-k="ct">Vamos construir algo que importa?</h2>
+    <p data-k="cp">Aberta a desafios de produto em jornadas transacionais, pagamentos e modernização de legado. Responder é rápido.</p>
     <div class="btns">
-      <a class="btn btn-p" href="mailto:bruggomes79@gmail.com"><i data-lucide="send"></i> <span data-k="cb1">Enviar e-mail</span></a>
-      <a class="btn btn-g" href="https://www.linkedin.com/in/bruna-gomes-product-manager" target="_blank" rel="noopener"><i data-lucide="external-link"></i> LinkedIn</a>
+      <a class="btn btn-light" href="mailto:bruggomes79@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        <span data-k="cb1">bruggomes79@gmail.com</span>
+      </a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/bruna-gomes-product-manager" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+        LinkedIn
+      </a>
     </div>
   </div>
 </section>
 
-<footer class="ft"><span data-k="ft">Feito com cuidado · © 2026 Bruna Gomes</span></footer>
+<footer class="ft">
+  <span data-k="ft">© 2026 Bruna Gomes — feito com cuidado</span>
+  <a href="https://www.linkedin.com/in/bruna-gomes-product-manager" target="_blank" rel="noopener">LinkedIn ↗</a>
+</footer>
 
 </main>
 
 <script>
-const D={pt:{
-role:'Senior Product Manager',ctx1:'E-commerce, Checkout & Pagamentos',ctx2:'LatAm',
-k1n:'6 anos',k1l:'escalando produtos B2B e B2C',k2n:'+2 dígitos',k2l:'de crescimento em conversão',k3n:'BR & CO',k3l:'operações LatAm que lidero',
-mapl:'Brasil & Colômbia — operações LatAm',
-atag:'Sobre',ah:'Produto onde o impacto é financeiro e o erro custa caro',ap:'Sou Product Manager Sênior com 6 anos de experiência escalando produtos digitais B2B e B2C. Atualmente lidero o ecossistema transacional — carrinho, login, cadastro e checkout — da Dafiti para Brasil e Colômbia, à frente de frentes de Growth, Lean e resposta a incidentes críticos, com foco em alavancar conversão, receita e cultura App-First.',
-etag:'Trajetória',eh:'Experiência',
-j1r:'Senior Product Manager',j1c:'Dafiti Group',j1d:'nov 2022 – Presente',j1l:'Brasil & Colômbia',j1b1:'Lidera o ecossistema transacional completo (carrinho, login, cadastro e checkout) em App, Web e Mobile Web para BR e CO.',j1b2:'Conduz simultaneamente três frentes: Growth (experimentação), Lean (eficiência) e Snipers (incidentes críticos).',j1b3:'À frente do rollout do checkout na Colômbia (Webview → Flutter) e do Milkrun 2.0.',
-j2r:'Product Manager',j2c:'Dafiti Group',j2d:'ago 2021 – dez 2022',
-j3r:'Product Manager',j3c:'BEYOND Soluções',j3d:'jul 2021 – ago 2021',j3b1:'Discovery e planejamento de delivery para o lançamento de seguros de vida no app da corretora Órama.',
-j4r:'Product Manager',j4c:'dti digital',j4d:'nov 2020 – jul 2021',j4b1:'Ciclo de vida de sistema omnichannel de Customer Service (Hermes Pardini), via imersão operacional (shadowing).',j4b2:'Concepção e desenvolvimento de gateway de pagamentos proprietário, eliminando custos de licenciamento.',
-j5r:'Product Owner',j5c:'Agência Zetta',j5d:'jan 2020 – nov 2020',j5l:'Lavras, MG',j5b1:'Criação do SIGERH-PA (gestão de recursos hídricos do Pará) do zero, mapeando regras de negócio sem documentação.',j5b2:'Gestão de stakeholders do setor público 100% remota, ambiente de forte resistência tecnológica.',j5b3:'Redução na emissão de outorgas de água de anos para dias — em alguns casos, horas.',
-j6r:'Desenvolvedora Web',j6c:'Agência Zetta',j6d:'mar 2019 – dez 2019',j6b1:'Desenvolvedora web full stack do sistema de Licenciamento Ambiental do Amazonas.',
-stag:'Competências',sh:'Skills & Certificações',st1:'Principais competências',st2:'Certificações & Formação',
-s1:'Transformação digital',s2:'Gestão de stakeholders',s3:'Zero to One',s4:'Checkout & Pagamentos',s5:'Growth & Experimentação',s6:'Modernização de legado',s7:'App-First',s8:'Discovery',s9:'Métricas de Produto',s10:'Agile / Scrum',s11:'PIX',
-c1:'Fundamentos do Scrum',c2:'Técnicas Avançadas de Scrum',c3:'Histórias de Usuários Ágeis',c4:'Retrospectivas Ágeis',c5:'Métricas de Produto',
-e1n:'Cursos PM3 — Product Manager',e1d:'jan 2022 – mar 2022',e2n:'UFLA — Bacharelado em Sistemas de Informação',e2d:'2014 – 2020',
-ct:'Vamos conversar?',cp:'Aberta a desafios de produto em jornadas transacionais, pagamentos e modernização de legado.',cb1:'Enviar e-mail',ft:'Feito com cuidado · © 2026 Bruna Gomes'},
+const D={
+pt:{
+hk:'Senior Product Manager',
+lede:'Construo produto onde o impacto é <b>financeiro</b> e o erro custa caro — checkout, pagamentos e jornadas transacionais que movem conversão e receita na LatAm.',
+cta1:'Vamos conversar',loc:'São Paulo · Brasil & Colômbia',avail:'· Aberta a desafios de produto',chip:'Dafiti Group · LatAm',
+s1:'anos escalando produtos B2B & B2C',s2:'de crescimento em conversão no checkout',s3:'protegidos em incidentes críticos',s4:'operações LatAm sob minha liderança',
+ik:'Impacto',ih:'Resultados que defendo numa sala de diretoria',isub:'Quando o produto é a camada transacional, cada decisão vira receita, perda evitada ou confiança. Alguns marcos:',
+i1n:'+2 dígitos',i1t:'Checkout em Flutter + PIX',i1d:'Liderei o novo checkout e a integração de PIX na Dafiti: crescimento de conversão de dois dígitos e forte alta na receita por sessão.',
+i2n:'R$ milhões',i2t:'Rollback antifraude na Black Friday',i2d:'Arquitetei o rollback em tempo real de um provedor antifraude durante a Black Friday, evitando milhões em perdas financeiras.',
+i3n:'Zero perda',i3t:'Falhas de criação de pedido em legado',i3d:'Conduzi a análise de causa-raiz de falhas em sistema legado de criação de pedidos, estancando milhões em perdas por semestre.',
+i4n:'App-First',i4t:'Migração de jornadas para nativo',i4d:'Evangelista App-First: pesquisa, MVP e migração de jornadas nativas para Flutter, elevando a cultura mobile do time.',
+ak:'Sobre',aq:'“Produto bom em pagamentos é invisível: ninguém percebe quando funciona — <span class="em">e todo mundo percebe quando falha.</span>”',
+ap1:'Sou Product Manager Sênior com 6 anos de experiência escalando produtos digitais B2B e B2C. Comecei como desenvolvedora, o que me dá fluência técnica para liderar modernização de legado e conversas profundas com engenharia.',
+ap2:'Hoje lidero o ecossistema transacional completo — carrinho, login, cadastro e checkout — da Dafiti para Brasil e Colômbia, à frente de frentes de Growth, Lean e resposta a incidentes críticos, com foco em conversão, receita e cultura App-First.',
+ek:'Trajetória',eh:'Experiência',
+j1d:'nov 2022 — Presente',j1l:'Brasil & Colômbia',j1r:'Senior Product Manager',j1c:'Dafiti Group',j1b1:'Lidera o ecossistema transacional completo (carrinho, login, cadastro e checkout) em App, Web e Mobile Web para BR e CO.',j1b2:'Conduz simultaneamente três frentes: Growth (experimentação), Lean (eficiência) e Snipers (incidentes críticos).',j1b3:'À frente do rollout do checkout na Colômbia (Webview → Flutter) e do Milkrun 2.0.',
+j2d:'ago 2021 — dez 2022',j2r:'Product Manager',j2c:'Dafiti Group',j2b1:'Evoluiu jornadas de checkout e pagamentos, consolidando a base para a liderança sênior do ecossistema transacional.',
+j3d:'jul 2021 — ago 2021',j3r:'Product Manager',j3c:'BEYOND Soluções',j3b1:'Discovery e planejamento de delivery para o lançamento de seguros de vida no app da corretora Órama.',
+j4d:'nov 2020 — jul 2021',j4r:'Product Manager',j4c:'dti digital',j4b1:'Ciclo de vida de sistema omnichannel de Customer Service (Hermes Pardini), via imersão operacional (shadowing).',j4b2:'Concepção e desenvolvimento de gateway de pagamentos proprietário, eliminando custos de licenciamento.',
+j5d:'jan 2020 — nov 2020',j5l:'Lavras, MG',j5r:'Product Owner',j5c:'Agência Zetta',j5b1:'Criação do SIGERH-PA (gestão de recursos hídricos do Pará) do zero, mapeando regras de negócio sem documentação.',j5b2:'Gestão de stakeholders do setor público 100% remota, em ambiente de forte resistência tecnológica.',j5b3:'Redução na emissão de outorgas de água de anos para dias — em alguns casos, horas.',
+j6d:'mar 2019 — dez 2019',j6r:'Desenvolvedora Web',j6c:'Agência Zetta',j6b1:'Desenvolvedora web full stack do sistema de Licenciamento Ambiental do Amazonas.',
+sk:'Competências',sh:'Skills & Certificações',st1:'Principais competências',st2:'Formação',st3:'Certificações',
+c1:'Checkout & Pagamentos',c2:'Growth & Experimentação',c3:'Zero to One',c4:'Modernização de legado',c5:'App-First',c6:'Transformação digital',c7:'Gestão de stakeholders',c8:'Discovery',c9:'Métricas de Produto',c10:'Agile / Scrum',c11:'PIX',
+cc1:'Fundamentos do Scrum',cc2:'Técnicas Avançadas de Scrum',cc3:'Histórias de Usuários Ágeis',cc4:'Retrospectivas Ágeis',cc5:'Métricas de Produto',
+e1n:'Cursos PM3 — Product Manager',e1d:'jan 2022 — mar 2022',e2n:'UFLA — Bacharelado em Sistemas de Informação',e2d:'2014 — 2020',
+ck:'Contato',ct:'Vamos construir algo que importa?',cp:'Aberta a desafios de produto em jornadas transacionais, pagamentos e modernização de legado. Responder é rápido.',cb1:'bruggomes79@gmail.com',
+ft:'© 2026 Bruna Gomes — feito com cuidado'
+},
 en:{
-role:'Senior Product Manager',ctx1:'E-commerce, Checkout & Payments',ctx2:'LatAm',
-k1n:'6 years',k1l:'scaling B2B and B2C products',k2n:'+2 digits',k2l:'conversion rate growth',k3n:'BR & CO',k3l:'LatAm operations I lead',
-mapl:'Brazil & Colombia — LatAm operations',
-atag:'About',ah:'Product where impact is financial and errors are costly',ap:'Senior Product Manager with 6 years of experience scaling B2B and B2C digital products. Currently leading the full transactional ecosystem — cart, login, sign-up and checkout — at Dafiti for Brazil and Colombia, heading Growth, Lean, and critical incident response initiatives, focused on driving conversion, revenue, and an App-First culture.',
-etag:'Career',eh:'Experience',
-j1r:'Senior Product Manager',j1c:'Dafiti Group',j1d:'Nov 2022 – Present',j1l:'Brazil & Colombia',j1b1:'Leads the full transactional ecosystem (cart, login, sign-up, checkout) across App, Web, and Mobile Web for BR and CO.',j1b2:'Simultaneously runs three workstreams: Growth (experimentation), Lean (efficiency), and Snipers (critical incidents).',j1b3:'Leading the new checkout rollout in Colombia (Webview → Flutter) and Milkrun 2.0.',
-j2r:'Product Manager',j2c:'Dafiti Group',j2d:'Aug 2021 – Dec 2022',
-j3r:'Product Manager',j3c:'BEYOND Soluções',j3d:'Jul 2021 – Aug 2021',j3b1:'Discovery and delivery planning for life insurance product launch on the Órama brokerage app.',
-j4r:'Product Manager',j4c:'dti digital',j4d:'Nov 2020 – Jul 2021',j4b1:'End-to-end lifecycle of an omnichannel Customer Service system (Hermes Pardini), via operational immersion (shadowing).',j4b2:'Designed and developed a proprietary payment gateway, eliminating third-party licensing costs.',
-j5r:'Product Owner',j5c:'Agência Zetta',j5d:'Jan 2020 – Nov 2020',j5l:'Lavras, MG',j5b1:'Built SIGERH-PA (water resource management) from scratch, mapping complex business rules with no prior documentation.',j5b2:'Managed public sector stakeholders 100% remotely in an environment of strong tech resistance.',j5b3:'Reduced water grant issuance from years to days — in some cases, hours.',
-j6r:'Software Developer',j6c:'Agência Zetta',j6d:'Mar 2019 – Dec 2019',j6b1:'Full stack web developer for the Environmental Licensing system of Amazonas state.',
-stag:'Skills',sh:'Skills & Certifications',st1:'Core competencies',st2:'Certifications & Education',
-s1:'Digital Transformation',s2:'Stakeholder Mgmt',s3:'Zero to One',s4:'Checkout & Payments',s5:'Growth & Experimentation',s6:'Legacy Modernization',s7:'App-First',s8:'Discovery',s9:'Product Metrics',s10:'Agile / Scrum',s11:'PIX',
-c1:'Scrum Fundamentals',c2:'Advanced Scrum',c3:'Agile User Stories',c4:'Agile Retrospectives',c5:'Product Metrics',
-e1n:'PM3 — Product Manager',e1d:'Jan 2022 – Mar 2022',e2n:'UFLA — BSc in Information Systems',e2d:'2014 – 2020',
-ct:"Let's talk?",cp:'Open to product challenges in transactional journeys, payments, and legacy modernization.',cb1:'Send email',ft:'Carefully crafted · © 2026 Bruna Gomes'}};
+hk:'Senior Product Manager',
+lede:'I build product where the impact is <b>financial</b> and mistakes are costly — checkout, payments and transactional journeys that move conversion and revenue across LatAm.',
+cta1:"Let's talk",loc:'São Paulo · Brazil & Colombia',avail:'· Open to product challenges',chip:'Dafiti Group · LatAm',
+s1:'years scaling B2B & B2C products',s2:'double-digit conversion growth in checkout',s3:'protected during critical incidents',s4:'LatAm operations under my lead',
+ik:'Impact',ih:'Results I can defend in a boardroom',isub:'When product is the transactional layer, every decision becomes revenue, prevented loss or trust. A few milestones:',
+i1n:'Double-digit',i1t:'Flutter checkout + PIX',i1d:'Led the new checkout and PIX integration at Dafiti: double-digit conversion growth and a strong lift in revenue per session.',
+i2n:'Millions',i2t:'Anti-fraud rollback on Black Friday',i2d:'Architected a real-time anti-fraud provider rollback during Black Friday, preventing millions in financial losses.',
+i3n:'Loss stopped',i3t:'Legacy order-creation failures',i3d:'Led the root-cause fix of legacy order-creation failures, stopping millions in losses per semester.',
+i4n:'App-First',i4t:'Migrating journeys to native',i4d:'App-First evangelist: research, MVP and migration of native journeys to Flutter, raising the team’s mobile culture.',
+ak:'About',aq:'“Good payments product is invisible: no one notices when it works — <span class="em">and everyone notices when it fails.</span>”',
+ap1:'Senior Product Manager with 6 years of experience scaling B2B and B2C digital products. I started as a developer, which gives me the technical fluency to lead legacy modernization and deep conversations with engineering.',
+ap2:'Today I lead the full transactional ecosystem — cart, login, sign-up and checkout — at Dafiti for Brazil and Colombia, heading Growth, Lean and critical-incident response, focused on conversion, revenue and an App-First culture.',
+ek:'Career',eh:'Experience',
+j1d:'Nov 2022 — Present',j1l:'Brazil & Colombia',j1r:'Senior Product Manager',j1c:'Dafiti Group',j1b1:'Leads the full transactional ecosystem (cart, login, sign-up, checkout) across App, Web and Mobile Web for BR and CO.',j1b2:'Simultaneously runs three workstreams: Growth (experimentation), Lean (efficiency) and Snipers (critical incidents).',j1b3:'Leading the new checkout rollout in Colombia (Webview → Flutter) and Milkrun 2.0.',
+j2d:'Aug 2021 — Dec 2022',j2r:'Product Manager',j2c:'Dafiti Group',j2b1:'Evolved checkout and payments journeys, building the foundation for senior leadership of the transactional ecosystem.',
+j3d:'Jul 2021 — Aug 2021',j3r:'Product Manager',j3c:'BEYOND Soluções',j3b1:'Discovery and delivery planning for the life insurance launch on the Órama brokerage app.',
+j4d:'Nov 2020 — Jul 2021',j4r:'Product Manager',j4c:'dti digital',j4b1:'End-to-end lifecycle of an omnichannel Customer Service system (Hermes Pardini), via operational immersion (shadowing).',j4b2:'Designed and developed a proprietary payment gateway, eliminating third-party licensing costs.',
+j5d:'Jan 2020 — Nov 2020',j5l:'Lavras, MG',j5r:'Product Owner',j5c:'Agência Zetta',j5b1:'Built SIGERH-PA (water resource management) from scratch, mapping complex business rules with no prior documentation.',j5b2:'Managed public-sector stakeholders 100% remotely in an environment of strong tech resistance.',j5b3:'Reduced water grant issuance from years to days — in some cases, hours.',
+j6d:'Mar 2019 — Dec 2019',j6r:'Software Developer',j6c:'Agência Zetta',j6b1:'Full-stack web developer for the Environmental Licensing system of Amazonas state.',
+sk:'Skills',sh:'Skills & Certifications',st1:'Core competencies',st2:'Education',st3:'Certifications',
+c1:'Checkout & Payments',c2:'Growth & Experimentation',c3:'Zero to One',c4:'Legacy modernization',c5:'App-First',c6:'Digital transformation',c7:'Stakeholder management',c8:'Discovery',c9:'Product metrics',c10:'Agile / Scrum',c11:'PIX',
+cc1:'Scrum Fundamentals',cc2:'Advanced Scrum',cc3:'Agile User Stories',cc4:'Agile Retrospectives',cc5:'Product Metrics',
+e1n:'PM3 — Product Manager',e1d:'Jan 2022 — Mar 2022',e2n:'UFLA — BSc in Information Systems',e2d:'2014 — 2020',
+ck:'Contact',ct:"Let's build something that matters?",cp:'Open to product challenges in transactional journeys, payments and legacy modernization. I reply fast.',cb1:'bruggomes79@gmail.com',
+ft:'© 2026 Bruna Gomes — carefully crafted'
+}};
 
+const HTML_KEYS=new Set(['lede','aq']);
 function sl(l){
   document.documentElement.lang=l==='en'?'en':'pt-BR';
-  document.querySelectorAll('[data-k]').forEach(e=>{const k=e.getAttribute('data-k');if(D[l]&&D[l][k])e.textContent=D[l][k]});
-  document.getElementById('bpt').classList.toggle('on',l==='pt');
+  const dict=D[l]||D.pt;
+  document.querySelectorAll('[data-k]').forEach(e=>{
+    const k=e.getAttribute('data-k');
+    if(dict[k]!=null){ if(HTML_KEYS.has(k)) e.innerHTML=dict[k]; else e.textContent=dict[k]; }
+  });
+  document.getElementById('bpt').classList.toggle('on',l!=='en');
   document.getElementById('ben').classList.toggle('on',l==='en');
   try{localStorage.setItem('l',l)}catch(e){}
 }
 
-function anim(){
-  gsap.registerPlugin(ScrollTrigger);
-  const mm=gsap.matchMedia();
-
-  /* hero load */
-  const h=gsap.timeline({defaults:{duration:.5,ease:'power3.out'}});
-  h.from('.hero img.ava',{opacity:0,y:12,scale:.9},0)
-   .from('.hero h1',{opacity:0,y:16},.08)
-   .from('.hero .role',{opacity:0,y:10},.16)
-   .from('.hero .ctx',{opacity:0,y:6},.2)
-   .from('.kpi>div',{opacity:0,y:14,stagger:.08,duration:.45},.28)
-   .from('.map',{opacity:0,y:10,duration:.4},.4);
-
-  /* sections */
-  document.querySelectorAll('.sec').forEach(s=>{
-    ScrollTrigger.create({trigger:s,start:'top 82%',once:true,
-      onEnter:()=>gsap.from(s.children,{opacity:0,y:18,duration:.5,stagger:.07,ease:'power2.out'})
-    });
-  });
-
-  /* jobs */
-  document.querySelectorAll('.job').forEach(j=>{
-    ScrollTrigger.create({trigger:j,start:'top 82%',once:true,
-      onEnter:()=>gsap.from(j.querySelectorAll('h3,.meta,li'),{opacity:0,y:6,duration:.4,stagger:.05,ease:'power2.out'})
-    });
-  });
-
-  /* map hover */
-  document.querySelectorAll('.br,.co').forEach(el=>{
-    el.addEventListener('mouseenter',()=>gsap.to(el,{fillOpacity:.5,duration:.25}));
-    el.addEventListener('mouseleave',()=>gsap.to(el,{fillOpacity:.22,duration:.25}));
-  });
+function reveal(){
+  const els=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver'in window)){els.forEach(e=>e.classList.add('in'));return;}
+  const io=new IntersectionObserver((ent,obs)=>{
+    ent.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');obs.unobserve(en.target);}});
+  },{rootMargin:'0px 0px -8% 0px',threshold:.12});
+  els.forEach(e=>io.observe(e));
 }
 
 document.addEventListener('DOMContentLoaded',()=>{
-  const l=(()=>{try{return localStorage.getItem('l')}catch(e){return null}})();
-  sl(l||'pt');
-  lucide.createIcons();
-  setTimeout(anim,150);
+  const saved=(()=>{try{return localStorage.getItem('l')}catch(e){return null}})();
+  sl(saved||'pt');
+  reveal();
+  const bar=document.getElementById('bar');
+  const onScroll=()=>bar.classList.toggle('scrolled',window.scrollY>12);
+  onScroll();window.addEventListener('scroll',onScroll,{passive:true});
 });
 </script>
 </body>
