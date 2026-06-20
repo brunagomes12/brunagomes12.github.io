@@ -315,9 +315,9 @@ img{max-width:100%;display:block}
     <ol>
       <li><a href="#hero" data-step="hero"><span class="num">01</span> <span data-k="st_a">Produto</span></a></li>
       <li><a href="#cart" data-step="cart"><span class="num">02</span> <span data-k="st_b">Carrinho</span></a></li>
-      <li><a href="#entrega" data-step="entrega"><span class="num">03</span> <span data-k="st_c">Entrega</span></a></li>
-      <li><a href="#pagamento" data-step="pagamento"><span class="num">04</span> <span data-k="st_d">Pagamento</span></a></li>
-      <li><a href="#confirmado" data-step="confirmado"><span class="num">05</span> <span data-k="st_e">Confirmado</span></a></li>
+      <li><a href="#orders" data-step="orders"><span class="num">03</span> <span data-k="st_c">Pedidos</span></a></li>
+      <li><a href="#payment" data-step="payment"><span class="num">04</span> <span data-k="st_d">Pagamento</span></a></li>
+      <li><a href="#confirmed" data-step="confirmed"><span class="num">05</span> <span data-k="st_e">Confirmado</span></a></li>
     </ol>
   </div>
 </nav>
@@ -448,12 +448,12 @@ img{max-width:100%;display:block}
   </div>
 </section>
 
-<!-- 03 — ENTREGA (experiência / rastreamento) -->
-<section class="sec" id="entrega">
+<!-- 03 — MEUS PEDIDOS (experiência / rastreamento) -->
+<section class="sec" id="orders">
   <div class="sec-head rv">
-    <span class="eyebrow" data-k="ek">Rastreamento</span>
-    <h2 data-k="eh">Em rota desde 2019 — histórico do pedido</h2>
-    <p class="sub" data-k="esub">Acompanhe cada parada da entrega. Atualização mais recente no topo.</p>
+    <span class="eyebrow" data-k="ek">Meus pedidos</span>
+    <h2 data-k="eh">Últimos pedidos — em rota desde 2019</h2>
+    <p class="sub" data-k="esub">Cada pedido, um capítulo. Atualização mais recente no topo.</p>
   </div>
   <div class="track">
 
@@ -532,7 +532,7 @@ img{max-width:100%;display:block}
 </section>
 
 <!-- 04 — PAGAMENTO (skills) -->
-<section class="sec" id="pagamento">
+<section class="sec" id="payment">
   <div class="sec-head rv">
     <span class="eyebrow" data-k="pk">Pagamento</span>
     <h2 data-k="ph">Formas de pagamento aceitas</h2>
@@ -588,7 +588,7 @@ img{max-width:100%;display:block}
 </section>
 
 <!-- 05 — CONFIRMADO (contato) -->
-<section class="sec" id="confirmado">
+<section class="sec" id="confirmed">
   <div class="confirm rv">
     <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
     <div class="order mono" data-k="ord">Pedido #BG-2026-PM · aguardando seu sim</div>
@@ -623,7 +623,7 @@ img{max-width:100%;display:block}
 <script>
 const D={
 pt:{
-st_a:'Produto',st_b:'Carrinho',st_c:'Entrega',st_d:'Pagamento',st_e:'Confirmado',
+st_a:'Produto',st_b:'Carrinho',st_c:'Pedidos',st_d:'Pagamento',st_e:'Confirmado',
 cr1:'Talentos',cr2:'Product Managers',cr3:'Sênior · Checkout & Pagamentos',
 badge:'Edição limitada · 1 de 1',stock:'Em estoque · pronta entrega',
 th1:'anos',th2:'países LatAm',th3:'frentes',th4:'díg. conv.',
@@ -639,7 +639,7 @@ i3t:'Falhas de criação de pedido em legado',i3d:'Conduzi a análise de causa-r
 i4t:'Migração de jornadas para nativo',i4d:'Evangelista App-First: pesquisa, MVP e migração de jornadas nativas para Flutter, elevando a cultura mobile do time.',i4v:'cultura ↑',
 addl:'Adicionar',addl2:'Adicionar',addl3:'Adicionar',addl4:'Adicionar',
 subl:'Subtotal de impacto',subr:'incalculável — peça orçamento ☕',
-ek:'Rastreamento',eh:'Em rota desde 2019 — histórico do pedido',esub:'Acompanhe cada parada da entrega. Atualização mais recente no topo.',
+ek:'Meus pedidos',eh:'Últimos pedidos — em rota desde 2019',esub:'Cada pedido, um capítulo. Atualização mais recente no topo.',
 es1:'Em rota de entrega · atual',es2:'Entregue',es3:'Entregue',es4:'Entregue',es5:'Entregue',es6:'Pedido criado',
 j1r:'Senior Product Manager',j1c:'Dafiti Group',j1d:'nov 2022 — Presente',j1l:'Brasil & Colômbia',j1b1:'Lidera o ecossistema transacional completo (carrinho, login, cadastro e checkout) em App, Web e Mobile Web para BR e CO.',j1b2:'Conduz simultaneamente três frentes: Growth (experimentação), Lean (eficiência) e Snipers (incidentes críticos).',j1b3:'À frente do rollout do checkout na Colômbia (Webview → Flutter) e do Milkrun 2.0.',
 j2r:'Product Manager',j2c:'Dafiti Group',j2d:'ago 2021 — dez 2022',j2b1:'Evoluiu jornadas de checkout e pagamentos, consolidando a base para a liderança sênior do ecossistema transacional.',
@@ -658,7 +658,7 @@ r1:'Entrega: <b>remoto · LatAm</b>',r2:'Prazo: <b>resposta no mesmo dia</b>',r3
 ft:'© 2026 bruna.store — obrigada pela visita · feito com café e curiosidade'
 },
 en:{
-st_a:'Product',st_b:'Cart',st_c:'Shipping',st_d:'Payment',st_e:'Confirmed',
+st_a:'Product',st_b:'Cart',st_c:'Orders',st_d:'Payment',st_e:'Confirmed',
 cr1:'Talent',cr2:'Product Managers',cr3:'Senior · Checkout & Payments',
 badge:'Limited edition · 1 of 1',stock:'In stock · ships now',
 th1:'years',th2:'LatAm countries',th3:'workstreams',th4:'dig. conv.',
@@ -674,7 +674,7 @@ i3t:'Legacy order-creation failures',i3d:'Led the root-cause fix of legacy order
 i4t:'Migrating journeys to native',i4d:'App-First evangelist: research, MVP and migration of native journeys to Flutter, raising the team’s mobile culture.',i4v:'culture ↑',
 addl:'Add',addl2:'Add',addl3:'Add',addl4:'Add',
 subl:'Impact subtotal',subr:'priceless — request a quote ☕',
-ek:'Tracking',eh:'In transit since 2019 — order history',esub:'Follow every stop along the way. Latest update on top.',
+ek:'My orders',eh:'Recent orders — in transit since 2019',esub:'Each order, a chapter. Latest update on top.',
 es1:'Out for delivery · current',es2:'Delivered',es3:'Delivered',es4:'Delivered',es5:'Delivered',es6:'Order placed',
 j1r:'Senior Product Manager',j1c:'Dafiti Group',j1d:'Nov 2022 — Present',j1l:'Brazil & Colombia',j1b1:'Leads the full transactional ecosystem (cart, login, sign-up, checkout) across App, Web and Mobile Web for BR and CO.',j1b2:'Simultaneously runs three workstreams: Growth (experimentation), Lean (efficiency) and Snipers (critical incidents).',j1b3:'Leading the new checkout rollout in Colombia (Webview → Flutter) and Milkrun 2.0.',
 j2r:'Product Manager',j2c:'Dafiti Group',j2d:'Aug 2021 — Dec 2022',j2b1:'Evolved checkout and payments journeys, building the foundation for senior leadership of the transactional ecosystem.',
@@ -740,7 +740,7 @@ function reveal(){
 function spy(){
   const links=[...document.querySelectorAll('.stepper a')];
   const map={};links.forEach(a=>map[a.dataset.step]=a);
-  const secs=['hero','cart','entrega','pagamento','confirmado'].map(id=>document.getElementById(id));
+  const secs=['hero','cart','orders','payment','confirmed'].map(id=>document.getElementById(id));
   const io=new IntersectionObserver(ent=>{
     ent.forEach(en=>{
       if(en.isIntersecting){
@@ -748,6 +748,10 @@ function spy(){
         const a=map[en.target.id];if(a)a.classList.add('active');
       }
     });
+    // last section is short and never reaches the spy band — force it active at page bottom
+    if(window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-2){
+      links.forEach(a=>a.classList.remove('active'));map.confirmed&&map.confirmed.classList.add('active');
+    }
   },{rootMargin:'-45% 0px -50% 0px',threshold:0});
   secs.forEach(s=>s&&io.observe(s));
 }
@@ -757,7 +761,15 @@ document.addEventListener('DOMContentLoaded',()=>{
   sl(saved||'pt');
   buildQR();cart();reveal();spy();
   const bar=document.getElementById('bar');
-  const onScroll=()=>bar.classList.toggle('scrolled',window.scrollY>12);
+  const stepLinks=[...document.querySelectorAll('.stepper a')];
+  const onScroll=()=>{
+    bar.classList.toggle('scrolled',window.scrollY>12);
+    // last section is short and never reaches the spy band — force it active at page bottom
+    if(window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-2){
+      stepLinks.forEach(a=>a.classList.remove('active'));
+      document.querySelector('.stepper a[data-step="confirmed"]').classList.add('active');
+    }
+  };
   onScroll();window.addEventListener('scroll',onScroll,{passive:true});
   document.getElementById('cartBtn').addEventListener('click',()=>{
     document.getElementById('cart').scrollIntoView({behavior:'smooth'});
