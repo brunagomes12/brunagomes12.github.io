@@ -11,14 +11,16 @@
 <meta property="og:description" content="Senior Product Manager · E-commerce, Checkout & Pagamentos · LatAm">
 <meta property="og:type" content="profile">
 <meta property="og:url" content="https://brunagomes.me">
-<meta property="og:image" content="https://brunagomes.me/assets/bruna.jpg">
-<meta property="og:image:width" content="800"><meta property="og:image:height" content="800">
+<meta property="og:image" content="https://brunagomes.me/assets/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta property="profile:first_name" content="Bruna"><meta property="profile:last_name" content="Gomes">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Bruna Gomes — Senior Product Manager">
 <meta name="twitter:description" content="Senior Product Manager · E-commerce, Checkout & Pagamentos · LatAm">
-<meta name="twitter:image" content="https://brunagomes.me/assets/bruna.jpg">
+<meta name="twitter:image" content="https://brunagomes.me/assets/og.png">
 <meta name="theme-color" content="#0E1117">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/favicon-180.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Bruna Gomes","givenName":"Bruna","familyName":"Gomes","jobTitle":"Senior Product Manager","url":"https://brunagomes.me","image":"https://brunagomes.me/assets/bruna.jpg","email":"mailto:bruggomes79@gmail.com","address":{"@type":"PostalAddress","addressLocality":"São Sebastião","addressRegion":"SP","addressCountry":"BR"},"sameAs":["https://www.linkedin.com/in/bruna-gomes-product-manager"],"knowsAbout":["Product Management","E-commerce","Checkout","Payments","PIX","Growth","Agile"],"alumniOf":{"@type":"CollegeOrUniversity","name":"UFLA"},"worksFor":{"@type":"Organization","name":"Dafiti Group"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -167,7 +169,8 @@ img{max-width:100%;display:block}
 .cart-list{display:grid;gap:12px}
 .line{display:grid;grid-template-columns:54px 1fr auto;gap:18px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;transition:border-color .25s,transform .25s,box-shadow .25s}
 .line:hover{border-color:var(--line2);transform:translateY(-2px);box-shadow:var(--shadow-sm)}
-.line .ic{width:54px;height:54px;border-radius:13px;background:var(--bg2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:1.5rem}
+.line .ic{width:54px;height:54px;border-radius:13px;background:var(--pix-soft);border:1px solid var(--line);display:flex;align-items:center;justify-content:center}
+.line .ic svg{width:24px;height:24px;fill:none;stroke:var(--pix-deep);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .line .body h3{margin-bottom:3px}
 .line .body .sku{font-family:'JetBrains Mono',monospace;font-size:.66rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
 .line .body p{font-size:.88rem;line-height:1.5;max-width:54ch}
@@ -381,7 +384,7 @@ img{max-width:100%;display:block}
   </div>
   <div class="cart-list">
     <article class="line rv">
-      <div class="ic">💳</div>
+      <div class="ic"><svg viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="5" rx="2"/><path d="M2 10h20"/></svg></div>
       <div class="body">
         <div class="sku mono">SKU · CHK-PIX-FLUTTER</div>
         <h3 data-k="i1t">Checkout em Flutter + PIX</h3>
@@ -393,7 +396,7 @@ img{max-width:100%;display:block}
       </div>
     </article>
     <article class="line rv">
-      <div class="ic">🛡️</div>
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></div>
       <div class="body">
         <div class="sku mono">SKU · BF-ROLLBACK-RT</div>
         <h3 data-k="i2t">Rollback antifraude na Black Friday</h3>
@@ -405,7 +408,7 @@ img{max-width:100%;display:block}
       </div>
     </article>
     <article class="line rv">
-      <div class="ic">🧩</div>
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
       <div class="body">
         <div class="sku mono">SKU · LEGACY-ORDER-FIX</div>
         <h3 data-k="i3t">Falhas de criação de pedido em legado</h3>
@@ -417,7 +420,7 @@ img{max-width:100%;display:block}
       </div>
     </article>
     <article class="line rv">
-      <div class="ic">📱</div>
+      <div class="ic"><svg viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></svg></div>
       <div class="body">
         <div class="sku mono">SKU · APP-FIRST-MIGRATION</div>
         <h3 data-k="i4t">Migração de jornadas para nativo</h3>

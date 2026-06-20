@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1200px;height:630px;overflow:hidden;font-family:Inter,sans-serif;
+  background:radial-gradient(700px 400px at 82% -10%,rgba(0,192,139,.30),transparent 60%),#0E1117;color:#C7CDD8}
+.card{width:100%;height:100%;padding:64px 68px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
+.top{display:flex;align-items:center;justify-content:space-between}
+.mark{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:26px;color:#fff;display:flex;align-items:center;gap:11px}
+.mark span{color:#8A93A1;font-weight:500}
+.mark svg{width:28px;height:28px;stroke:#00C08B;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.stock{display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:16px;color:#0E1117;background:#00C08B;padding:9px 16px;border-radius:99px;font-weight:700}
+.mid{display:flex;align-items:center;gap:54px}
+.info{flex:1}
+.crumb{font-family:'JetBrains Mono',monospace;font-size:17px;color:#00C08B;letter-spacing:.04em;margin-bottom:18px}
+h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:74px;line-height:1.02;letter-spacing:-.02em;color:#fff;margin-bottom:14px}
+.by{font-size:24px;color:#A8B0BD;font-weight:500}
+.by b{color:#fff;font-weight:600}
+.specs{margin-top:26px;display:flex;gap:10px;flex-wrap:wrap}
+.chip{font-family:'JetBrains Mono',monospace;font-size:15px;color:#C7CDD8;border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:7px 13px}
+.portrait{width:230px;height:288px;border-radius:18px;object-fit:cover;border:1px solid rgba(255,255,255,.14);flex:none}
+.bottom{display:flex;align-items:center;justify-content:space-between;border-top:1px dashed rgba(255,255,255,.16);padding-top:22px;font-family:'JetBrains Mono',monospace;font-size:16px;color:#8A93A1}
+.bottom b{color:#C7CDD8;font-weight:500}
+.price{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;color:#00C08B}
+</style></head>
+<body>
+<div class="card">
+  <div class="top">
+    <div class="mark">
+      <svg viewBox="0 0 24 24"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+      bruna<span>.store</span>
+    </div>
+    <span class="stock">● Em estoque · LatAm</span>
+  </div>
+  <div class="mid">
+    <div class="info">
+      <div class="crumb">Talentos / Product Managers / Sênior</div>
+      <h1>Senior<br>Product Manager</h1>
+      <div class="by">por <b>Bruna Gomes</b> · Checkout, Pagamentos & Conversão</div>
+      <div class="specs">
+        <span class="chip">6+ anos</span>
+        <span class="chip">Checkout & PIX</span>
+        <span class="chip">BR 🇧🇷 · CO 🇨🇴</span>
+        <span class="chip">ex-dev</span>
+      </div>
+    </div>
+    <img class="portrait" src="assets/bruna.jpg" alt="Bruna Gomes">
+  </div>
+  <div class="bottom">
+    <span>SKU · <b>PM-SR-CHECKOUT-2026</b></span>
+    <span class="price">Investimento: 1 conversa</span>
+  </div>
+</div>
+</body></html>
