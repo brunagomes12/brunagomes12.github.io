@@ -1,0 +1,32 @@
+# Bruna Gomes
+
+> Senior Product Manager with 6 years of experience scaling B2B and B2C digital products. Specialized in e-commerce, checkout and payments across LatAm (Brazil & Colombia), focused on conversion, revenue and App-First culture.
+
+## About
+- Name: Bruna Gomes
+- Role: Senior Product Manager — E-commerce, Checkout & Payments, LatAm
+- Location: São Paulo, Brazil
+- Current company: Dafiti Group (Nov 2022 – present)
+- Email: bruggomes79@gmail.com
+- LinkedIn: https://www.linkedin.com/in/bruna-gomes-product-manager
+- Website: https://brunagomes12.github.io/
+
+## Selected impact
+- Led the new Flutter checkout and PIX integration at Dafiti: double-digit conversion growth and a strong lift in revenue per session.
+- Architected a real-time anti-fraud provider rollback during Black Friday, preventing millions in financial losses.
+- Led the root-cause fix of legacy order-creation failures, stopping millions in losses per semester.
+- Lead App-First evangelist: research, MVP and migration of native journeys to Flutter.
+
+## Experience
+- Dafiti Group — Senior Product Manager (Nov 2022–present) and Product Manager (Aug 2021–Dec 2022)
+- BEYOND Soluções — Product Manager (2021)
+- dti digital — Product Manager (2020–2021)
+- Agência Zetta — Product Owner & Software Developer (2019–2020)
+- UFLA (Android research), Comp Júnior (Business Director), Google Developers Group — earlier roles (2017–2019)
+
+## Education
+- Cursos PM3 — Product Manager (2022)
+- Universidade Federal de Lavras — BSc in Information Systems (2014–2020)
+
+## Skills
+Product Management, E-commerce, Checkout, Payments, PIX, Growth & Experimentation, Legacy modernization, App-First, Discovery, Agile/Scrum, Product metrics.
