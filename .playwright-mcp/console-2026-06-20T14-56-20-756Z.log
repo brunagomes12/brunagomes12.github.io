@@ -1,0 +1,4 @@
+[     203ms] [WARNING] <i data-lucide="linkedin"></i> icon name was not found in the provided icons object. @ https://unpkg.com/lucide@latest:7
+[     252ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8080/favicon.ico:0
+[  722695ms] [WARNING] <i data-lucide="linkedin"></i> icon name was not found in the provided icons object. @ https://unpkg.com/lucide@latest:7
+[  722733ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8080/favicon.ico:0

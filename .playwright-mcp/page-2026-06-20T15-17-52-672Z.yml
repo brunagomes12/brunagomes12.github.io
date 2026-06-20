@@ -1,0 +1,197 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - button "PT" [ref=e3] [cursor=pointer]
+    - button "EN" [ref=e4] [cursor=pointer]
+  - main [ref=e5]:
+    - generic [ref=e6]:
+      - img "Bruna Gomes" [ref=e7]
+      - heading "Bruna Gomes" [level=1] [ref=e8]
+      - paragraph [ref=e9]: Senior Product Manager
+      - paragraph [ref=e10]:
+        - emphasis [ref=e11]: E-commerce, Checkout & Pagamentos
+        - text: · LatAm
+      - generic [ref=e12]:
+        - generic [ref=e13]:
+          - generic [ref=e14]: 6 anos
+          - generic [ref=e15]: escalando produtos digitais B2B e B2C
+        - generic [ref=e16]:
+          - generic [ref=e17]: +2 dígitos
+          - generic [ref=e18]: de crescimento na conversão
+        - generic [ref=e19]:
+          - generic [ref=e20]: BR & CO
+          - generic [ref=e21]: operações LatAm que lidero hoje
+      - generic [ref=e22]:
+        - 'img "Operações LatAm: Brasil & Colômbia" [ref=e23]':
+          - generic [ref=e27]: BR
+          - generic [ref=e28]: CO
+        - paragraph [ref=e29]: Brasil & Colômbia — operações LatAm
+    - generic [ref=e30]:
+      - generic [ref=e33]: Sobre
+      - heading "Produto onde o impacto é financeiro e o erro custa caro" [level=2] [ref=e34]
+      - paragraph [ref=e35]: Sou Product Manager Sênior com 6 anos de experiência escalando produtos digitais B2B e B2C. Atualmente lidero o ecossistema transacional — carrinho, login, cadastro e checkout — da Dafiti para Brasil e Colômbia, à frente de frentes de Growth, Lean e resposta a incidentes críticos, com foco em alavancar conversão, receita e cultura App-First.
+    - generic [ref=e36]:
+      - generic [ref=e39]: Ecossistema Transacional
+      - heading "O que lidero hoje" [level=2] [ref=e40]
+      - generic [ref=e41]:
+        - generic [ref=e42]:
+          - heading "Carrinho" [level=4] [ref=e43]
+          - paragraph [ref=e44]: redução de atrito
+        - generic [ref=e45]:
+          - heading "Login" [level=4] [ref=e46]
+          - paragraph [ref=e47]: SSO & social login
+        - generic [ref=e48]:
+          - heading "Cadastro" [level=4] [ref=e49]
+          - paragraph [ref=e50]: fluxo simplificado
+        - generic [ref=e51]:
+          - heading "Checkout" [level=4] [ref=e52]
+          - paragraph [ref=e53]: conversão +2 dígitos
+        - generic [ref=e54]:
+          - heading "Pagamento" [level=4] [ref=e55]
+          - paragraph [ref=e56]: PIX & múltiplos meios
+    - generic [ref=e57]:
+      - generic [ref=e60]: Decisões de Impacto
+      - heading "O que acontece quando o erro custa caro" [level=2] [ref=e61]
+      - generic [ref=e62]:
+        - generic [ref=e63]: Nov 2024
+        - generic [ref=e64]:
+          - heading "Rollback antifraude na Black Friday" [level=3] [ref=e65]
+          - generic [ref=e66]:
+            - strong [ref=e67]: Contexto
+            - text: Anomalias no provedor antifraude durante o evento mais crítico do ano.
+          - generic [ref=e68]:
+            - strong [ref=e69]: Decisão
+            - text: Arquitetar rollout dinâmico para troca de provedor e executar rollback em tempo real, sem RDM.
+          - generic [ref=e70]:
+            - strong [ref=e71]: Resultado
+            - text: Perdas financeiras milionárias evitadas no pico de tráfego do ano.
+      - generic [ref=e72]:
+        - generic [ref=e73]: "2024"
+        - generic [ref=e74]:
+          - heading "Novo checkout em Flutter + PIX" [level=3] [ref=e75]
+          - generic [ref=e76]:
+            - strong [ref=e77]: Contexto
+            - text: Checkout legado em Webview limitava conversão e adoção de novos meios de pagamento.
+          - generic [ref=e78]:
+            - strong [ref=e79]: Decisão
+            - text: Lançar checkout nativo em Flutter com PIX e política de descontos sem canibalizar cartão.
+          - generic [ref=e80]:
+            - strong [ref=e81]: Resultado
+            - text: Crescimento de dois dígitos na conversão e share do PIX elevado de forma saudável.
+      - generic [ref=e82]:
+        - generic [ref=e83]: 2023–2024
+        - generic [ref=e84]:
+          - heading "Correção de falhas na criação de pedidos" [level=3] [ref=e85]
+          - generic [ref=e86]:
+            - strong [ref=e87]: Contexto
+            - text: Erros sistêmicos de legado geravam prejuízos milionários por semestre.
+          - generic [ref=e88]:
+            - strong [ref=e89]: Decisão
+            - text: Liderar investigação da causa raiz e correção das falhas na criação de pedidos.
+          - generic [ref=e90]:
+            - strong [ref=e91]: Resultado
+            - text: Falhas que representavam milhões em prejuízo por semestre estancadas.
+    - generic [ref=e92]:
+      - generic [ref=e95]: Trajetória
+      - heading "Experiência" [level=2] [ref=e96]
+      - generic [ref=e97]:
+        - generic [ref=e98]:
+          - generic [ref=e99]:
+            - heading "Senior Product Manager" [level=3] [ref=e100]
+            - generic [ref=e101]: · Dafiti Group
+            - generic [ref=e102]: · nov 2022 – Presente
+            - generic [ref=e103]: · Brasil & Colômbia
+          - list [ref=e104]:
+            - listitem [ref=e105]: – Lidera o ecossistema transacional completo (carrinho, login, cadastro e checkout) em App, Web e Mobile Web para BR e CO.
+            - listitem [ref=e106]: "– Conduz simultaneamente três frentes: Growth (experimentação e métricas), Lean (eficiência de jornada) e Snipers (incidentes críticos)."
+            - listitem [ref=e107]: – À frente do rollout do novo checkout na Colômbia (Webview → Flutter) e do Milkrun 2.0 de otimização logística.
+        - generic [ref=e109]:
+          - heading "Product Manager" [level=3] [ref=e110]
+          - generic [ref=e111]: · Dafiti Group
+          - generic [ref=e112]: · ago 2021 – dez 2022
+        - generic [ref=e113]:
+          - generic [ref=e114]:
+            - heading "Product Manager" [level=3] [ref=e115]
+            - generic [ref=e116]: · BEYOND Soluções
+            - generic [ref=e117]: · jul 2021 – ago 2021
+          - list [ref=e118]:
+            - listitem [ref=e119]: – Discovery e planejamento de delivery para o lançamento de seguros de vida no app da corretora Órama.
+        - generic [ref=e120]:
+          - generic [ref=e121]:
+            - heading "Product Manager" [level=3] [ref=e122]
+            - generic [ref=e123]: · dti digital
+            - generic [ref=e124]: · nov 2020 – jul 2021
+          - list [ref=e125]:
+            - listitem [ref=e126]: – Ciclo de vida ponta a ponta de um sistema omnichannel de Customer Service para o Instituto Hermes Pardini, via imersão operacional (shadowing).
+            - listitem [ref=e127]: – Concepção e desenvolvimento de um gateway de pagamentos proprietário, eliminando custos abusivos de licenciamento de terceiros.
+        - generic [ref=e128]:
+          - generic [ref=e129]:
+            - heading "Product Owner" [level=3] [ref=e130]
+            - generic [ref=e131]: · Agência Zetta
+            - generic [ref=e132]: · jan 2020 – nov 2020
+            - generic [ref=e133]: · Lavras, MG
+          - list [ref=e134]:
+            - listitem [ref=e135]: – Criação do SIGERH-PA (gestão de recursos hídricos do Pará) do zero, mapeando regras de negócio complexas sem documentação prévia.
+            - listitem [ref=e136]: – Gestão de stakeholders do setor público 100% remota, em ambiente de forte resistência tecnológica.
+            - listitem [ref=e137]: – Reduziu a emissão de outorgas de uso de água de anos para dias — em alguns casos, horas.
+        - generic [ref=e138]:
+          - generic [ref=e139]:
+            - heading "Desenvolvedora Web" [level=3] [ref=e140]
+            - generic [ref=e141]: · Agência Zetta
+            - generic [ref=e142]: · mar 2019 – dez 2019
+          - list [ref=e143]:
+            - listitem [ref=e144]: – Desenvolvedora web full stack do sistema de Licenciamento Ambiental do Amazonas.
+    - generic [ref=e145]:
+      - generic [ref=e148]: Competências
+      - heading "Skills & Certificações" [level=2] [ref=e149]
+      - generic [ref=e150]:
+        - img [ref=e151]:
+          - generic [ref=e159]: Estratégia
+          - generic [ref=e160]: Execução
+          - generic [ref=e161]: Growth
+          - generic [ref=e162]: Incidentes
+          - generic [ref=e163]: Modernização
+        - generic [ref=e170]:
+          - generic [ref=e171]:
+            - heading "Principais competências" [level=3] [ref=e172]
+            - generic [ref=e173]:
+              - generic [ref=e174]: Transformação digital
+              - generic [ref=e175]: Gestão de stakeholders
+              - generic [ref=e176]: Zero to One
+              - generic [ref=e177]: Checkout & Pagamentos
+              - generic [ref=e178]: Growth & Experimentação
+              - generic [ref=e179]: Modernização de legado
+              - generic [ref=e180]: App-First
+              - generic [ref=e181]: Discovery
+              - generic [ref=e182]: Métricas de Produto
+              - generic [ref=e183]: Agile / Scrum
+              - generic [ref=e184]: PIX
+          - generic [ref=e185]:
+            - heading "Certificações" [level=3] [ref=e186]
+            - generic [ref=e187]:
+              - generic [ref=e188]: Fundamentos do Scrum
+              - generic [ref=e189]: Técnicas Avançadas de Scrum
+              - generic [ref=e190]: Histórias de Usuários Ágeis
+              - generic [ref=e191]: Retrospectivas Ágeis
+              - generic [ref=e192]: Métricas de Produto
+          - generic [ref=e193]:
+            - heading "Formação" [level=3] [ref=e194]
+            - generic [ref=e195]:
+              - strong [ref=e196]: Cursos PM3 — Product Manager
+              - text: jan 2022 – mar 2022
+            - generic [ref=e197]:
+              - strong [ref=e198]: UFLA — Bacharelado em Sistemas de Informação
+              - text: 2014 – 2020
+    - generic [ref=e200]:
+      - img "Bruna Gomes" [ref=e201]
+      - heading "Vamos conversar?" [level=2] [ref=e202]
+      - paragraph [ref=e203]: Aberta a desafios de produto em jornadas transacionais, pagamentos e modernização de legado.
+      - generic [ref=e204]:
+        - link "Enviar e-mail" [ref=e205] [cursor=pointer]:
+          - /url: mailto:bruggomes79@gmail.com
+          - img [ref=e206]
+          - generic [ref=e209]: Enviar e-mail
+        - link "LinkedIn" [ref=e210] [cursor=pointer]:
+          - /url: https://www.linkedin.com/in/bruna-gomes-product-manager
+          - img [ref=e211]
+          - text: LinkedIn
+    - generic [ref=e215]: Feito com cuidado · © 2026 Bruna Gomes
