@@ -19,6 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.544.0/dist/umd/lucide.min.js" defer></script>
 <style>
   :root{
     --ivory:#FBF7F4; --blush:#F4DCE0; --rose:#E8C4C4;
@@ -43,7 +44,10 @@
   h1,h2,h3{font-family:"Fraunces",Georgia,serif; line-height:1.1; font-weight:600; margin:0}
   a{color:var(--berry); text-decoration:none}
   a:hover{text-decoration:underline}
-  .eyebrow{font-size:.78rem; letter-spacing:.16em; text-transform:uppercase; color:var(--berry); font-weight:600}
+  .eyebrow{font-size:.78rem; letter-spacing:.16em; text-transform:uppercase; color:var(--berry); font-weight:600;
+    display:inline-flex; align-items:center; gap:7px}
+  .eyebrow svg{width:16px; height:16px}
+  .btn svg{width:18px; height:18px}
 
   /* lang toggle */
   .lang{position:fixed; top:16px; right:16px; z-index:50; display:flex; gap:2px;
@@ -54,9 +58,23 @@
 
   /* hero */
   header.hero{padding:clamp(80px,12vw,140px) 0 clamp(40px,6vw,70px)}
-  .monogram{width:64px; height:64px; border-radius:50%; display:grid; place-items:center;
-    background:var(--grad); color:#fff; font-family:"Fraunces"; font-weight:600; font-size:1.5rem;
-    box-shadow:var(--shadow); margin-bottom:28px}
+  .hero-grid{display:grid; grid-template-columns:1.25fr .9fr; gap:clamp(30px,6vw,72px); align-items:center}
+  .monogram{width:60px; height:60px; border-radius:50%; display:grid; place-items:center;
+    background:var(--grad); color:#fff; font-family:"Fraunces"; font-weight:600; font-size:1.4rem;
+    box-shadow:var(--shadow); margin-bottom:24px}
+  /* portrait */
+  .hero-portrait{position:relative; justify-self:center; width:min(100%,360px); aspect-ratio:1}
+  .hero-portrait img{position:relative; z-index:1; width:100%; height:100%; object-fit:cover;
+    border-radius:30% 70% 70% 30% / 30% 30% 70% 70%;
+    border:6px solid #fff; box-shadow:0 22px 55px rgba(155,45,94,.20)}
+  .hero-portrait .blob{position:absolute; inset:-9%; z-index:0; background:var(--grad); opacity:.85;
+    border-radius:38% 62% 63% 37% / 41% 44% 56% 59%; animation:morph 9s ease-in-out infinite}
+  @keyframes morph{0%,100%{border-radius:38% 62% 63% 37%/41% 44% 56% 59%}
+    50%{border-radius:60% 40% 41% 59%/55% 48% 52% 45%}}
+  .portrait-badge{position:absolute; z-index:2; bottom:4%; left:50%; transform:translateX(-50%);
+    background:#fff; box-shadow:var(--shadow); border-radius:999px; padding:8px 16px; font-size:.84rem;
+    font-weight:600; display:inline-flex; gap:6px; align-items:center; white-space:nowrap}
+  .portrait-badge svg{width:15px; height:15px; color:var(--berry)}
   .hero h1{font-size:clamp(2.6rem,8vw,5rem); letter-spacing:-.02em}
   .hero .role{font-size:clamp(1.05rem,2.6vw,1.35rem); font-weight:600; margin:14px 0 0; color:var(--berry)}
   .hero .tagline{font-size:clamp(1rem,2.2vw,1.18rem); color:var(--ink-soft); max-width:46ch; margin:16px 0 0}
@@ -134,6 +152,14 @@
   .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease}
   .reveal.in{opacity:1; transform:none}
 
+  /* contact avatar */
+  .contact-ava{width:88px; height:88px; border-radius:50%; object-fit:cover;
+    border:4px solid rgba(255,255,255,.65); box-shadow:0 10px 30px rgba(0,0,0,.12); margin-bottom:6px}
+
+  @media (max-width:860px){
+    .hero-grid{grid-template-columns:1fr; gap:34px}
+    .hero-portrait{order:-1; width:min(70%,300px)}
+  }
   @media (max-width:760px){
     .stats{grid-template-columns:1fr}
     .cards{grid-template-columns:1fr}
@@ -143,6 +169,7 @@
     html{scroll-behavior:auto}
     .reveal{opacity:1; transform:none; transition:none}
     .card{transition:none}
+    .hero-portrait .blob{animation:none}
   }
   @media print{
     body{background:#fff}
@@ -161,13 +188,22 @@
 
   <div class="wrap">
     <header class="hero">
-      <div class="monogram" aria-hidden="true">BG</div>
-      <h1>Bruna Gomes</h1>
-      <p class="role" data-k="role"></p>
-      <p class="tagline" data-k="tagline"></p>
-      <div class="cta">
-        <a class="btn btn-primary" href="mailto:bruggomes79@gmail.com" data-k="cta_mail"></a>
-        <a class="btn btn-ghost" href="https://www.linkedin.com/in/bruna-gomes-product-manager" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <div class="hero-grid">
+        <div class="hero-text">
+          <div class="monogram" aria-hidden="true">BG</div>
+          <h1>Bruna Gomes</h1>
+          <p class="role" data-k="role"></p>
+          <p class="tagline" data-k="tagline"></p>
+          <div class="cta">
+            <a class="btn btn-primary" href="mailto:bruggomes79@gmail.com"><i data-lucide="mail"></i><span data-k="cta_mail"></span></a>
+            <a class="btn btn-ghost" href="https://www.linkedin.com/in/bruna-gomes-product-manager" target="_blank" rel="noopener"><i data-lucide="linkedin"></i>LinkedIn</a>
+          </div>
+        </div>
+        <div class="hero-portrait">
+          <div class="blob" aria-hidden="true"></div>
+          <img src="assets/bruna.jpg" alt="Retrato de Bruna Gomes" width="800" height="800" />
+          <span class="portrait-badge"><i data-lucide="map-pin"></i> São Paulo · BR</span>
+        </div>
       </div>
       <div class="stats" id="stats"></div>
     </header>
@@ -356,22 +392,22 @@ function render(lang){
 
   document.getElementById('main').innerHTML = `
     <section class="about" id="about">
-      <div class="sec-head reveal"><span class="eyebrow">${esc(t.about.eyebrow)}</span><h2>${esc(t.about.title)}</h2></div>
+      <div class="sec-head reveal"><span class="eyebrow"><i data-lucide="target"></i>${esc(t.about.eyebrow)}</span><h2>${esc(t.about.title)}</h2></div>
       <p class="reveal">${esc(t.about.body)}</p>
     </section>
 
     <section id="impact">
-      <div class="sec-head reveal"><span class="eyebrow">${esc(t.impact.eyebrow)}</span><h2>${esc(t.impact.title)}</h2></div>
+      <div class="sec-head reveal"><span class="eyebrow"><i data-lucide="trending-up"></i>${esc(t.impact.eyebrow)}</span><h2>${esc(t.impact.title)}</h2></div>
       <div class="cards">${cards}</div>
     </section>
 
     <section id="experience">
-      <div class="sec-head reveal"><span class="eyebrow">${esc(t.exp.eyebrow)}</span><h2>${esc(t.exp.title)}</h2></div>
+      <div class="sec-head reveal"><span class="eyebrow"><i data-lucide="briefcase"></i>${esc(t.exp.eyebrow)}</span><h2>${esc(t.exp.title)}</h2></div>
       <div class="tl">${jobs}</div>
     </section>
 
     <section id="skills">
-      <div class="sec-head reveal"><span class="eyebrow">${esc(t.skills.eyebrow)}</span><h2>${esc(t.skills.title)}</h2></div>
+      <div class="sec-head reveal"><span class="eyebrow"><i data-lucide="award"></i>${esc(t.skills.eyebrow)}</span><h2>${esc(t.skills.title)}</h2></div>
       <div class="twocol">
         <div class="block reveal"><h3>${esc(t.skills.compTitle)}</h3><div class="chips">${chips(t.skills.comp,true)}</div></div>
         <div class="block edu reveal"><h3>${esc(t.skills.certTitle)}</h3><div class="chips">${chips(t.skills.certs,false)}</div>${edu}</div>
@@ -380,16 +416,18 @@ function render(lang){
 
     <section id="contact" style="border-top:0">
       <div class="contact-box reveal">
+        <img class="contact-ava" src="assets/bruna.jpg" alt="Bruna Gomes" width="88" height="88" />
         <h2>${esc(t.contact.title)}</h2>
         <p>${esc(t.contact.body)}</p>
         <div class="cta">
-          <a class="btn btn-primary" href="mailto:bruggomes79@gmail.com">${esc(t.contact.mail)}</a>
-          <a class="btn btn-ghost" href="https://www.linkedin.com/in/bruna-gomes-product-manager" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a class="btn btn-primary" href="mailto:bruggomes79@gmail.com"><i data-lucide="mail"></i><span>${esc(t.contact.mail)}</span></a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/bruna-gomes-product-manager" target="_blank" rel="noopener"><i data-lucide="linkedin"></i>LinkedIn</a>
         </div>
       </div>
     </section>`;
 
   observe();
+  if(window.lucide) lucide.createIcons(); // ponytail: no-op até o script (defer) carregar; DOMContentLoaded refaz
 }
 
 function setLang(lang){
@@ -415,6 +453,8 @@ function observe(){
 let saved = 'pt';
 try{ saved = localStorage.getItem('lang') || 'pt'; }catch(e){}
 setLang(saved);
+// Lucide carrega via defer (depois deste script inline); inicializa os ícones quando pronto.
+window.addEventListener('DOMContentLoaded', ()=>{ if(window.lucide) lucide.createIcons(); });
 </script>
 </body>
 </html>
