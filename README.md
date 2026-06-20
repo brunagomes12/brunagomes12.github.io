@@ -12,7 +12,7 @@ Todo o conteúdo e a lógica vivem em um arquivo: [`index.html`](index.html).
 - **Toggle PT/EN** (a escolha persiste no `localStorage`)
 - **Responsivo** (mobile-first) e **acessível** (contraste AA, navegável por teclado, respeita `prefers-reduced-motion`)
 - **Print-safe**: `Cmd/Ctrl + P` gera um PDF limpo
-- Tipografia Fraunces + Inter · paleta ivory + berry `#9B2D5E`
+- Tipografia Fraunces + Inter · paleta papel quente + vinho `#9A2B4F`
 
 ## Como editar
 
