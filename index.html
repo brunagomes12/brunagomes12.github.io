@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bruna Gomes — Senior Product Manager</title>
+<meta name="description" content="Bruna Gomes — Senior Product Manager · E-commerce, Checkout & Pagamentos · LatAm · Growth & App-First." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ivory:#FBF7F4; --blush:#F4DCE0; --rose:#E8C4C4;
+    --berry:#9B2D5E; --berry-dk:#7A2049; --coral:#E5736A;
+    --ink:#2A2228; --ink-soft:#6B5F66; --line:#E9DEDF;
+    --grad:linear-gradient(135deg,var(--berry),var(--coral));
+    --maxw:1080px; --r:18px;
+    --shadow:0 1px 2px rgba(42,34,40,.04), 0 8px 30px rgba(155,45,94,.07);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--ivory); color:var(--ink);
+    font-family:"Inter",system-ui,sans-serif; line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(40rem 30rem at 85% -5%, rgba(229,115,106,.10), transparent 60%),
+      radial-gradient(36rem 28rem at -5% 12%, rgba(155,45,94,.08), transparent 60%);
+    background-repeat:no-repeat;
+  }
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 clamp(20px,5vw,40px)}
+  h1,h2,h3{font-family:"Fraunces",Georgia,serif; line-height:1.1; font-weight:600; margin:0}
+  a{color:var(--berry); text-decoration:none}
+  a:hover{text-decoration:underline}
+  .eyebrow{font-size:.78rem; letter-spacing:.16em; text-transform:uppercase; color:var(--berry); font-weight:600}
+
+  /* lang toggle */
+  .lang{position:fixed; top:16px; right:16px; z-index:50; display:flex; gap:2px;
+    background:#fff; border:1px solid var(--line); border-radius:999px; padding:4px; box-shadow:var(--shadow)}
+  .lang button{border:0; background:transparent; font:inherit; font-weight:600; font-size:.82rem;
+    color:var(--ink-soft); padding:5px 12px; border-radius:999px; cursor:pointer}
+  .lang button[aria-pressed="true"]{background:var(--grad); color:#fff}
+
+  /* hero */
+  header.hero{padding:clamp(80px,12vw,140px) 0 clamp(40px,6vw,70px)}
+  .monogram{width:64px; height:64px; border-radius:50%; display:grid; place-items:center;
+    background:var(--grad); color:#fff; font-family:"Fraunces"; font-weight:600; font-size:1.5rem;
+    box-shadow:var(--shadow); margin-bottom:28px}
+  .hero h1{font-size:clamp(2.6rem,8vw,5rem); letter-spacing:-.02em}
+  .hero .role{font-size:clamp(1.05rem,2.6vw,1.35rem); font-weight:600; margin:14px 0 0; color:var(--berry)}
+  .hero .tagline{font-size:clamp(1rem,2.2vw,1.18rem); color:var(--ink-soft); max-width:46ch; margin:16px 0 0}
+  .cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:30px}
+  .btn{display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:.95rem;
+    padding:12px 22px; border-radius:999px; border:1px solid transparent; cursor:pointer}
+  .btn-primary{background:var(--grad); color:#fff}
+  .btn-primary:hover{text-decoration:none; filter:brightness(1.06)}
+  .btn-ghost{background:#fff; border-color:var(--line); color:var(--ink)}
+  .btn-ghost:hover{text-decoration:none; border-color:var(--berry); color:var(--berry)}
+
+  .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:clamp(40px,6vw,64px)}
+  .stat{background:#fff; border:1px solid var(--line); border-radius:var(--r); padding:22px 24px; box-shadow:var(--shadow)}
+  .stat .num{font-family:"Fraunces"; font-weight:600; font-size:clamp(1.8rem,4.5vw,2.6rem);
+    background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; line-height:1}
+  .stat .lbl{font-size:.92rem; color:var(--ink-soft); margin-top:8px}
+
+  /* sections */
+  section{padding:clamp(48px,8vw,84px) 0; border-top:1px solid var(--line)}
+  .sec-head{margin-bottom:36px}
+  .sec-head h2{font-size:clamp(1.8rem,5vw,2.7rem); margin-top:6px; letter-spacing:-.01em}
+  .about p{font-size:clamp(1.05rem,2.3vw,1.25rem); max-width:62ch; color:var(--ink)}
+
+  /* impact cards */
+  .cards{display:grid; grid-template-columns:repeat(2,1fr); gap:20px}
+  .card{background:#fff; border:1px solid var(--line); border-radius:var(--r); padding:26px; box-shadow:var(--shadow);
+    transition:transform .25s ease, box-shadow .25s ease}
+  .card:hover{transform:translateY(-4px); box-shadow:0 14px 40px rgba(155,45,94,.13)}
+  .card .tag{display:inline-block; font-size:.72rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--berry); background:var(--blush); padding:5px 11px; border-radius:999px}
+  .card h3{font-size:1.3rem; margin:14px 0 12px}
+  .card .row{display:flex; gap:10px; margin-top:10px; font-size:.96rem}
+  .card .row b{color:var(--berry); font-family:"Inter"; font-weight:700; flex:0 0 auto; min-width:74px}
+  .card .row span{color:var(--ink-soft)}
+  .card .result b{color:var(--berry-dk)}
+  .card .result span{color:var(--ink); font-weight:500}
+
+  /* timeline */
+  .tl{position:relative; padding-left:30px}
+  .tl::before{content:""; position:absolute; left:7px; top:6px; bottom:6px; width:2px; background:var(--line)}
+  .job{position:relative; padding-bottom:34px}
+  .job:last-child{padding-bottom:0}
+  .job::before{content:""; position:absolute; left:-30px; top:6px; width:16px; height:16px; border-radius:50%;
+    background:#fff; border:3px solid var(--berry)}
+  .job .meta{display:flex; flex-wrap:wrap; gap:6px 14px; align-items:baseline}
+  .job h3{font-size:1.18rem}
+  .job .co{font-weight:700; color:var(--berry)}
+  .job .when{font-size:.85rem; color:var(--ink-soft)}
+  .job .loc{font-size:.85rem; color:var(--ink-soft)}
+  .job ul{margin:10px 0 0; padding-left:18px; color:var(--ink-soft); font-size:.97rem}
+  .job ul li{margin:5px 0}
+
+  /* chips / education */
+  .twocol{display:grid; grid-template-columns:1fr 1fr; gap:40px}
+  .chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+  .chip{background:#fff; border:1px solid var(--line); border-radius:999px; padding:8px 16px; font-size:.9rem; font-weight:500}
+  .chip.solid{background:var(--blush); border-color:transparent; color:var(--berry-dk)}
+  .block h3{font-size:1.15rem; margin-bottom:6px}
+  .edu .item{margin-top:14px}
+  .edu .item .d{font-weight:600}
+  .edu .item .s{color:var(--ink-soft); font-size:.92rem}
+
+  /* contact */
+  .contact-box{background:var(--grad); color:#fff; border-radius:24px; padding:clamp(34px,6vw,56px); text-align:center}
+  .contact-box h2{color:#fff; font-size:clamp(1.8rem,5vw,2.6rem)}
+  .contact-box p{color:rgba(255,255,255,.9); max-width:48ch; margin:14px auto 0}
+  .contact-box .cta{justify-content:center}
+  .contact-box .btn-primary{background:#fff; color:var(--berry)}
+  .contact-box .btn-ghost{background:transparent; border-color:rgba(255,255,255,.5); color:#fff}
+  .contact-box .btn-ghost:hover{border-color:#fff; color:#fff}
+
+  footer{text-align:center; padding:40px 0 56px; color:var(--ink-soft); font-size:.88rem}
+
+  /* reveal animation */
+  .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease}
+  .reveal.in{opacity:1; transform:none}
+
+  @media (max-width:760px){
+    .stats{grid-template-columns:1fr}
+    .cards{grid-template-columns:1fr}
+    .twocol{grid-template-columns:1fr; gap:30px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .reveal{opacity:1; transform:none; transition:none}
+    .card{transition:none}
+  }
+  @media print{
+    body{background:#fff}
+    .lang{display:none}
+    .reveal{opacity:1!important; transform:none!important}
+    .card,.stat,.contact-box{box-shadow:none; break-inside:avoid}
+    section{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+  <div class="lang" role="group" aria-label="Idioma / Language">
+    <button id="bt-pt" aria-pressed="true" onclick="setLang('pt')">PT</button>
+    <button id="bt-en" aria-pressed="false" onclick="setLang('en')">EN</button>
+  </div>
+
+  <div class="wrap">
+    <header class="hero">
+      <div class="monogram" aria-hidden="true">BG</div>
+      <h1>Bruna Gomes</h1>
+      <p class="role" data-k="role"></p>
+      <p class="tagline" data-k="tagline"></p>
+      <div class="cta">
+        <a class="btn btn-primary" href="mailto:bruggomes79@gmail.com" data-k="cta_mail"></a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/bruna-gomes-product-manager" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+      <div class="stats" id="stats"></div>
+    </header>
+  </div>
+
+  <main class="wrap" id="main"></main>
+
+  <footer class="wrap">
+    <p data-k="footer"></p>
+  </footer>
+
+<script>
+// ponytail: single-file, no build, no deps. Content lives in one i18n object; JS renders the DOM.
+const I18N = {
+  pt:{
+    role:"Senior Product Manager · E-commerce, Checkout & Pagamentos · LatAm",
+    tagline:"Entro em cenários complexos, modernizo sistemas legados e otimizo jornadas transacionais de alto impacto financeiro.",
+    cta_mail:"Falar comigo ✦",
+    footer:"Feito com cuidado · © 2026 Bruna Gomes",
+    stats:[
+      {num:"6 anos",lbl:"escalando produtos digitais B2B e B2C"},
+      {num:"+2 dígitos",lbl:"de crescimento na taxa de conversão"},
+      {num:"BR & CO",lbl:"operações LatAm que lidero hoje"},
+    ],
+    about:{eyebrow:"Sobre",title:"Produto onde o impacto é financeiro e o erro custa caro",
+      body:"Sou Product Manager Sênior com 6 anos de experiência escalando produtos digitais B2B e B2C. Atualmente lidero o ecossistema transacional — carrinho, login, cadastro e checkout — da Dafiti para Brasil e Colômbia, à frente de frentes de Growth, Lean e resposta a incidentes críticos, com foco em alavancar conversão, receita e cultura App-First."},
+    impact:{eyebrow:"Impacto",title:"Entregas em destaque",
+      cards:[
+        {tag:"Checkout & Pagamentos",title:"Novo checkout em Flutter + PIX",
+          problem:"Checkout legado em Webview limitava conversão e a adoção de novos meios de pagamento.",
+          action:"Liderou o lançamento do novo checkout em Flutter e a integração do PIX, com política de descontos para impulsionar o PIX sem canibalizar o cartão.",
+          result:"Crescimento de dois dígitos na conversão, alta expressiva na receita por sessão e share do PIX elevado de forma saudável."},
+        {tag:"Resposta a incidentes",title:"Rollback antifraude na Black Friday",
+          problem:"Anomalias no provedor antifraude durante o evento mais crítico do ano.",
+          action:"Arquitetou um rollout dinâmico para troca de provedor e executou rollback em tempo real, sem RDM, ao detectar as anomalias.",
+          result:"Evitou perdas financeiras milionárias no pico de tráfego e receita do ano."},
+        {tag:"Modernização de legado",title:"Correção de falhas na criação de pedidos",
+          problem:"Erros sistêmicos complexos de legado geravam prejuízos milionários por semestre.",
+          action:"Liderou a investigação e a correção da causa raiz das falhas na criação de pedidos.",
+          result:"Estancou falhas que representavam milhões em prejuízo por semestre."},
+        {tag:"Estratégia & Discovery",title:"Cultura App-First",
+          problem:"Jornadas críticas ainda dependiam de webviews durante a reestruturação da companhia.",
+          action:"Atuou como principal evangelista do App-First: pesquisa, MVP e migração de jornadas nativas para Flutter, guiada por dados e reviews nas stores.",
+          result:"Jornadas migradas para nativo e adoção da cultura App-First na companhia."},
+      ]},
+    exp:{eyebrow:"Trajetória",title:"Experiência",
+      jobs:[
+        {co:"Dafiti Group",role:"Senior Product Manager",when:"nov 2022 – Presente",loc:"Brasil & Colômbia",
+          bullets:["Lidera o ecossistema transacional completo (carrinho, login, cadastro e checkout) em App, Web e Mobile Web para BR e CO.",
+            "Conduz simultaneamente três frentes: Growth (experimentação e métricas), Lean (eficiência de jornada) e Snipers (incidentes críticos).",
+            "À frente do rollout do novo checkout na Colômbia (Webview → Flutter) e do Milkrun 2.0 de otimização logística."]},
+        {co:"Dafiti Group",role:"Product Manager",when:"ago 2021 – dez 2022",loc:"",bullets:[]},
+        {co:"BEYOND Soluções",role:"Product Manager",when:"jul 2021 – ago 2021",loc:"",
+          bullets:["Discovery e planejamento de delivery para o lançamento de seguros de vida no app da corretora Órama."]},
+        {co:"dti digital",role:"Product Manager",when:"nov 2020 – jul 2021",loc:"",
+          bullets:["Ciclo de vida ponta a ponta de um sistema omnichannel de Customer Service para o Instituto Hermes Pardini, via imersão operacional (shadowing).",
+            "Concepção e desenvolvimento de um gateway de pagamentos proprietário, eliminando custos abusivos de licenciamento de terceiros."]},
+        {co:"Agência Zetta",role:"Product Owner",when:"jan 2020 – nov 2020",loc:"Lavras, MG",
+          bullets:["Criação do SIGERH-PA (gestão de recursos hídricos do Pará) do zero, mapeando regras de negócio complexas sem documentação prévia.",
+            "Gestão de stakeholders do setor público 100% remota, em ambiente de forte resistência tecnológica.",
+            "Reduziu a emissão de outorgas de uso de água de anos para dias — em alguns casos, horas."]},
+        {co:"Agência Zetta",role:"Software Developer",when:"mar 2019 – dez 2019",loc:"",
+          bullets:["Desenvolvedora web full stack do sistema de Licenciamento Ambiental do Amazonas."]},
+        {co:"UFLA",role:"Pesquisadora Android (Iniciação Científica)",when:"nov 2018 – mar 2019",loc:"Lavras, MG",
+          bullets:["Desenvolvimento de aplicativos Android em Java."]},
+        {co:"Comp Júnior",role:"Diretora de Negócios",when:"mar 2018 – dez 2018",loc:"",bullets:[]},
+        {co:"Google Developers Group",role:"Developer",when:"mar 2017 – nov 2018",loc:"Lavras, MG",bullets:[]},
+      ]},
+    skills:{eyebrow:"Competências",title:"Skills & Certificações",
+      compTitle:"Principais competências",
+      comp:["Transformação digital","Gestão de stakeholders","Zero to One","Checkout & Pagamentos","Growth & Experimentação","Modernização de legado","App-First","Discovery","Métricas de Produto","Agile / Scrum","PIX"],
+      certTitle:"Certificações & Formação",
+      certs:["Fundamentos do Scrum","Técnicas Avançadas de Scrum","Histórias de Usuários Ágeis","Retrospectivas Ágeis","Métricas de Produto"],
+      edu:[
+        {d:"Cursos PM3 — Product Manager",s:"jan 2022 – mar 2022"},
+        {d:"UFLA — Bacharelado em Sistemas de Informação",s:"2014 – 2020"},
+      ]},
+    contact:{title:"Vamos conversar?",
+      body:"Aberta a desafios de produto em jornadas transacionais, pagamentos e modernização de legado.",
+      mail:"Enviar e-mail ✦"},
+  },
+  en:{
+    role:"Senior Product Manager · E-commerce, Checkout & Payments · LatAm",
+    tagline:"I step into complex scenarios, modernize legacy systems, and optimize high-stakes transactional journeys where money is on the line.",
+    cta_mail:"Get in touch ✦",
+    footer:"Crafted with care · © 2026 Bruna Gomes",
+    stats:[
+      {num:"6 years",lbl:"scaling B2B and B2C digital products"},
+      {num:"Double-digit",lbl:"growth in conversion rate"},
+      {num:"BR & CO",lbl:"LatAm operations I lead today"},
+    ],
+    about:{eyebrow:"About",title:"Product where the impact is financial and mistakes are expensive",
+      body:"I'm a Senior Product Manager with 6 years of experience scaling B2B and B2C digital products. Today I lead the transactional ecosystem — cart, login, sign-up and checkout — at Dafiti for Brazil and Colombia, driving Growth, Lean and critical-incident response, focused on conversion, revenue and an App-First culture."},
+    impact:{eyebrow:"Impact",title:"Selected work",
+      cards:[
+        {tag:"Checkout & Payments",title:"New Flutter checkout + PIX",
+          problem:"A legacy Webview checkout was capping conversion and the adoption of new payment methods.",
+          action:"Led the launch of the new Flutter checkout and the PIX integration, with a discount policy to grow PIX without cannibalizing cards.",
+          result:"Double-digit conversion growth, a strong lift in revenue per session, and a healthy increase in PIX share."},
+        {tag:"Incident response",title:"Anti-fraud rollback on Black Friday",
+          problem:"Anomalies in the anti-fraud provider during the most critical event of the year.",
+          action:"Architected a dynamic rollout to switch providers and executed a real-time rollback, with no RDM, the moment anomalies appeared.",
+          result:"Prevented millions in financial losses at the year's peak traffic and revenue."},
+        {tag:"Legacy modernization",title:"Fixing order-creation failures",
+          problem:"Complex systemic legacy errors caused losses in the millions every semester.",
+          action:"Led the root-cause investigation and fix of the order-creation failures.",
+          result:"Stopped failures that meant millions in losses per semester."},
+        {tag:"Strategy & Discovery",title:"App-First culture",
+          problem:"Critical journeys still relied on webviews during the company's restructuring.",
+          action:"Acted as the lead App-First evangelist: research, MVP and migration of native journeys to Flutter, guided by data and store reviews.",
+          result:"Journeys migrated to native and an App-First culture adopted across the company."},
+      ]},
+    exp:{eyebrow:"Journey",title:"Experience",
+      jobs:[
+        {co:"Dafiti Group",role:"Senior Product Manager",when:"Nov 2022 – Present",loc:"Brazil & Colombia",
+          bullets:["Leads the full transactional ecosystem (cart, login, sign-up, checkout) across App, Web and Mobile Web for BR and CO.",
+            "Runs three workstreams at once: Growth (experimentation & metrics), Lean (journey efficiency) and Snipers (critical incidents).",
+            "Drives the new checkout rollout in Colombia (Webview → Flutter) and Milkrun 2.0 logistics optimization."]},
+        {co:"Dafiti Group",role:"Product Manager",when:"Aug 2021 – Dec 2022",loc:"",bullets:[]},
+        {co:"BEYOND Soluções",role:"Product Manager",when:"Jul 2021 – Aug 2021",loc:"",
+          bullets:["Discovery and delivery planning for the launch of life insurance in the Órama brokerage app."]},
+        {co:"dti digital",role:"Product Manager",when:"Nov 2020 – Jul 2021",loc:"",
+          bullets:["End-to-end lifecycle of an omnichannel Customer Service system for Instituto Hermes Pardini, via operational shadowing.",
+            "Conceived and built a proprietary payment gateway, eliminating abusive third-party licensing costs."]},
+        {co:"Agência Zetta",role:"Product Owner",when:"Jan 2020 – Nov 2020",loc:"Lavras, BR",
+          bullets:["Built SIGERH-PA (water-resource management for Pará) from scratch, mapping complex business rules with no prior documentation.",
+            "Managed public-sector stakeholders 100% remotely, in an environment of strong tech resistance.",
+            "Cut water-use permit issuance from years to days — in some cases, hours."]},
+        {co:"Agência Zetta",role:"Software Developer",when:"Mar 2019 – Dec 2019",loc:"",
+          bullets:["Full-stack web developer on the Amazonas Environmental Licensing system."]},
+        {co:"UFLA",role:"Android Researcher (Scientific Initiation)",when:"Nov 2018 – Mar 2019",loc:"Lavras, BR",
+          bullets:["Built Android applications in Java."]},
+        {co:"Comp Júnior",role:"Business Director",when:"Mar 2018 – Dec 2018",loc:"",bullets:[]},
+        {co:"Google Developers Group",role:"Developer",when:"Mar 2017 – Nov 2018",loc:"Lavras, BR",bullets:[]},
+      ]},
+    skills:{eyebrow:"Capabilities",title:"Skills & Certifications",
+      compTitle:"Core competencies",
+      comp:["Digital transformation","Stakeholder management","Zero to One","Checkout & Payments","Growth & Experimentation","Legacy modernization","App-First","Discovery","Product metrics","Agile / Scrum","PIX"],
+      certTitle:"Certifications & Education",
+      certs:["Scrum Fundamentals","Advanced Scrum Techniques","Agile User Stories","Agile Retrospectives","Product Metrics"],
+      edu:[
+        {d:"PM3 Courses — Product Manager",s:"Jan 2022 – Mar 2022"},
+        {d:"UFLA — BSc in Information Systems",s:"2014 – 2020"},
+      ]},
+    contact:{title:"Let's talk?",
+      body:"Open to product challenges in transactional journeys, payments and legacy modernization.",
+      mail:"Send an email ✦"},
+  }
+};
+
+const esc = s => String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+function render(lang){
+  const t = I18N[lang];
+  // simple fields
+  document.querySelectorAll('[data-k]').forEach(el=>{ el.textContent = t[el.dataset.k]; });
+  // stats
+  document.getElementById('stats').innerHTML = t.stats.map(s=>
+    `<div class="stat reveal"><div class="num">${esc(s.num)}</div><div class="lbl">${esc(s.lbl)}</div></div>`).join('');
+
+  const labels = lang==='pt'
+    ? {problem:'Desafio',action:'Ação',result:'Resultado'}
+    : {problem:'Challenge',action:'Action',result:'Result'};
+
+  const cards = t.impact.cards.map(c=>`
+    <article class="card reveal">
+      <span class="tag">${esc(c.tag)}</span>
+      <h3>${esc(c.title)}</h3>
+      <div class="row"><b>${labels.problem}</b><span>${esc(c.problem)}</span></div>
+      <div class="row"><b>${labels.action}</b><span>${esc(c.action)}</span></div>
+      <div class="row result"><b>${labels.result}</b><span>${esc(c.result)}</span></div>
+    </article>`).join('');
+
+  const jobs = t.exp.jobs.map(j=>`
+    <div class="job reveal">
+      <div class="meta">
+        <h3>${esc(j.role)} · <span class="co">${esc(j.co)}</span></h3>
+        <span class="when">${esc(j.when)}</span>
+        ${j.loc?`<span class="loc">· ${esc(j.loc)}</span>`:''}
+      </div>
+      ${j.bullets.length?`<ul>${j.bullets.map(b=>`<li>${esc(b)}</li>`).join('')}</ul>`:''}
+    </div>`).join('');
+
+  const chips = (arr,solid)=>arr.map(x=>`<span class="chip${solid?' solid':''}">${esc(x)}</span>`).join('');
+  const edu = t.skills.edu.map(e=>`<div class="item"><div class="d">${esc(e.d)}</div><div class="s">${esc(e.s)}</div></div>`).join('');
+
+  document.getElementById('main').innerHTML = `
+    <section class="about" id="about">
+      <div class="sec-head reveal"><span class="eyebrow">${esc(t.about.eyebrow)}</span><h2>${esc(t.about.title)}</h2></div>
+      <p class="reveal">${esc(t.about.body)}</p>
+    </section>
+
+    <section id="impact">
+      <div class="sec-head reveal"><span class="eyebrow">${esc(t.impact.eyebrow)}</span><h2>${esc(t.impact.title)}</h2></div>
+      <div class="cards">${cards}</div>
+    </section>
+
+    <section id="experience">
+      <div class="sec-head reveal"><span class="eyebrow">${esc(t.exp.eyebrow)}</span><h2>${esc(t.exp.title)}</h2></div>
+      <div class="tl">${jobs}</div>
+    </section>
+
+    <section id="skills">
+      <div class="sec-head reveal"><span class="eyebrow">${esc(t.skills.eyebrow)}</span><h2>${esc(t.skills.title)}</h2></div>
+      <div class="twocol">
+        <div class="block reveal"><h3>${esc(t.skills.compTitle)}</h3><div class="chips">${chips(t.skills.comp,true)}</div></div>
+        <div class="block edu reveal"><h3>${esc(t.skills.certTitle)}</h3><div class="chips">${chips(t.skills.certs,false)}</div>${edu}</div>
+      </div>
+    </section>
+
+    <section id="contact" style="border-top:0">
+      <div class="contact-box reveal">
+        <h2>${esc(t.contact.title)}</h2>
+        <p>${esc(t.contact.body)}</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="mailto:bruggomes79@gmail.com">${esc(t.contact.mail)}</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/bruna-gomes-product-manager" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </div>
+      </div>
+    </section>`;
+
+  observe();
+}
+
+function setLang(lang){
+  document.documentElement.lang = lang==='pt' ? 'pt-BR' : 'en';
+  document.getElementById('bt-pt').setAttribute('aria-pressed', lang==='pt');
+  document.getElementById('bt-en').setAttribute('aria-pressed', lang==='en');
+  try{ localStorage.setItem('lang', lang); }catch(e){}
+  render(lang);
+}
+
+let io;
+function observe(){
+  const els = document.querySelectorAll('.reveal:not(.in)');
+  if(!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion:reduce)').matches){
+    els.forEach(e=>e.classList.add('in')); return;
+  }
+  io = io || new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{rootMargin:'0px 0px -8% 0px'});
+  els.forEach(e=>io.observe(e));
+}
+
+let saved = 'pt';
+try{ saved = localStorage.getItem('lang') || 'pt'; }catch(e){}
+setLang(saved);
+</script>
+</body>
+</html>
