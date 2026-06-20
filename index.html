@@ -255,6 +255,42 @@ img{max-width:100%;display:block}
 .ft a{color:var(--ink-soft)}
 .ft a:hover{color:var(--pix-deep)}
 
+/* ---------- cart drawer ---------- */
+.overlay{position:fixed;inset:0;background:rgba(16,19,26,.5);backdrop-filter:blur(2px);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;z-index:90}
+.overlay.open{opacity:1;visibility:visible}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(392px,92vw);background:var(--surface);box-shadow:-24px 0 60px -24px rgba(16,19,26,.45);transform:translateX(100%);transition:transform .34s cubic-bezier(.4,0,.1,1);z-index:95;display:flex;flex-direction:column}
+.drawer.open{transform:none}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;padding:19px 22px;border-bottom:1px solid var(--line)}
+.drawer-head h3{font-family:'Space Grotesk',sans-serif;font-size:1.14rem;color:var(--ink)}
+.drawer-close{background:none;border:none;cursor:pointer;width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);transition:background .2s,color .2s}
+.drawer-close:hover{background:var(--bg2);color:var(--ink)}
+.drawer-close svg{width:20px;height:20px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round}
+.ship{padding:14px 22px;border-bottom:1px solid var(--line);background:var(--bg2)}
+.ship .txt{font-family:'JetBrains Mono',monospace;font-size:.73rem;color:var(--ink-soft);margin-bottom:8px}
+.ship .bar{height:7px;border-radius:99px;background:#fff;border:1px solid var(--line);overflow:hidden}
+.ship .fill{height:100%;width:0;background:linear-gradient(90deg,var(--pix),var(--pix-deep));border-radius:99px;transition:width .45s cubic-bezier(.2,.7,.2,1)}
+.drawer-body{flex:1;overflow-y:auto;padding:6px 22px}
+.drawer-row{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.drawer-row:last-child{border-bottom:none}
+.drawer-row .di{width:38px;height:38px;border-radius:9px;background:var(--pix-soft);display:flex;align-items:center;justify-content:center;flex:none}
+.drawer-row .di svg{width:18px;height:18px;stroke:var(--pix-deep);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.drawer-row .dt{flex:1;font-size:.85rem;color:var(--ink);font-weight:500;line-height:1.3}
+.drawer-row .dv{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--pix-deep);font-size:.9rem;white-space:nowrap}
+.drawer-empty{text-align:center;color:var(--ink-soft);font-size:.9rem;padding:48px 12px;line-height:1.6}
+.drawer-foot{border-top:1px solid var(--line);padding:18px 22px;display:grid;gap:13px}
+.promo summary{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--pix-deep);cursor:pointer;list-style:none;user-select:none}
+.promo summary::-webkit-details-marker{display:none}
+.promo summary::before{content:"+ ";font-weight:700}
+.promo[open] summary::before{content:"– "}
+.promo-row{display:flex;gap:8px;margin-top:10px}
+.promo-row input{flex:1;min-width:0;border:1px solid var(--line2);border-radius:9px;padding:9px 12px;font-family:'JetBrains Mono',monospace;font-size:.76rem;text-transform:uppercase;color:var(--ink)}
+.promo-row input:focus{outline:none;border-color:var(--pix-deep)}
+.promo-msg{font-size:.77rem;margin-top:8px;min-height:1.1em}
+.promo-msg.ok{color:var(--pix-deep)}
+.promo-msg.bad{color:var(--sale-deep)}
+.drawer-total{display:flex;justify-content:space-between;align-items:baseline;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--ink-soft)}
+.drawer-total b{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;color:var(--ink)}
+
 /* ---------- reveal ---------- */
 .rv{opacity:0;transform:translateY(16px);transition:opacity .6s cubic-bezier(.2,.6,.2,1),transform .6s cubic-bezier(.2,.6,.2,1)}
 .rv.in{opacity:1;transform:none}
@@ -278,7 +314,7 @@ img{max-width:100%;display:block}
   .rv{opacity:1;transform:none}
 }
 @media print{
-  .bar,.stepper,.pricecard .cta,.confirm .btns,.add,.gallery .badge,.gallery .stock{display:none!important}
+  .bar,.stepper,.pricecard .cta,.confirm .btns,.add,.gallery .badge,.gallery .stock,.drawer,.overlay{display:none!important}
   body{background:#fff;color:#000;font-size:11pt}
   .rv{opacity:1!important;transform:none!important}
   .sec,.hero{padding:14px 0}
@@ -372,7 +408,7 @@ img{max-width:100%;display:block}
         <div class="row"><span class="k">SKU</span><span class="v mono">PM-SR-CHECKOUT-2026</span></div>
         <div class="row"><span class="k" data-k="sk_cat">Categoria</span><span class="v" data-k="sv_cat">Product Management · Transacional</span></div>
         <div class="row"><span class="k" data-k="sk_loc">Local</span><span class="v" data-k="sv_loc">São Sebastião, SP · remoto p/ São Paulo</span></div>
-        <div class="row"><span class="k" data-k="sk_ops">Operações</span><span class="v" data-k="sv_ops">Brasil 🇧🇷 · Colômbia 🇨🇴</span></div>
+        <div class="row"><span class="k" data-k="sk_ops">Operações</span><span class="v" data-k="sv_ops">Brasil · Colômbia</span></div>
         <div class="row"><span class="k" data-k="sk_src">Origem</span><span class="v" data-k="sv_src">Ex-desenvolvedora full-stack</span></div>
       </div>
 
@@ -444,7 +480,7 @@ img{max-width:100%;display:block}
   </div>
   <div class="subtotal rv">
     <span class="l" data-k="subl">Subtotal de impacto</span>
-    <span class="r" data-k="subr">incalculável — peça orçamento ☕</span>
+    <span class="r" data-k="subr">incalculável — peça orçamento</span>
   </div>
 </section>
 
@@ -607,7 +643,7 @@ img{max-width:100%;display:block}
     <div class="receipt">
       <span data-k="r1">Entrega: <b>remoto · LatAm</b></span>
       <span data-k="r2">Prazo: <b>resposta no mesmo dia</b></span>
-      <span data-k="r3">Devolução: <b>não prevista 😏</b></span>
+      <span data-k="r3">Devolução: <b>não prevista</b></span>
     </div>
   </div>
 </section>
@@ -620,6 +656,32 @@ img{max-width:100%;display:block}
   · <a href="https://www.linkedin.com/in/bruna-gomes-product-manager" target="_blank" rel="noopener">LinkedIn ↗</a>
 </footer>
 
+<!-- mini-cart drawer -->
+<div class="overlay" id="overlay" hidden></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" inert>
+  <div class="drawer-head">
+    <h3 id="drawerTitle" data-k="dr_title">Seu carrinho</h3>
+    <button class="drawer-close" id="drawerClose" aria-label="Fechar carrinho"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="ship">
+    <div class="txt" id="shipTxt"></div>
+    <div class="bar"><div class="fill" id="shipFill"></div></div>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+  <div class="drawer-foot">
+    <details class="promo">
+      <summary data-k="dr_promo">Tem um cupom?</summary>
+      <div class="promo-row">
+        <input id="promoInput" placeholder="CUPOM" aria-label="Código do cupom" maxlength="20" autocomplete="off">
+        <button class="btn btn-dark" id="promoBtn" data-k="dr_apply" style="padding:9px 16px;font-size:.82rem">Aplicar</button>
+      </div>
+      <div class="promo-msg" id="promoMsg" aria-live="polite"></div>
+    </details>
+    <div class="drawer-total"><span data-k="dr_sub">Subtotal de impacto</span> <b id="drawerTotal">—</b></div>
+    <a class="btn btn-buy" id="drawerCta" href="mailto:bruggomes79@gmail.com" data-k="dr_cta">Finalizar pedido</a>
+  </div>
+</aside>
+
 <script>
 const D={
 pt:{
@@ -630,7 +692,7 @@ th1:'anos',th2:'países LatAm',th3:'frentes',th4:'díg. conv.',
 rate:'6 anos no mercado · sem devoluções',by:'por Bruna Gomes · E-commerce transacional na LatAm',
 lede:'Construo produto onde o impacto é <b>financeiro</b> e o erro custa caro — checkout, pagamentos e jornadas transacionais que movem conversão e receita na LatAm.',
 pl:'Investimento',pn:'Garantia inclusa: fluência técnica de ex-dev + visão de negócio de quem mede receita.',cta1:'Comprar agora',
-sk_cat:'Categoria',sv_cat:'Product Management · Transacional',sk_loc:'Local',sv_loc:'São Sebastião, SP · remoto p/ São Paulo',sk_ops:'Operações',sv_ops:'Brasil 🇧🇷 · Colômbia 🇨🇴',sk_src:'Origem',sv_src:'Ex-desenvolvedora full-stack',
+sk_cat:'Categoria',sv_cat:'Product Management · Transacional',sk_loc:'Local',sv_loc:'São Sebastião, SP · remoto p/ São Paulo',sk_ops:'Operações',sv_ops:'Brasil · Colômbia',sk_src:'Origem',sv_src:'Ex-desenvolvedora full-stack',
 tr1:'Garantia ex-dev',tr2:'Pagamento seguro (literalmente)',tr3:'Entrega LatAm',
 ck2:'No carrinho',ch:'O que já entreguei — itens com nota',csub:'Quando o produto é a camada transacional, cada decisão vira receita, perda evitada ou confiança. Adicione os que importam pra você:',
 i1t:'Checkout em Flutter + PIX',i1d:'Liderei o novo checkout e a integração de PIX na Dafiti: conversão de dois dígitos a mais e forte alta na receita por sessão.',i1v:'conversão',
@@ -638,7 +700,7 @@ i2t:'Rollback antifraude na Black Friday',i2d:'Arquitetei o rollback em tempo re
 i3t:'Falhas de criação de pedido em legado',i3d:'Conduzi a análise de causa-raiz de falhas em sistema legado de criação de pedidos, estancando milhões em perdas por semestre.',i3v:'por semestre',
 i4t:'Migração de jornadas para nativo',i4d:'Evangelista App-First: pesquisa, MVP e migração de jornadas nativas para Flutter, elevando a cultura mobile do time.',i4v:'cultura ↑',
 addl:'Adicionar',addl2:'Adicionar',addl3:'Adicionar',addl4:'Adicionar',
-subl:'Subtotal de impacto',subr:'incalculável — peça orçamento ☕',
+subl:'Subtotal de impacto',subr:'incalculável — peça orçamento',
 ek:'Meus pedidos',eh:'Últimos pedidos — em rota desde 2019',esub:'Cada pedido, um capítulo. Atualização mais recente no topo.',
 es1:'Em rota de entrega · atual',es2:'Entregue',es3:'Entregue',es4:'Entregue',es5:'Entregue',es6:'Pedido criado',
 j1r:'Senior Product Manager',j1c:'Dafiti Group',j1d:'nov 2022 — Presente',j1l:'Brasil & Colômbia',j1b1:'Lidera o ecossistema transacional completo (carrinho, login, cadastro e checkout) em App, Web e Mobile Web para BR e CO.',j1b2:'Conduz simultaneamente três frentes: Growth (experimentação), Lean (eficiência) e Snipers (incidentes críticos).',j1b3:'À frente do rollout do checkout na Colômbia (Webview → Flutter) e do Milkrun 2.0.',
@@ -654,8 +716,9 @@ cc1:'Fundamentos do Scrum',cc2:'Técnicas Avançadas de Scrum',cc3:'Histórias d
 e1n:'Cursos PM3 — Product Manager',e1d:'jan 2022 — mar 2022',e2n:'UFLA — Bacharelado em Sistemas de Informação',e2d:'2014 — 2020',
 pixt:'Pagar com PIX',pixd:'Copia e cola: bruggomes79@gmail.com',
 ord:'Pedido #BG-2026-PM · aguardando seu sim',ct:'Vamos fechar esse pedido?',cp:'Aberta a desafios de produto em jornadas transacionais, pagamentos e modernização de legado. Confirmação rápida — costumo responder no mesmo dia.',
-r1:'Entrega: <b>remoto · LatAm</b>',r2:'Prazo: <b>resposta no mesmo dia</b>',r3:'Devolução: <b>não prevista 😏</b>',
-ft:'© 2026 bruna.store — obrigada pela visita · feito com café e curiosidade'
+r1:'Entrega: <b>remoto · LatAm</b>',r2:'Prazo: <b>resposta no mesmo dia</b>',r3:'Devolução: <b>não prevista</b>',
+ft:'© 2026 bruna.store — obrigada pela visita · feito com café e curiosidade',
+dr_title:'Seu carrinho',dr_promo:'Tem um cupom?',dr_apply:'Aplicar',dr_sub:'Subtotal de impacto',dr_cta:'Finalizar pedido'
 },
 en:{
 st_a:'Product',st_b:'Cart',st_c:'Orders',st_d:'Payment',st_e:'Confirmed',
@@ -665,7 +728,7 @@ th1:'years',th2:'LatAm countries',th3:'workstreams',th4:'dig. conv.',
 rate:'6 years on the market · no returns',by:'by Bruna Gomes · Transactional e-commerce across LatAm',
 lede:'I build product where the impact is <b>financial</b> and mistakes are costly — checkout, payments and transactional journeys that move conversion and revenue across LatAm.',
 pl:'Investment',pn:'Warranty included: ex-developer technical fluency + the business sense of someone who measures revenue.',cta1:'Buy now',
-sk_cat:'Category',sv_cat:'Product Management · Transactional',sk_loc:'Location',sv_loc:'São Sebastião, SP · remote for São Paulo',sk_ops:'Operations',sv_ops:'Brazil 🇧🇷 · Colombia 🇨🇴',sk_src:'Origin',sv_src:'Ex full-stack developer',
+sk_cat:'Category',sv_cat:'Product Management · Transactional',sk_loc:'Location',sv_loc:'São Sebastião, SP · remote for São Paulo',sk_ops:'Operations',sv_ops:'Brazil · Colombia',sk_src:'Origin',sv_src:'Ex full-stack developer',
 tr1:'Ex-dev warranty',tr2:'Secure payment (literally)',tr3:'LatAm delivery',
 ck2:'In cart',ch:'What I have shipped — itemized',csub:'When product is the transactional layer, every decision becomes revenue, prevented loss or trust. Add the ones that matter to you:',
 i1t:'Flutter checkout + PIX',i1d:'Led the new checkout and PIX integration at Dafiti: double-digit conversion growth and a strong lift in revenue per session.',i1v:'conversion',
@@ -673,7 +736,7 @@ i2t:'Anti-fraud rollback on Black Friday',i2d:'Architected a real-time anti-frau
 i3t:'Legacy order-creation failures',i3d:'Led the root-cause fix of legacy order-creation failures, stopping millions in losses per semester.',i3v:'per semester',
 i4t:'Migrating journeys to native',i4d:'App-First evangelist: research, MVP and migration of native journeys to Flutter, raising the team’s mobile culture.',i4v:'culture ↑',
 addl:'Add',addl2:'Add',addl3:'Add',addl4:'Add',
-subl:'Impact subtotal',subr:'priceless — request a quote ☕',
+subl:'Impact subtotal',subr:'priceless — request a quote',
 ek:'My orders',eh:'Recent orders — in transit since 2019',esub:'Each order, a chapter. Latest update on top.',
 es1:'Out for delivery · current',es2:'Delivered',es3:'Delivered',es4:'Delivered',es5:'Delivered',es6:'Order placed',
 j1r:'Senior Product Manager',j1c:'Dafiti Group',j1d:'Nov 2022 — Present',j1l:'Brazil & Colombia',j1b1:'Leads the full transactional ecosystem (cart, login, sign-up, checkout) across App, Web and Mobile Web for BR and CO.',j1b2:'Simultaneously runs three workstreams: Growth (experimentation), Lean (efficiency) and Snipers (critical incidents).',j1b3:'Leading the new checkout rollout in Colombia (Webview → Flutter) and Milkrun 2.0.',
@@ -689,8 +752,9 @@ cc1:'Scrum Fundamentals',cc2:'Advanced Scrum',cc3:'Agile User Stories',cc4:'Agil
 e1n:'PM3 — Product Manager',e1d:'Jan 2022 — Mar 2022',e2n:'UFLA — BSc in Information Systems',e2d:'2014 — 2020',
 pixt:'Pay with PIX',pixd:'Copy & paste: bruggomes79@gmail.com',
 ord:'Order #BG-2026-PM · awaiting your yes',ct:'Shall we close this order?',cp:'Open to product challenges in transactional journeys, payments and legacy modernization. Quick confirmation — I usually reply same day.',
-r1:'Delivery: <b>remote · LatAm</b>',r2:'Lead time: <b>same-day reply</b>',r3:'Returns: <b>not expected 😏</b>',
-ft:'© 2026 bruna.store — thanks for stopping by · made with coffee and curiosity'
+r1:'Delivery: <b>remote · LatAm</b>',r2:'Lead time: <b>same-day reply</b>',r3:'Returns: <b>not expected</b>',
+ft:'© 2026 bruna.store — thanks for stopping by · made with coffee and curiosity',
+dr_title:'Your cart',dr_promo:'Have a promo code?',dr_apply:'Apply',dr_sub:'Impact subtotal',dr_cta:'Place order'
 }};
 
 const HTML_KEYS=new Set(['lede','r1','r2','r3']);
@@ -703,6 +767,8 @@ function sl(l){
   });
   document.getElementById('bpt').classList.toggle('on',l!=='en');
   document.getElementById('ben').classList.toggle('on',l==='en');
+  document.querySelectorAll('[data-add].done span').forEach(s=>s.textContent=(l==='en'?'Added ✓':'Adicionado ✓'));
+  window.syncCart&&window.syncCart();
   try{localStorage.setItem('l',l)}catch(e){}
 }
 
@@ -714,19 +780,64 @@ function buildQR(){
 }
 
 function cart(){
-  const btn=document.getElementById('cartBtn'),count=document.getElementById('cartCount');
-  let n=0;
+  const btn=document.getElementById('cartBtn');
   document.querySelectorAll('[data-add]').forEach(b=>{
     b.addEventListener('click',()=>{
       if(b.classList.contains('done'))return;
       b.classList.add('done');
-      b.querySelector('span').textContent=(D[cur()].addl==='Add')?'Added ✓':'Adicionado ✓';
-      n++;count.textContent=n;
+      b.querySelector('span').textContent=(cur()==='en')?'Added ✓':'Adicionado ✓';
+      window.syncCart&&window.syncCart();
       btn.classList.remove('bump');void btn.offsetWidth;btn.classList.add('bump');
     });
   });
 }
 function cur(){return document.getElementById('ben').classList.contains('on')?'en':'pt';}
+
+function drawer(){
+  const ov=document.getElementById('overlay'),dw=document.getElementById('drawer');
+  const body=document.getElementById('drawerBody'),fill=document.getElementById('shipFill'),shipTxt=document.getElementById('shipTxt'),total=document.getElementById('drawerTotal'),count=document.getElementById('cartCount');
+  const lines=[...document.querySelectorAll('.line')];let lastFocus=null;
+  const added=()=>lines.filter(l=>l.querySelector('.add.done'));
+  function build(){
+    const l=cur(),items=added(),tot=lines.length,left=tot-items.length;
+    count.textContent=items.length;
+    fill.style.width=(items.length/tot*100)+'%';
+    shipTxt.textContent=left>0?(l==='en'?left+' more result(s) to unlock free shipping':'Faltam '+left+' resultado(s) para o frete grátis'):(l==='en'?'Free shipping unlocked':'Frete grátis desbloqueado');
+    body.innerHTML='';
+    if(!items.length){
+      const e=document.createElement('div');e.className='drawer-empty';
+      e.innerHTML=l==='en'?'Your cart is empty.<br>Add results in the Cart section.':'Seu carrinho está vazio.<br>Adicione resultados na seção Carrinho.';
+      const b=document.createElement('button');b.className='btn btn-ghost';b.style.cssText='margin-top:16px';
+      b.textContent=l==='en'?'See results':'Ver resultados';
+      b.addEventListener('click',()=>{close();document.getElementById('cart').scrollIntoView({behavior:'smooth'});});
+      e.appendChild(b);body.appendChild(e);total.textContent='—';return;
+    }
+    items.forEach(ln=>{
+      const row=document.createElement('div');row.className='drawer-row';
+      const di=document.createElement('div');di.className='di';di.innerHTML=ln.querySelector('.ic').innerHTML;
+      const dt=document.createElement('div');dt.className='dt';dt.textContent=ln.querySelector('.body h3').textContent;
+      const dv=document.createElement('div');dv.className='dv';dv.textContent=ln.querySelector('.val').firstChild.textContent.trim();
+      row.append(di,dt,dv);body.appendChild(row);
+    });
+    total.textContent=l==='en'?'priceless':'incalculável';
+  }
+  function open(){lastFocus=document.activeElement;build();ov.hidden=false;requestAnimationFrame(()=>{ov.classList.add('open');dw.classList.add('open');});dw.removeAttribute('inert');document.body.style.overflow='hidden';document.getElementById('drawerClose').focus();}
+  function close(){ov.classList.remove('open');dw.classList.remove('open');dw.setAttribute('inert','');document.body.style.overflow='';setTimeout(()=>{ov.hidden=true;},320);lastFocus&&lastFocus.focus&&lastFocus.focus();}
+  document.getElementById('cartBtn').addEventListener('click',open);
+  document.getElementById('drawerClose').addEventListener('click',close);
+  ov.addEventListener('click',close);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&dw.classList.contains('open'))close();});
+  // ponytail: promo easter egg — hard-coded codes, no backend
+  const apply=()=>{
+    const v=(document.getElementById('promoInput').value||'').trim().toUpperCase(),msg=document.getElementById('promoMsg'),l=cur();
+    if(['CONTRATAR','HIRE','BRUNA','PIX'].includes(v)){msg.className='promo-msg ok';msg.textContent=l==='en'?'Applied: direct hire — 100% off the bureaucracy.':'Aplicado: contratação direta — 100% de desconto na burocracia.';}
+    else if(v){msg.className='promo-msg bad';msg.textContent=l==='en'?'Invalid code':'Cupom inválido';}
+    else{msg.textContent='';}
+  };
+  document.getElementById('promoBtn').addEventListener('click',apply);
+  document.getElementById('promoInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();apply();}});
+  window.syncCart=build;
+}
 
 function reveal(){
   const els=document.querySelectorAll('.rv');
@@ -759,7 +870,7 @@ function spy(){
 document.addEventListener('DOMContentLoaded',()=>{
   const saved=(()=>{try{return localStorage.getItem('l')}catch(e){return null}})();
   sl(saved||'pt');
-  buildQR();cart();reveal();spy();
+  buildQR();drawer();cart();reveal();spy();
   const bar=document.getElementById('bar');
   const stepLinks=[...document.querySelectorAll('.stepper a')];
   const onScroll=()=>{
@@ -771,9 +882,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     }
   };
   onScroll();window.addEventListener('scroll',onScroll,{passive:true});
-  document.getElementById('cartBtn').addEventListener('click',()=>{
-    document.getElementById('cart').scrollIntoView({behavior:'smooth'});
-  });
 });
 </script>
 </body>
