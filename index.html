@@ -4,11 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Bruna Gomes — Senior Product Manager</title>
-<meta name="description" content="Bruna Gomes — Senior Product Manager · E-commerce, Checkout & Pagamentos · LatAm · Growth & App-First." />
+<meta name="description" content="Bruna Gomes — Senior Product Manager · E-commerce, Checkout &amp; Pagamentos · LatAm · Growth &amp; App-First." />
 <link rel="canonical" href="https://brunagomes12.github.io/" />
-<!-- favicon inline (monograma BG), sem arquivo extra -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%239B2D5E'/%3E%3Cstop offset='1' stop-color='%23E5736A'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='32' fill='url(%23g)'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' font-weight='700' fill='white' text-anchor='middle'%3EBG%3C/text%3E%3C/svg%3E" />
-<!-- Open Graph / compartilhamento -->
+<!-- favicon: berry-fill circle, no text -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%239B2D5E'/%3E%3C/svg%3E" />
 <meta name="author" content="Bruna Gomes" />
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 <meta name="theme-color" content="#9B2D5E" />
@@ -18,7 +17,7 @@
 <meta property="og:locale:alternate" content="en_US" />
 <meta property="og:url" content="https://brunagomes12.github.io/" />
 <meta property="og:title" content="Bruna Gomes — Senior Product Manager" />
-<meta property="og:description" content="E-commerce, Checkout & Pagamentos · LatAm · Growth & App-First. 6 anos escalando produtos digitais com impacto financeiro." />
+<meta property="og:description" content="E-commerce, Checkout &amp; Pagamentos · LatAm · Growth &amp; App-First. 6 anos escalando produtos digitais com impacto financeiro." />
 <meta property="og:image" content="https://brunagomes12.github.io/assets/bruna.jpg" />
 <meta property="og:image:width" content="800" />
 <meta property="og:image:height" content="800" />
@@ -27,7 +26,7 @@
 <meta property="profile:last_name" content="Gomes" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Bruna Gomes — Senior Product Manager" />
-<meta name="twitter:description" content="E-commerce, Checkout & Pagamentos · LatAm · Growth & App-First." />
+<meta name="twitter:description" content="E-commerce, Checkout &amp; Pagamentos · LatAm · Growth &amp; App-First." />
 <meta name="twitter:image" content="https://brunagomes12.github.io/assets/bruna.jpg" />
 <script type="application/ld+json">
 {
@@ -59,154 +58,144 @@
 <script src="https://cdn.jsdelivr.net/npm/lucide@0.544.0/dist/umd/lucide.min.js" defer></script>
 <style>
   :root{
-    --ivory:#FBF7F4; --blush:#F4DCE0; --rose:#E8C4C4;
-    --berry:#9B2D5E; --berry-dk:#7A2049; --coral:#E5736A;
-    --ink:#2A2228; --ink-soft:#6B5F66; --line:#E9DEDF;
-    --grad:linear-gradient(135deg,var(--berry),var(--coral));
-    --maxw:1080px; --r:18px;
-    --shadow:0 1px 2px rgba(42,34,40,.04), 0 8px 30px rgba(155,45,94,.07);
+    --bg:#FDF9F7; --blush:#F7E8EB;
+    --berry:#9B2D5E; --berry-dk:#7A2049;
+    --ink:#2A2228; --ink-soft:#5E535A; --line:#E8DCDC;
+    --maxw:1040px; --r:14px;
+    --shadow:0 1px 3px rgba(42,34,40,.05);
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
-    margin:0; background:var(--ivory); color:var(--ink);
+    margin:0; background:var(--bg); color:var(--ink);
     font-family:"Inter",system-ui,sans-serif; line-height:1.65;
     -webkit-font-smoothing:antialiased;
-    background-image:
-      radial-gradient(40rem 30rem at 85% -5%, rgba(229,115,106,.10), transparent 60%),
-      radial-gradient(36rem 28rem at -5% 12%, rgba(155,45,94,.08), transparent 60%);
-    background-repeat:no-repeat;
   }
   .wrap{max-width:var(--maxw); margin:0 auto; padding:0 clamp(20px,5vw,40px)}
-  h1,h2,h3{font-family:"Fraunces",Georgia,serif; line-height:1.1; font-weight:600; margin:0}
-  a{color:var(--berry); text-decoration:none}
-  a:hover{text-decoration:underline}
-  .eyebrow{font-size:.78rem; letter-spacing:.16em; text-transform:uppercase; color:var(--berry); font-weight:600;
+  h1,h2,h3{font-family:"Fraunces",Georgia,serif; line-height:1.12; font-weight:600; margin:0}
+  a{color:var(--berry); text-decoration:none; transition:color .15s}
+  a:hover{color:var(--berry-dk); text-decoration:underline}
+  .eyebrow{font-size:.76rem; letter-spacing:.15em; text-transform:uppercase; color:var(--berry); font-weight:600;
     display:inline-flex; align-items:center; gap:7px}
-  .eyebrow svg{width:16px; height:16px}
-  .btn svg{width:18px; height:18px}
+  .eyebrow svg{width:15px; height:15px; opacity:.85}
+  .btn svg{width:17px; height:17px}
 
   /* lang toggle */
   .lang{position:fixed; top:16px; right:16px; z-index:50; display:flex; gap:2px;
     background:#fff; border:1px solid var(--line); border-radius:999px; padding:4px; box-shadow:var(--shadow)}
-  .lang button{border:0; background:transparent; font:inherit; font-weight:600; font-size:.82rem;
-    color:var(--ink-soft); padding:5px 12px; border-radius:999px; cursor:pointer}
-  .lang button[aria-pressed="true"]{background:var(--grad); color:#fff}
+  .lang button{border:0; background:transparent; font:inherit; font-weight:600; font-size:.8rem;
+    color:var(--ink-soft); padding:5px 12px; border-radius:999px; cursor:pointer; transition:all .15s}
+  .lang button[aria-pressed="true"]{background:var(--berry); color:#fff}
 
   /* hero */
-  header.hero{padding:clamp(80px,12vw,140px) 0 clamp(40px,6vw,70px)}
+  header.hero{padding:clamp(60px,10vw,110px) 0 clamp(36px,5vw,56px)}
   .hero-grid{display:grid; grid-template-columns:1.25fr .9fr; gap:clamp(30px,6vw,72px); align-items:center}
-  .monogram{width:60px; height:60px; border-radius:50%; display:grid; place-items:center;
-    background:var(--grad); color:#fff; font-family:"Fraunces"; font-weight:600; font-size:1.4rem;
-    box-shadow:var(--shadow); margin-bottom:24px}
-  /* portrait */
-  .hero-portrait{position:relative; justify-self:center; width:min(100%,360px); aspect-ratio:1}
-  .hero-portrait img{position:relative; z-index:1; width:100%; height:100%; object-fit:cover;
-    border-radius:30% 70% 70% 30% / 30% 30% 70% 70%;
-    border:6px solid #fff; box-shadow:0 22px 55px rgba(155,45,94,.20)}
-  .hero-portrait .blob{position:absolute; inset:-9%; z-index:0; background:var(--grad); opacity:.85;
-    border-radius:38% 62% 63% 37% / 41% 44% 56% 59%; animation:morph 9s ease-in-out infinite}
-  @keyframes morph{0%,100%{border-radius:38% 62% 63% 37%/41% 44% 56% 59%}
-    50%{border-radius:60% 40% 41% 59%/55% 48% 52% 45%}}
-  .portrait-badge{position:absolute; z-index:2; bottom:4%; left:50%; transform:translateX(-50%);
-    background:#fff; box-shadow:var(--shadow); border-radius:999px; padding:8px 16px; font-size:.84rem;
-    font-weight:600; display:inline-flex; gap:6px; align-items:center; white-space:nowrap}
-  .portrait-badge svg{width:15px; height:15px; color:var(--berry)}
-  .hero h1{font-size:clamp(2.6rem,8vw,5rem); letter-spacing:-.02em}
-  .hero .role{font-size:clamp(1.05rem,2.6vw,1.35rem); font-weight:600; margin:14px 0 0; color:var(--berry)}
-  .hero .tagline{font-size:clamp(1rem,2.2vw,1.18rem); color:var(--ink-soft); max-width:46ch; margin:16px 0 0}
-  .cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:30px}
-  .btn{display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:.95rem;
-    padding:12px 22px; border-radius:999px; border:1px solid transparent; cursor:pointer}
-  .btn-primary{background:var(--grad); color:#fff}
-  .btn-primary:hover{text-decoration:none; filter:brightness(1.06)}
+  .hero-text .pre-name{font-size:.82rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--berry); font-weight:600; margin-bottom:10px}
+  .hero h1{font-size:clamp(2.8rem,8vw,5rem); letter-spacing:-.025em; line-height:1.05}
+  .hero .role{font-size:clamp(1rem,2.4vw,1.25rem); font-weight:600; margin:12px 0 0; color:var(--berry)}
+  .hero .tagline{font-size:clamp(.98rem,2vw,1.12rem); color:var(--ink-soft); max-width:44ch; margin:14px 0 0; line-height:1.55}
+  .cta{display:flex; flex-wrap:wrap; gap:10px; margin-top:26px}
+  .btn{display:inline-flex; align-items:center; gap:7px; font-weight:600; font-size:.92rem;
+    padding:11px 20px; border-radius:999px; border:1px solid transparent; cursor:pointer;
+    transition:all .15s; font-family:"Inter",system-ui,sans-serif}
+  .btn-primary{background:var(--berry); color:#fff}
+  .btn-primary:hover{background:var(--berry-dk); text-decoration:none}
   .btn-ghost{background:#fff; border-color:var(--line); color:var(--ink)}
   .btn-ghost:hover{text-decoration:none; border-color:var(--berry); color:var(--berry)}
-
-  .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:clamp(40px,6vw,64px)}
-  .stat{background:#fff; border:1px solid var(--line); border-radius:var(--r); padding:22px 24px; box-shadow:var(--shadow)}
-  .stat .num{font-family:"Fraunces"; font-weight:600; font-size:clamp(1.8rem,4.5vw,2.6rem);
-    background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; line-height:1}
-  .stat .lbl{font-size:.92rem; color:var(--ink-soft); margin-top:8px}
+  /* portrait — editorial, no blob/gradient */
+  .hero-portrait{justify-self:end; width:min(100%,320px); display:flex; flex-direction:column; align-items:center; gap:12px}
+  .hero-portrait img{width:100%; aspect-ratio:1; object-fit:cover;
+    border-radius:20px;
+    border:1px solid var(--line); box-shadow:0 4px 24px rgba(42,34,40,.08)}
+  .portrait-badge{display:inline-flex; gap:5px; align-items:center;
+    font-size:.8rem; font-weight:500; color:var(--ink-soft)}
+  .portrait-badge svg{width:13px; height:13px; color:var(--berry)}
+  /* stats — inline pills */
+  .stats{display:flex; flex-wrap:wrap; gap:10px; margin-top:clamp(32px,5vw,48px)}
+  .stat{background:#fff; border:1px solid var(--line); border-radius:999px; padding:10px 20px; font-size:.88rem}
+  .stat .num{font-weight:700; color:var(--berry)}
+  .stat .lbl{color:var(--ink-soft); margin-left:4px}
 
   /* sections */
-  section{padding:clamp(48px,8vw,84px) 0; border-top:1px solid var(--line)}
-  .sec-head{margin-bottom:36px}
-  .sec-head h2{font-size:clamp(1.8rem,5vw,2.7rem); margin-top:6px; letter-spacing:-.01em}
-  .about p{font-size:clamp(1.05rem,2.3vw,1.25rem); max-width:62ch; color:var(--ink)}
+  section{padding:clamp(44px,7vw,72px) 0; border-top:1px solid var(--line)}
+  .sec-head{margin-bottom:34px}
+  .sec-head h2{font-size:clamp(1.7rem,4.5vw,2.5rem); margin-top:5px; letter-spacing:-.01em}
+  .about p{font-size:clamp(1.02rem,2.2vw,1.18rem); max-width:60ch; color:var(--ink); line-height:1.7}
 
-  /* impact cards */
-  .cards{display:grid; grid-template-columns:repeat(2,1fr); gap:20px}
-  .card{background:#fff; border:1px solid var(--line); border-radius:var(--r); padding:26px; box-shadow:var(--shadow);
-    transition:transform .25s ease, box-shadow .25s ease}
-  .card:hover{transform:translateY(-4px); box-shadow:0 14px 40px rgba(155,45,94,.13)}
-  .card .tag{display:inline-block; font-size:.72rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
-    color:var(--berry); background:var(--blush); padding:5px 11px; border-radius:999px}
-  .card h3{font-size:1.3rem; margin:14px 0 12px}
-  .card .row{display:flex; gap:10px; margin-top:10px; font-size:.96rem}
-  .card .row b{color:var(--berry); font-family:"Inter"; font-weight:700; flex:0 0 auto; min-width:74px}
+  /* impact cards — editorial, left-accent */
+  .cards{display:grid; grid-template-columns:repeat(2,1fr); gap:18px}
+  .card{background:#fff; border:1px solid var(--line); border-left:3px solid var(--berry);
+    border-radius:0 var(--r) var(--r) 0; padding:22px 24px; box-shadow:var(--shadow);
+    transition:border-color .15s}
+  .card:hover{border-left-color:var(--berry-dk)}
+  .card .tag{display:inline-block; font-size:.7rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--berry); background:var(--blush); padding:4px 10px; border-radius:999px}
+  .card h3{font-size:1.18rem; margin:12px 0 14px}
+  .card .row{display:flex; gap:8px; margin-top:7px; font-size:.92rem; line-height:1.5}
+  .card .row b{color:var(--berry); font-weight:700; flex:0 0 auto; min-width:68px; font-size:.78rem; text-transform:uppercase; letter-spacing:.06em}
   .card .row span{color:var(--ink-soft)}
+  .card .result{border-top:1px solid var(--line); margin-top:12px; padding-top:12px}
   .card .result b{color:var(--berry-dk)}
   .card .result span{color:var(--ink); font-weight:500}
 
-  /* timeline */
-  .tl{position:relative; padding-left:30px}
-  .tl::before{content:""; position:absolute; left:7px; top:6px; bottom:6px; width:2px; background:var(--line)}
-  .job{position:relative; padding-bottom:34px}
+  /* timeline — with company logos */
+  .tl{position:relative; padding-left:28px}
+  .tl::before{content:""; position:absolute; left:6px; top:5px; bottom:5px; width:1.5px; background:var(--line)}
+  .job{position:relative; padding-bottom:26px}
   .job:last-child{padding-bottom:0}
-  .job::before{content:""; position:absolute; left:-30px; top:6px; width:16px; height:16px; border-radius:50%;
-    background:#fff; border:3px solid var(--berry)}
-  .job .meta{display:flex; flex-wrap:wrap; gap:6px 14px; align-items:baseline}
-  .job h3{font-size:1.18rem}
+  .job::before{content:""; position:absolute; left:-28px; top:9px; width:12px; height:12px; border-radius:50%;
+    background:#fff; border:2px solid var(--berry)}
+  .job .job-row{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+  .job .job-logo{width:22px; height:22px; border-radius:4px; object-fit:contain; flex-shrink:0; background:#fff}
+  .job h3{font-size:1.1rem}
   .job .co{font-weight:700; color:var(--berry)}
-  .job .when{font-size:.85rem; color:var(--ink-soft)}
-  .job .loc{font-size:.85rem; color:var(--ink-soft)}
-  .job ul{margin:10px 0 0; padding-left:18px; color:var(--ink-soft); font-size:.97rem}
-  .job ul li{margin:5px 0}
+  .job .when{font-size:.82rem; color:var(--ink-soft)}
+  .job .loc{font-size:.82rem; color:var(--ink-soft)}
+  .job ul{margin:8px 0 0; padding-left:16px; color:var(--ink-soft); font-size:.93rem; line-height:1.55}
+  .job ul li{margin:4px 0}
 
   /* chips / education */
   .twocol{display:grid; grid-template-columns:1fr 1fr; gap:40px}
-  .chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
-  .chip{background:#fff; border:1px solid var(--line); border-radius:999px; padding:8px 16px; font-size:.9rem; font-weight:500}
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+  .chip{background:#fff; border:1px solid var(--line); border-radius:999px; padding:7px 14px; font-size:.87rem; font-weight:500}
   .chip.solid{background:var(--blush); border-color:transparent; color:var(--berry-dk)}
-  .block h3{font-size:1.15rem; margin-bottom:6px}
-  .edu .item{margin-top:14px}
+  .block h3{font-size:1.1rem; margin-bottom:4px}
+  .edu .item{margin-top:12px}
   .edu .item .d{font-weight:600}
-  .edu .item .s{color:var(--ink-soft); font-size:.92rem}
+  .edu .item .s{color:var(--ink-soft); font-size:.89rem}
 
-  /* contact */
-  .contact-box{background:var(--grad); color:#fff; border-radius:24px; padding:clamp(34px,6vw,56px); text-align:center}
-  .contact-box h2{color:#fff; font-size:clamp(1.8rem,5vw,2.6rem)}
-  .contact-box p{color:rgba(255,255,255,.9); max-width:48ch; margin:14px auto 0}
+  /* contact — dark editorial */
+  .contact-box{background:var(--ink); color:#fff; border-radius:20px; padding:clamp(32px,6vw,50px); text-align:center}
+  .contact-box h2{color:#fff; font-size:clamp(1.7rem,4.5vw,2.4rem)}
+  .contact-box p{color:rgba(255,255,255,.75); max-width:46ch; margin:12px auto 0}
   .contact-box .cta{justify-content:center}
-  .contact-box .btn-primary{background:#fff; color:var(--berry)}
-  .contact-box .btn-ghost{background:transparent; border-color:rgba(255,255,255,.5); color:#fff}
+  .contact-box .btn-primary{background:var(--berry); color:#fff}
+  .contact-box .btn-primary:hover{background:var(--berry-dk)}
+  .contact-box .btn-ghost{background:transparent; border-color:rgba(255,255,255,.35); color:#fff}
   .contact-box .btn-ghost:hover{border-color:#fff; color:#fff}
+  .contact-ava{width:80px; height:80px; border-radius:50%; object-fit:cover;
+    border:3px solid rgba(255,255,255,.55); margin:0 auto 10px; display:block}
 
-  footer{text-align:center; padding:40px 0 56px; color:var(--ink-soft); font-size:.88rem}
+  footer{text-align:center; padding:36px 0 48px; color:var(--ink-soft); font-size:.84rem}
 
-  /* reveal animation */
-  .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease}
+  /* reveal */
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease}
   .reveal.in{opacity:1; transform:none}
 
-  /* contact avatar */
-  .contact-ava{width:88px; height:88px; border-radius:50%; object-fit:cover;
-    border:4px solid rgba(255,255,255,.65); box-shadow:0 10px 30px rgba(0,0,0,.12); margin-bottom:6px}
-
   @media (max-width:860px){
-    .hero-grid{grid-template-columns:1fr; gap:34px}
-    .hero-portrait{order:-1; width:min(70%,300px)}
+    .hero-grid{grid-template-columns:1fr; gap:30px}
+    .hero-portrait{order:-1; width:min(65%,260px); justify-self:center}
   }
   @media (max-width:760px){
-    .stats{grid-template-columns:1fr}
+    .stats{flex-direction:column; gap:6px}
+    .stat{text-align:center; justify-content:center}
     .cards{grid-template-columns:1fr}
-    .twocol{grid-template-columns:1fr; gap:30px}
+    .twocol{grid-template-columns:1fr; gap:28px}
   }
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     .reveal{opacity:1; transform:none; transition:none}
-    .card{transition:none}
-    .hero-portrait .blob{animation:none}
   }
   @media print{
     body{background:#fff}
@@ -227,7 +216,7 @@
     <header class="hero">
       <div class="hero-grid">
         <div class="hero-text">
-          <div class="monogram" aria-hidden="true">BG</div>
+          <p class="pre-name">Senior Product Manager</p>
           <h1>Bruna Gomes</h1>
           <p class="role" data-k="role">Senior Product Manager · E-commerce, Checkout &amp; Pagamentos · LatAm</p>
           <p class="tagline" data-k="tagline">Entro em cenários complexos, modernizo sistemas legados e otimizo jornadas transacionais de alto impacto financeiro.</p>
@@ -237,7 +226,6 @@
           </div>
         </div>
         <div class="hero-portrait">
-          <div class="blob" aria-hidden="true"></div>
           <img src="assets/bruna.jpg" alt="Retrato de Bruna Gomes" width="800" height="800" />
           <span class="portrait-badge"><i data-lucide="map-pin"></i> São Paulo · BR</span>
         </div>
@@ -247,7 +235,6 @@
   </div>
 
   <main class="wrap" id="main">
-    <!-- ponytail: fallback de texto p/ crawlers sem JS (GPTBot/ClaudeBot/etc). JS substitui este conteúdo. -->
     <noscript>
       <h2>Sobre</h2>
       <p>Product Manager Sênior com 6 anos de experiência escalando produtos digitais B2B e B2C. Atualmente lidera o ecossistema transacional — carrinho, login, cadastro e checkout — da Dafiti para Brasil e Colômbia, à frente de Growth, Lean e resposta a incidentes críticos, com foco em conversão, receita e cultura App-First.</p>
@@ -278,7 +265,17 @@
   </footer>
 
 <script>
-// ponytail: single-file, no build, no deps. Content lives in one i18n object; JS renders the DOM.
+// ponytail: single-file, no build. I18N data + DOM render.
+const LOGOS = {
+  "Dafiti Group":"assets/dafiti_logo.png",
+  "BEYOND Soluções":"assets/beyond_logo.png",
+  "dti digital":"assets/dti_logo.png",
+  "Agência Zetta":"assets/zetta_logo.png",
+  "UFLA":"assets/ufla_logo.png",
+  "Comp Júnior":"assets/compjunior_logo.png",
+  "Google Developers Group":"assets/gdg_logo.png",
+};
+
 const I18N = {
   pt:{
     role:"Senior Product Manager · E-commerce, Checkout & Pagamentos · LatAm",
@@ -405,7 +402,7 @@ const I18N = {
       compTitle:"Core competencies",
       comp:["Digital transformation","Stakeholder management","Zero to One","Checkout & Payments","Growth & Experimentation","Legacy modernization","App-First","Discovery","Product metrics","Agile / Scrum","PIX"],
       certTitle:"Certifications & Education",
-      certs:["Scrum Fundamentals","Advanced Scrum Techniques","Agile User Stories","Agile Retrospectives","Product Metrics"],
+      certs:[,"Scrum Fundamentals","Advanced Scrum Techniques","Agile User Stories","Agile Retrospectives","Product Metrics"],
       edu:[
         {d:"PM3 Courses — Product Manager",s:"Jan 2022 – Mar 2022"},
         {d:"UFLA — BSc in Information Systems",s:"2014 – 2020"},
@@ -420,11 +417,10 @@ const esc = s => String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'
 
 function render(lang){
   const t = I18N[lang];
-  // simple fields
   document.querySelectorAll('[data-k]').forEach(el=>{ el.textContent = t[el.dataset.k]; });
   // stats
   document.getElementById('stats').innerHTML = t.stats.map(s=>
-    `<div class="stat reveal"><div class="num">${esc(s.num)}</div><div class="lbl">${esc(s.lbl)}</div></div>`).join('');
+    `<span class="stat reveal"><span class="num">${esc(s.num)}</span><span class="lbl">${esc(s.lbl)}</span></span>`).join('');
 
   const labels = lang==='pt'
     ? {problem:'Desafio',action:'Ação',result:'Resultado'}
@@ -441,7 +437,8 @@ function render(lang){
 
   const jobs = t.exp.jobs.map(j=>`
     <div class="job reveal">
-      <div class="meta">
+      <div class="job-row">
+        ${LOGOS[j.co]?`<img class="job-logo" src="${LOGOS[j.co]}" alt="" width="22" height="22" loading="lazy" />`:''}
         <h3>${esc(j.role)} · <span class="co">${esc(j.co)}</span></h3>
         <span class="when">${esc(j.when)}</span>
         ${j.loc?`<span class="loc">· ${esc(j.loc)}</span>`:''}
@@ -478,7 +475,7 @@ function render(lang){
 
     <section id="contact" style="border-top:0">
       <div class="contact-box reveal">
-        <img class="contact-ava" src="assets/bruna.jpg" alt="Bruna Gomes" width="88" height="88" />
+        <img class="contact-ava" src="assets/bruna.jpg" alt="Bruna Gomes" width="80" height="80" />
         <h2>${esc(t.contact.title)}</h2>
         <p>${esc(t.contact.body)}</p>
         <div class="cta">
@@ -489,7 +486,7 @@ function render(lang){
     </section>`;
 
   observe();
-  if(window.lucide) lucide.createIcons(); // ponytail: no-op até o script (defer) carregar; DOMContentLoaded refaz
+  if(window.lucide) lucide.createIcons();
 }
 
 function setLang(lang){
@@ -515,7 +512,6 @@ function observe(){
 let saved = 'pt';
 try{ saved = localStorage.getItem('lang') || 'pt'; }catch(e){}
 setLang(saved);
-// Lucide carrega via defer (depois deste script inline); inicializa os ícones quando pronto.
 window.addEventListener('DOMContentLoaded', ()=>{ if(window.lucide) lucide.createIcons(); });
 </script>
 </body>
