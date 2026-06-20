@@ -178,8 +178,11 @@ img{max-width:100%;display:block}
 
 /* ---------- responsive ---------- */
 @media(max-width:860px){
-  .hero-grid{grid-template-columns:1fr;gap:32px}
-  .portrait{max-width:248px;margin-inline:auto}
+  .hero-grid{grid-template-columns:1fr;gap:22px}
+  .portrait{max-width:120px;margin:0 auto;order:-1}
+  .portrait img{aspect-ratio:1/1;border-radius:50%}
+  .portrait::after{border-radius:50%}
+  .portrait .tagchip{display:none}
   .stats{grid-template-columns:1fr 1fr}
   .stats>div{padding:22px 18px}
   .stats>div:nth-child(odd){border-left:none;padding-left:0}
@@ -190,7 +193,6 @@ img{max-width:100%;display:block}
   .impact-grid{grid-template-columns:1fr}
   .job{grid-template-columns:1fr;gap:8px}
   .job .when{order:-1}
-  .portrait{max-width:200px}
 }
 @media(max-width:420px){
   .stats{grid-template-columns:1fr}
