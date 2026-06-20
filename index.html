@@ -18,199 +18,260 @@
 <meta name="twitter:title" content="Bruna Gomes — Senior Product Manager">
 <meta name="twitter:description" content="Senior Product Manager · E-commerce, Checkout & Pagamentos · LatAm">
 <meta name="twitter:image" content="https://brunagomes.me/assets/bruna.jpg">
-<meta name="theme-color" content="#F4F0E9">
+<meta name="theme-color" content="#0E1117">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Bruna Gomes","givenName":"Bruna","familyName":"Gomes","jobTitle":"Senior Product Manager","url":"https://brunagomes.me","image":"https://brunagomes.me/assets/bruna.jpg","email":"mailto:bruggomes79@gmail.com","address":{"@type":"PostalAddress","addressLocality":"São Sebastião","addressRegion":"SP","addressCountry":"BR"},"sameAs":["https://www.linkedin.com/in/bruna-gomes-product-manager"],"knowsAbout":["Product Management","E-commerce","Checkout","Payments","PIX","Growth","Agile"],"alumniOf":{"@type":"CollegeOrUniversity","name":"UFLA"},"worksFor":{"@type":"Organization","name":"Dafiti Group"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#F4F0E9;        /* warm paper */
-  --bg2:#EFEAE1;
-  --surface:#FBF9F5;
-  --ink:#211D18;       /* espresso */
-  --ink-soft:#5C544A;
-  --muted:#9A9085;
-  --line:#E2DBCF;
-  --line2:#D6CEBF;
-  --accent:#9A2B4F;    /* refined wine */
-  --accent-deep:#7C1F3E;
-  --accent-soft:#F1E2E7;
-  --maxw:1000px;
-  --r:14px;
+  --bg:#EAEDF1;          /* cool app canvas */
+  --bg2:#E1E5EA;
+  --surface:#FFFFFF;
+  --ink:#10131A;         /* slate near-black */
+  --ink-soft:#4F5663;
+  --muted:#8A93A1;
+  --line:#E3E7EC;
+  --line2:#D3D9E0;
+  --pix:#00C08B;         /* "buy now" green / PIX energy */
+  --pix-deep:#009E72;
+  --pix-soft:#D9F5EC;
+  --sale:#FF2D6B;        /* promo-tag magenta */
+  --sale-soft:#FFE2EC;
+  --ink-card:#0E1117;    /* dark confirmation panel */
+  --maxw:1080px;
+  --r:16px;
+  --r-sm:10px;
+  --shadow:0 18px 40px -26px rgba(16,19,26,.45);
+  --shadow-sm:0 6px 18px -12px rgba(16,19,26,.35);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;background:var(--bg);-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;background:var(--bg);-webkit-text-size-adjust:100%;scroll-padding-top:118px}
 body{
   font-family:Inter,system-ui,-apple-system,sans-serif;
-  background:var(--bg);color:var(--ink-soft);
-  line-height:1.65;font-size:1rem;-webkit-font-smoothing:antialiased;
+  background:
+    radial-gradient(900px 480px at 88% -8%, #F6F8FA 0%, transparent 60%),
+    var(--bg);
+  color:var(--ink-soft);
+  line-height:1.62;font-size:1rem;-webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;overflow-x:hidden;
 }
-::selection{background:var(--accent-soft);color:var(--accent-deep)}
-h1,h2,h3,.display{font-family:Fraunces,Georgia,serif;color:var(--ink);line-height:1.05;font-weight:600}
-h1{font-size:clamp(2.9rem,8vw,5.4rem);font-weight:600;letter-spacing:-.02em}
-h2{font-size:clamp(1.7rem,4vw,2.6rem);font-weight:600;letter-spacing:-.015em}
-h3{font-size:1.12rem;font-weight:600;letter-spacing:-.01em}
-p{max-width:64ch}
-a{color:var(--accent);text-decoration:none;transition:color .2s}
-a:hover{color:var(--accent-deep)}
+::selection{background:var(--pix-soft);color:var(--pix-deep)}
+h1,h2,h3,.display{font-family:'Space Grotesk',Georgia,sans-serif;color:var(--ink);line-height:1.04;font-weight:700;letter-spacing:-.02em}
+h1{font-size:clamp(2.4rem,6.4vw,4.2rem)}
+h2{font-size:clamp(1.7rem,4vw,2.5rem)}
+h3{font-size:1.08rem;font-weight:600;letter-spacing:-.01em}
+p{max-width:62ch}
+a{color:var(--pix-deep);text-decoration:none;transition:color .2s}
+a:hover{color:var(--pix)}
 img{max-width:100%;display:block}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
-.eyebrow{font-family:Inter,sans-serif;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.18em;color:var(--accent);display:inline-flex;align-items:center;gap:10px}
-.eyebrow::before{content:"";width:22px;height:1.5px;background:var(--accent);display:inline-block}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+:focus-visible{outline:2.5px solid var(--pix-deep);outline-offset:3px;border-radius:6px}
+
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.16em;color:var(--pix-deep);display:inline-flex;align-items:center;gap:9px}
+.eyebrow::before{content:"";width:18px;height:2px;background:var(--pix);display:inline-block}
 
 /* ---------- top bar ---------- */
-.bar{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid transparent;transition:border-color .3s}
-.bar.scrolled{border-color:var(--line)}
-.bar-in{max-width:var(--maxw);margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.mark{font-family:Fraunces,serif;font-weight:600;font-size:1.05rem;color:var(--ink);letter-spacing:-.01em}
-.mark b{color:var(--accent)}
-.lang{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:3px}
-.lang button{border:none;background:none;font-family:Inter,sans-serif;font-weight:600;font-size:.74rem;padding:5px 13px;border-radius:99px;cursor:pointer;color:var(--ink-soft);transition:all .2s;letter-spacing:.02em}
-.lang button.on{background:var(--accent);color:#fff}
+.bar{position:sticky;top:0;z-index:60;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:saturate(150%) blur(12px);border-bottom:1px solid transparent;transition:border-color .3s}
+.bar.scrolled{border-color:var(--line2)}
+.bar-in{max-width:var(--maxw);margin:0 auto;padding:13px 24px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.mark{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.12rem;color:var(--ink);letter-spacing:-.02em;display:inline-flex;align-items:center;gap:8px}
+.mark svg{width:19px;height:19px;stroke:var(--pix-deep)}
+.mark span{color:var(--muted);font-weight:500}
+.bar-right{display:flex;align-items:center;gap:10px}
+.lang{display:inline-flex;background:var(--surface);border:1px solid var(--line2);border-radius:99px;padding:3px}
+.lang button{border:none;background:none;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:.72rem;padding:5px 11px;border-radius:99px;cursor:pointer;color:var(--ink-soft);transition:all .2s}
+.lang button.on{background:var(--ink);color:#fff}
 .lang button:not(.on):hover{color:var(--ink)}
+.cart-btn{position:relative;display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;border:none;border-radius:99px;padding:8px 15px 8px 13px;font-family:'JetBrains Mono',monospace;font-size:.74rem;font-weight:500;cursor:pointer;transition:transform .2s,background .2s}
+.cart-btn:hover{background:#000;transform:translateY(-1px)}
+.cart-btn svg{width:16px;height:16px;stroke:#fff}
+.cart-count{min-width:18px;height:18px;padding:0 5px;border-radius:99px;background:var(--pix);color:#06251c;font-weight:700;font-size:.68rem;display:inline-flex;align-items:center;justify-content:center}
+.cart-btn.bump{animation:bump .4s cubic-bezier(.2,1.4,.4,1)}
+@keyframes bump{30%{transform:scale(1.14)}60%{transform:scale(.96)}100%{transform:scale(1)}}
 
-/* ---------- hero ---------- */
-.hero{padding:clamp(48px,8vw,92px) 0 clamp(36px,5vw,56px)}
-.hero-grid{display:grid;grid-template-columns:1.5fr .85fr;gap:clamp(28px,5vw,64px);align-items:center}
-.hero .eyebrow{margin-bottom:22px}
-.hero h1{margin-bottom:18px}
-.hero h1 .em{font-style:italic;color:var(--accent);font-weight:500}
-.lede{font-size:clamp(1.05rem,2vw,1.22rem);color:var(--ink-soft);max-width:46ch;margin-bottom:26px}
-.lede b{color:var(--ink);font-weight:600}
-.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:30px}
-.meta-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:.82rem;color:var(--muted)}
-.meta-row .pin{display:inline-flex;align-items:center;gap:7px}
-.meta-row svg{width:15px;height:15px;stroke:var(--accent)}
-.portrait{position:relative}
-.portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r);border:1px solid var(--line2);filter:saturate(1.02)}
-.portrait::after{content:"";position:absolute;inset:0;border-radius:var(--r);box-shadow:inset 0 0 0 1px rgba(33,29,24,.04);pointer-events:none}
-.portrait .tagchip{position:absolute;left:-14px;bottom:18px;background:var(--ink);color:#fff;font-size:.74rem;font-weight:600;letter-spacing:.04em;padding:9px 15px;border-radius:99px;box-shadow:0 10px 30px -12px rgba(33,29,24,.5)}
-.portrait .tagchip b{color:#F2B8C6}
+/* ---------- stepper ---------- */
+.stepper{position:sticky;top:53px;z-index:55;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line2)}
+.stepper-in{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.stepper ol{list-style:none;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.stepper ol::-webkit-scrollbar{display:none}
+.stepper a{flex:none;display:flex;align-items:center;gap:8px;padding:12px 6px;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted);border-bottom:2px solid transparent;transition:color .25s,border-color .25s;white-space:nowrap}
+.stepper a .num{font-weight:700;color:var(--line2);transition:color .25s}
+.stepper a:hover{color:var(--ink-soft)}
+.stepper a.active{color:var(--ink);border-color:var(--pix)}
+.stepper a.active .num{color:var(--pix-deep)}
+.stepper a .sep{color:var(--line2)}
 
-/* ---------- btns ---------- */
-.btn{display:inline-flex;align-items:center;gap:9px;font-family:Inter,sans-serif;font-weight:600;font-size:.9rem;border-radius:99px;padding:12px 22px;cursor:pointer;transition:all .22s;border:1px solid transparent}
+/* ---------- generic section ---------- */
+.sec{padding:clamp(46px,7vw,80px) 0}
+.sec-head{margin-bottom:clamp(26px,4vw,40px)}
+.sec-head .eyebrow{margin-bottom:14px}
+.sec-head h2{max-width:22ch}
+.sec-head .sub{margin-top:12px;font-size:1rem;max-width:56ch}
+.tag{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:4px 9px;border-radius:6px;background:var(--sale-soft);color:var(--sale)}
+.tag.green{background:var(--pix-soft);color:var(--pix-deep)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--pix);box-shadow:0 0 0 4px var(--pix-soft);display:inline-block;flex:none}
+
+/* ---------- hero / PDP ---------- */
+.hero{padding:clamp(30px,5vw,52px) 0 clamp(28px,4vw,44px)}
+.crumb{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted);margin-bottom:22px;display:flex;gap:8px;flex-wrap:wrap}
+.crumb b{color:var(--ink-soft);font-weight:500}
+.pdp{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(26px,4vw,52px);align-items:start}
+.gallery{position:relative}
+.gallery .main{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line2);background:var(--surface);box-shadow:var(--shadow)}
+.gallery .main img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.gallery .badge{position:absolute;top:14px;left:14px;z-index:2}
+.gallery .stock{position:absolute;bottom:14px;left:14px;z-index:2;display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.94);backdrop-filter:blur(4px);border:1px solid var(--line);border-radius:99px;padding:7px 13px;font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:500;color:var(--ink)}
+.thumbs{display:flex;gap:8px;margin-top:10px}
+.thumbs .t{flex:1;border:1px solid var(--line2);border-radius:var(--r-sm);background:var(--surface);padding:11px 6px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--ink-soft);line-height:1.3}
+.thumbs .t b{display:block;font-size:1.05rem;color:var(--pix-deep);font-weight:700}
+
+.pinfo .rating{display:flex;align-items:center;gap:10px;margin-bottom:14px;font-size:.82rem;color:var(--ink-soft)}
+.pinfo .stars{color:var(--pix);letter-spacing:2px;font-size:.95rem}
+.pinfo h1{margin-bottom:8px}
+.pinfo h1 .by{display:block;font-size:clamp(1rem,2vw,1.25rem);font-weight:500;color:var(--ink-soft);letter-spacing:0;margin-top:8px;font-family:Inter,sans-serif}
+.pinfo .lede{font-size:1.04rem;color:var(--ink-soft);max-width:50ch;margin:16px 0 22px}
+.pinfo .lede b{color:var(--ink);font-weight:600}
+
+.pricecard{background:var(--surface);border:1px solid var(--line2);border-radius:var(--r);padding:20px 22px;box-shadow:var(--shadow-sm);margin-bottom:18px}
+.pricecard .label{font-family:'JetBrains Mono',monospace;font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+.pricecard .price{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.7rem,3.4vw,2.3rem);font-weight:700;color:var(--ink);line-height:1.05;margin:6px 0 4px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.pricecard .price s{font-family:'JetBrains Mono',monospace;font-size:.92rem;font-weight:400;color:var(--muted)}
+.pricecard .note{font-size:.86rem;color:var(--ink-soft)}
+.pricecard .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+
+.specs{border-top:1px solid var(--line);margin-top:4px}
+.specs .row{display:grid;grid-template-columns:128px 1fr;gap:14px;padding:9px 0;border-bottom:1px solid var(--line);font-size:.86rem}
+.specs .k{font-family:'JetBrains Mono',monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding-top:2px}
+.specs .v{color:var(--ink)}
+.trust{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.trust span{display:inline-flex;align-items:center;gap:7px;font-size:.78rem;color:var(--ink-soft);background:var(--bg2);border:1px solid var(--line);border-radius:99px;padding:6px 12px}
+.trust svg{width:14px;height:14px;stroke:var(--pix-deep)}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:Inter,sans-serif;font-weight:600;font-size:.9rem;border-radius:12px;padding:12px 20px;cursor:pointer;transition:transform .2s,background .2s,box-shadow .2s,border-color .2s,color .2s;border:1px solid transparent;line-height:1}
 .btn svg{width:17px;height:17px}
-.btn-p{background:var(--accent);color:#fff}
-.btn-p:hover{background:var(--accent-deep);color:#fff;transform:translateY(-2px);box-shadow:0 12px 26px -14px var(--accent)}
-.btn-g{background:transparent;border-color:var(--line2);color:var(--ink)}
-.btn-g:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.btn-buy{background:var(--pix);color:#06251c}
+.btn-buy:hover{background:var(--pix-deep);color:#fff;transform:translateY(-2px);box-shadow:0 14px 26px -14px var(--pix-deep)}
+.btn-ghost{background:var(--surface);border-color:var(--line2);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink);color:var(--ink);transform:translateY(-2px)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark:hover{background:#000;transform:translateY(-2px)}
+.btn-light{background:#fff;color:var(--ink)}
+.btn-light:hover{background:var(--pix);color:#06251c;transform:translateY(-2px)}
+.btn-line{background:transparent;border-color:rgba(255,255,255,.24);color:#fff}
+.btn-line:hover{border-color:var(--pix);color:var(--pix);transform:translateY(-2px)}
 
-/* ---------- stat strip ---------- */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:clamp(28px,4vw,44px)}
-.stats>div{padding:26px 24px 26px 0;border-left:1px solid var(--line);padding-left:24px}
-.stats>div:first-child{border-left:none;padding-left:0}
-.stats .n{font-family:Fraunces,serif;font-size:clamp(1.9rem,3vw,2.5rem);font-weight:600;color:var(--ink);line-height:1;letter-spacing:-.02em}
-.stats .n .accent{color:var(--accent)}
-.stats .l{font-size:.8rem;color:var(--ink-soft);margin-top:9px;line-height:1.45;max-width:22ch}
+/* ---------- cart / impact ---------- */
+.cart-list{display:grid;gap:12px}
+.line{display:grid;grid-template-columns:54px 1fr auto;gap:18px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;transition:border-color .25s,transform .25s,box-shadow .25s}
+.line:hover{border-color:var(--line2);transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+.line .ic{width:54px;height:54px;border-radius:13px;background:var(--bg2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:1.5rem}
+.line .body h3{margin-bottom:3px}
+.line .body .sku{font-family:'JetBrains Mono',monospace;font-size:.66rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.line .body p{font-size:.88rem;line-height:1.5;max-width:54ch}
+.line .end{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:9px}
+.line .val{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--pix-deep);font-size:1.15rem;line-height:1;white-space:nowrap}
+.line .val small{display:block;font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:5px}
+.add{display:inline-flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:500;border:1px solid var(--line2);background:var(--bg);color:var(--ink);border-radius:99px;padding:7px 13px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.add svg{width:14px;height:14px;stroke:currentColor}
+.add:hover{border-color:var(--pix-deep);color:var(--pix-deep)}
+.add.done{background:var(--pix-soft);border-color:var(--pix);color:var(--pix-deep);cursor:default}
+.subtotal{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:14px;padding:18px 22px;border:1px dashed var(--line2);border-radius:var(--r);background:var(--bg2)}
+.subtotal .l{font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em}
+.subtotal .r{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.35rem;color:var(--ink)}
 
-/* ---------- section base ---------- */
-.sec{padding:clamp(54px,8vw,88px) 0}
-.sec-head{margin-bottom:clamp(28px,4vw,44px)}
-.sec-head .eyebrow{margin-bottom:16px}
-.sec-head h2{max-width:20ch}
-.sec-head .sub{margin-top:14px;font-size:1.02rem;max-width:58ch}
+/* ---------- tracking / experience ---------- */
+.track{position:relative;padding-left:30px}
+.track::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--pix),var(--line2))}
+.event{position:relative;padding:0 0 26px}
+.event:last-child{padding-bottom:0}
+.event::before{content:"";position:absolute;left:-30px;top:4px;width:16px;height:16px;border-radius:50%;background:var(--surface);border:2px solid var(--line2)}
+.event.now::before{background:var(--pix);border-color:var(--pix);box-shadow:0 0 0 5px var(--pix-soft)}
+.event .status{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px}
+.event.now .status{color:var(--pix-deep)}
+.event .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;transition:border-color .25s,box-shadow .25s}
+.event .card:hover{border-color:var(--line2);box-shadow:var(--shadow-sm)}
+.event .top{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-bottom:4px}
+.event .top img{width:26px;height:26px;border-radius:7px;object-fit:contain;background:#fff;border:1px solid var(--line);padding:3px;flex:none}
+.event .co{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--pix-deep);font-weight:500}
+.event .when{font-size:.78rem;color:var(--muted);margin:2px 0 10px}
+.event ul{list-style:none;display:grid;gap:6px}
+.event li{font-size:.88rem;line-height:1.5;padding-left:18px;position:relative}
+.event li::before{content:"›";position:absolute;left:2px;top:-1px;color:var(--pix);font-weight:700}
 
-/* ---------- impact ---------- */
-.impact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.icard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:30px 28px;transition:border-color .3s,transform .3s,box-shadow .3s;position:relative;overflow:hidden}
-.icard:hover{border-color:var(--line2);transform:translateY(-3px);box-shadow:0 22px 40px -28px rgba(33,29,24,.4)}
-.icard .big{font-family:Fraunces,serif;font-size:clamp(2rem,3.2vw,2.6rem);font-weight:600;color:var(--accent);line-height:1;letter-spacing:-.02em;margin-bottom:14px;display:block}
-.icard h3{margin-bottom:8px}
-.icard p{font-size:.92rem;line-height:1.6}
+/* ---------- payment / skills ---------- */
+.pay-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(22px,4vw,44px);align-items:start}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:var(--shadow-sm)}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.methods{display:flex;flex-wrap:wrap;gap:9px}
+.method{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;font-weight:500;padding:9px 14px;border-radius:10px;background:var(--bg2);border:1px solid var(--line);color:var(--ink);transition:transform .2s,border-color .2s,background .2s;cursor:default}
+.method::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--pix)}
+.method:hover{transform:translateY(-2px);border-color:var(--pix);background:var(--pix-soft)}
+.method.o{background:transparent}
+.method.o::before{background:var(--sale)}
+.method.o:hover{border-color:var(--sale);background:var(--sale-soft)}
+.docs{margin-top:8px}
+.doc{display:flex;gap:13px;align-items:center;padding:13px 0;border-top:1px solid var(--line)}
+.doc:first-child{border-top:none}
+.doc img{width:34px;height:34px;border-radius:8px;object-fit:contain;background:#fff;border:1px solid var(--line);padding:5px;flex:none}
+.doc strong{display:block;font-weight:600;font-size:.92rem;color:var(--ink)}
+.doc span{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted)}
+.pix-box{display:flex;gap:16px;align-items:center;margin-top:16px;padding-top:18px;border-top:1px dashed var(--line2)}
+.qr{width:84px;height:84px;flex:none;border-radius:10px;border:1px solid var(--line2);padding:7px;background:#fff;display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:repeat(7,1fr);gap:2px}
+.qr i{background:var(--ink);border-radius:1px}
+.qr i.off{background:transparent}
+.pix-box .pt strong{display:block;color:var(--ink);font-size:.92rem;font-weight:600;margin-bottom:2px}
+.pix-box .pt span{font-size:.82rem;color:var(--ink-soft)}
 
-/* ---------- about ---------- */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,56px);align-items:start}
-.about-grid .lead-q{font-family:Fraunces,serif;font-size:clamp(1.4rem,2.6vw,1.9rem);font-weight:500;color:var(--ink);line-height:1.3;letter-spacing:-.01em}
-.about-grid .lead-q .em{font-style:italic;color:var(--accent)}
-.about-body p{font-size:1rem;margin-bottom:16px}
-.about-body p:last-child{margin-bottom:0}
-
-/* ---------- experience ---------- */
-.tl{position:relative}
-.job{display:grid;grid-template-columns:170px 1fr;gap:28px;padding:28px 0;border-top:1px solid var(--line)}
-.job:first-child{border-top:none;padding-top:0}
-.job .when{font-size:.82rem;color:var(--muted);font-weight:500;padding-top:3px}
-.job .when .loc{display:block;margin-top:4px;color:var(--muted)}
-.job .role-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:3px}
-.job .role-row img{width:20px;height:20px;border-radius:5px;object-fit:contain;background:#fff;border:1px solid var(--line);padding:2px}
-.job .co{font-size:.9rem;color:var(--accent);font-weight:600;margin-bottom:12px}
-.job ul{list-style:none;display:grid;gap:7px}
-.job li{font-size:.92rem;line-height:1.55;padding-left:18px;position:relative}
-.job li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--accent-soft);border:1.5px solid var(--accent)}
-
-/* ---------- skills ---------- */
-.skills-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(28px,5vw,56px)}
-.kicker{font-size:.74rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:14px}
-.chips{display:flex;flex-wrap:wrap;gap:9px}
-.chip{font-size:.85rem;font-weight:500;padding:8px 15px;border-radius:99px;background:var(--accent-soft);color:var(--accent-deep);transition:transform .22s,background .22s;cursor:default}
-.chip:hover{transform:translateY(-2px);background:#EAD2DA}
-.chip.o{background:transparent;border:1px solid var(--line2);color:var(--ink-soft)}
-.chip.o:hover{border-color:var(--accent);color:var(--accent);background:transparent}
-.edu{padding:16px 0;border-top:1px solid var(--line);display:flex;gap:14px;align-items:flex-start}
-.edu:first-of-type{margin-top:6px}
-.edu img{width:30px;height:30px;border-radius:7px;object-fit:contain;background:#fff;border:1px solid var(--line);padding:4px;flex:none}
-.edu strong{display:block;font-weight:600;font-size:.95rem;color:var(--ink)}
-.edu span{font-size:.8rem;color:var(--muted)}
-
-/* ---------- contact ---------- */
-.contact{background:var(--ink);border-radius:calc(var(--r) + 6px);padding:clamp(40px,6vw,72px) clamp(28px,5vw,64px);color:#D9D2C7;position:relative;overflow:hidden}
-.contact::before{content:"";position:absolute;top:-60%;right:-10%;width:420px;height:420px;background:radial-gradient(circle,rgba(154,43,79,.55),transparent 65%);pointer-events:none}
-.contact .eyebrow{color:#F2B8C6}
-.contact .eyebrow::before{background:#F2B8C6}
-.contact h2{color:#fff;margin:16px 0 14px;max-width:18ch}
-.contact p{color:#C8BFB3;max-width:50ch;margin-bottom:28px}
-.contact .btns{display:flex;gap:12px;flex-wrap:wrap}
-.contact .btn-light{background:#fff;color:var(--ink)}
-.contact .btn-light:hover{background:#F2B8C6;color:var(--accent-deep);transform:translateY(-2px)}
-.contact .btn-ghost{border-color:rgba(255,255,255,.22);color:#fff}
-.contact .btn-ghost:hover{border-color:#F2B8C6;color:#F2B8C6;transform:translateY(-2px)}
+/* ---------- confirmation / contact ---------- */
+.confirm{background:var(--ink-card);border-radius:calc(var(--r) + 6px);padding:clamp(34px,5vw,60px) clamp(24px,4vw,56px);color:#C7CDD8;position:relative;overflow:hidden}
+.confirm::before{content:"";position:absolute;top:-40%;right:-8%;width:380px;height:380px;background:radial-gradient(circle,rgba(0,192,139,.32),transparent 65%);pointer-events:none}
+.confirm .check{width:60px;height:60px;border-radius:50%;background:var(--pix);display:flex;align-items:center;justify-content:center;margin-bottom:20px;box-shadow:0 0 0 8px rgba(0,192,139,.16)}
+.confirm .check svg{width:30px;height:30px;stroke:#06251c;stroke-width:3}
+.confirm .order{font-family:'JetBrains Mono',monospace;font-size:.74rem;letter-spacing:.06em;color:var(--pix);margin-bottom:10px}
+.confirm h2{color:#fff;margin-bottom:12px;max-width:18ch}
+.confirm p{color:#A8B0BD;max-width:48ch;margin-bottom:24px}
+.confirm .btns{display:flex;gap:11px;flex-wrap:wrap}
+.confirm .receipt{margin-top:26px;padding-top:20px;border-top:1px dashed rgba(255,255,255,.16);display:flex;gap:26px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:.74rem;color:#8A93A1}
+.confirm .receipt b{color:#C7CDD8;font-weight:500}
 
 /* ---------- footer ---------- */
-.ft{padding:40px 0;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-size:.8rem;color:var(--muted)}
-.ft a{color:var(--ink-soft);font-weight:500}
-.ft a:hover{color:var(--accent)}
+.ft{padding:36px 0 48px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:.74rem;color:var(--muted)}
+.ft .rule{border:none;border-top:1px dashed var(--line2);margin:0 0 22px}
+.ft a{color:var(--ink-soft)}
+.ft a:hover{color:var(--pix-deep)}
 
 /* ---------- reveal ---------- */
-.rv{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.2,.6,.2,1),transform .7s cubic-bezier(.2,.6,.2,1)}
+.rv{opacity:0;transform:translateY(16px);transition:opacity .6s cubic-bezier(.2,.6,.2,1),transform .6s cubic-bezier(.2,.6,.2,1)}
 .rv.in{opacity:1;transform:none}
 
 /* ---------- responsive ---------- */
-@media(max-width:860px){
-  .hero-grid{grid-template-columns:1fr;gap:22px}
-  .portrait{width:96px;height:96px;max-width:96px;margin:0 auto;order:-1;border-radius:50%;overflow:hidden}
-  .portrait img{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;object-fit:cover;border-radius:0}
-  .portrait::after{display:none}
-  .portrait .tagchip{display:none}
-  .stats{grid-template-columns:1fr 1fr}
-  .stats>div{padding:22px 18px}
-  .stats>div:nth-child(odd){border-left:none;padding-left:0}
-  .stats>div:nth-child(3),.stats>div:nth-child(4){border-top:1px solid var(--line)}
-  .about-grid,.skills-grid{grid-template-columns:1fr;gap:24px}
+@media(max-width:880px){
+  .pdp{grid-template-columns:1fr;gap:26px}
+  .gallery{max-width:380px}
+  .pay-grid{grid-template-columns:1fr;gap:22px}
 }
-@media(max-width:620px){
-  .impact-grid{grid-template-columns:1fr}
-  .job{grid-template-columns:1fr;gap:8px}
-  .job .when{order:-1}
-}
-@media(max-width:420px){
-  .stats{grid-template-columns:1fr}
-  .stats>div{border-left:none!important;padding-left:0;border-top:1px solid var(--line)}
-  .stats>div:first-child{border-top:none}
-  .portrait .tagchip{left:0}
+@media(max-width:600px){
+  html{scroll-padding-top:104px}
+  .line{grid-template-columns:44px 1fr;gap:14px}
+  .line .ic{width:44px;height:44px;font-size:1.25rem}
+  .line .end{grid-column:1 / -1;flex-direction:row;justify-content:space-between;align-items:center;text-align:left;border-top:1px solid var(--line);padding-top:12px;margin-top:2px}
+  .line .val small{margin-top:2px}
+  .specs .row{grid-template-columns:104px 1fr}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation-duration:0s!important;transition-duration:0s!important;scroll-behavior:auto!important}
   .rv{opacity:1;transform:none}
 }
 @media print{
-  .bar,.hero-cta,.contact .btns,.portrait .tagchip{display:none!important}
+  .bar,.stepper,.pricecard .cta,.confirm .btns,.add,.gallery .badge,.gallery .stock{display:none!important}
   body{background:#fff;color:#000;font-size:11pt}
   .rv{opacity:1!important;transform:none!important}
-  .sec,.hero{padding:18px 0}
-  .icard,.contact{background:#fff;color:#000;border:1px solid #ccc}
-  .contact h2,.contact p{color:#000}
+  .sec,.hero{padding:14px 0}
+  .line,.event .card,.panel,.confirm{background:#fff;color:#000;border:1px solid #ccc;box-shadow:none}
+  .confirm h2,.confirm p,.confirm .order{color:#000}
   a{color:#000}
 }
 </style>
@@ -219,112 +280,176 @@ img{max-width:100%;display:block}
 
 <div class="bar" id="bar">
   <div class="bar-in">
-    <span class="mark">Bruna <b>Gomes</b></span>
-    <div class="lang">
-      <button id="bpt" class="on" onclick="sl('pt')">PT</button>
-      <button id="ben" onclick="sl('en')">EN</button>
+    <span class="mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+      bruna<span>.store</span>
+    </span>
+    <div class="bar-right">
+      <button class="cart-btn" id="cartBtn" aria-label="Carrinho">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+        <span class="cart-count" id="cartCount" aria-live="polite">0</span>
+      </button>
+      <div class="lang">
+        <button id="bpt" class="on" onclick="sl('pt')">PT</button>
+        <button id="ben" onclick="sl('en')">EN</button>
+      </div>
     </div>
   </div>
 </div>
 
+<nav class="stepper" id="stepper" aria-label="Etapas">
+  <div class="stepper-in">
+    <ol>
+      <li><a href="#hero" data-step="hero"><span class="num">01</span> <span data-k="st_a">Produto</span></a></li>
+      <li><a href="#cart" data-step="cart"><span class="num">02</span> <span data-k="st_b">Carrinho</span></a></li>
+      <li><a href="#entrega" data-step="entrega"><span class="num">03</span> <span data-k="st_c">Entrega</span></a></li>
+      <li><a href="#pagamento" data-step="pagamento"><span class="num">04</span> <span data-k="st_d">Pagamento</span></a></li>
+      <li><a href="#confirmado" data-step="confirmado"><span class="num">05</span> <span data-k="st_e">Confirmado</span></a></li>
+    </ol>
+  </div>
+</nav>
+
 <main class="wrap">
 
-<!-- HERO -->
-<header class="hero">
-  <div class="hero-grid">
-    <div>
-      <span class="eyebrow" data-k="hk">Senior Product Manager</span>
-      <h1>Bruna <span class="em">Gomes</span></h1>
-      <p class="lede" data-k="lede">Construo produto onde o impacto é <b>financeiro</b> e o erro custa caro — checkout, pagamentos e jornadas transacionais que movem conversão e receita na LatAm.</p>
-      <div class="hero-cta">
-        <a class="btn btn-p" href="mailto:bruggomes79@gmail.com">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
-          <span data-k="cta1">Vamos conversar</span>
-        </a>
-        <a class="btn btn-g" href="https://www.linkedin.com/in/bruna-gomes-product-manager" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
-          LinkedIn
-        </a>
-      </div>
-      <div class="meta-row">
-        <span class="pin">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span data-k="loc">São Sebastião, SP · remoto para São Paulo</span>
-        </span>
-        <span data-k="avail">· Aberta a desafios de produto</span>
-      </div>
-    </div>
-    <div class="portrait">
-      <img src="assets/bruna.jpg" alt="Bruna Gomes" width="800" height="1000">
-      <span class="tagchip"><b>●</b> <span data-k="chip">Dafiti Group · LatAm</span></span>
-    </div>
+<!-- 01 — PRODUTO (hero / PDP) -->
+<header class="hero" id="hero">
+  <div class="crumb mono">
+    <span data-k="cr1">Talentos</span> <span>/</span> <b data-k="cr2">Product Managers</b> <span>/</span> <b data-k="cr3">Sênior · Checkout & Pagamentos</b>
   </div>
+  <div class="pdp">
+    <div class="gallery">
+      <div class="main">
+        <span class="badge tag"><span data-k="badge">Edição limitada · 1 de 1</span></span>
+        <img src="assets/bruna.jpg" alt="Bruna Gomes" width="800" height="1000">
+        <span class="stock"><span class="dot"></span> <span data-k="stock">Em estoque · pronta entrega</span></span>
+      </div>
+      <div class="thumbs">
+        <div class="t"><b>6+</b><span data-k="th1">anos</span></div>
+        <div class="t"><b>2</b><span data-k="th2">países LatAm</span></div>
+        <div class="t"><b>3</b><span data-k="th3">frentes</span></div>
+        <div class="t"><b>+2</b><span data-k="th4">díg. conv.</span></div>
+      </div>
+    </div>
 
-  <!-- STAT STRIP -->
-  <div class="stats rv">
-    <div><div class="n">6<span class="accent">+</span></div><div class="l" data-k="s1">anos escalando produtos B2B & B2C</div></div>
-    <div><div class="n" data-k="s2n"><span class="accent">+2</span> díg.</div><div class="l" data-k="s2">de crescimento em conversão no checkout</div></div>
-    <div><div class="n">BR <span class="accent">·</span> CO</div><div class="l" data-k="s3">operações LatAm que lidero</div></div>
-    <div><div class="n">3</div><div class="l" data-k="s4">frentes simultâneas: Growth, Lean & Snipers</div></div>
+    <div class="pinfo">
+      <div class="rating">
+        <span class="stars">★★★★★</span>
+        <span class="mono" data-k="rate">6 anos no mercado · sem devoluções</span>
+      </div>
+      <h1>Senior Product Manager<span class="by" data-k="by">por Bruna Gomes · E-commerce transacional na LatAm</span></h1>
+      <p class="lede" data-k="lede">Construo produto onde o impacto é <b>financeiro</b> e o erro custa caro — checkout, pagamentos e jornadas transacionais que movem conversão e receita na LatAm.</p>
+
+      <div class="pricecard">
+        <span class="label mono" data-k="pl">Investimento</span>
+        <div class="price">1 conversa <s>R$ 0,00 de risco</s></div>
+        <p class="note" data-k="pn">Garantia inclusa: fluência técnica de ex-dev + visão de negócio de quem mede receita.</p>
+        <div class="cta">
+          <a class="btn btn-buy" href="mailto:bruggomes79@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+            <span data-k="cta1">Comprar agora</span>
+          </a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/bruna-gomes-product-manager" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+
+      <div class="specs">
+        <div class="row"><span class="k">SKU</span><span class="v mono">PM-SR-CHECKOUT-2026</span></div>
+        <div class="row"><span class="k" data-k="sk_cat">Categoria</span><span class="v" data-k="sv_cat">Product Management · Transacional</span></div>
+        <div class="row"><span class="k" data-k="sk_loc">Local</span><span class="v" data-k="sv_loc">São Sebastião, SP · remoto p/ São Paulo</span></div>
+        <div class="row"><span class="k" data-k="sk_ops">Operações</span><span class="v" data-k="sv_ops">Brasil 🇧🇷 · Colômbia 🇨🇴</span></div>
+        <div class="row"><span class="k" data-k="sk_src">Origem</span><span class="v" data-k="sv_src">Ex-desenvolvedora full-stack</span></div>
+      </div>
+
+      <div class="trust">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg> <span data-k="tr1">Garantia ex-dev</span></span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> <span data-k="tr2">Pagamento seguro (literalmente)</span></span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 18H3V6h13v8"/><path d="M16 8h4l3 3v4h-3"/><circle cx="7.5" cy="18.5" r="1.5"/><circle cx="18.5" cy="18.5" r="1.5"/></svg> <span data-k="tr3">Entrega LatAm</span></span>
+      </div>
+    </div>
   </div>
 </header>
 
-<!-- IMPACT -->
-<section class="sec" id="impact">
+<!-- 02 — CARRINHO (impacto) -->
+<section class="sec" id="cart">
   <div class="sec-head rv">
-    <span class="eyebrow" data-k="ik">Impacto</span>
-    <h2 data-k="ih">Resultados que defendo numa sala de diretoria</h2>
-    <p class="sub" data-k="isub">Quando o produto é a camada transacional, cada decisão vira receita, perda evitada ou confiança. Alguns marcos:</p>
+    <span class="eyebrow" data-k="ck2">No carrinho</span>
+    <h2 data-k="ch">O que já entreguei — itens com nota</h2>
+    <p class="sub" data-k="csub">Quando o produto é a camada transacional, cada decisão vira receita, perda evitada ou confiança. Adicione os que importam pra você:</p>
   </div>
-  <div class="impact-grid">
-    <div class="icard rv">
-      <span class="big" data-k="i1n">+2 dígitos</span>
-      <h3 data-k="i1t">Checkout em Flutter + PIX</h3>
-      <p data-k="i1d">Liderei o novo checkout e a integração de PIX na Dafiti: crescimento de conversão de dois dígitos e forte alta na receita por sessão.</p>
-    </div>
-    <div class="icard rv">
-      <span class="big" data-k="i2n">R$ milhões</span>
-      <h3 data-k="i2t">Rollback antifraude na Black Friday</h3>
-      <p data-k="i2d">Arquitetei o rollback em tempo real de um provedor antifraude durante a Black Friday, evitando milhões em perdas financeiras.</p>
-    </div>
-    <div class="icard rv">
-      <span class="big" data-k="i3n">Zero perda</span>
-      <h3 data-k="i3t">Falhas de criação de pedido em legado</h3>
-      <p data-k="i3d">Conduzi a análise de causa-raiz de falhas em sistema legado de criação de pedidos, estancando milhões em perdas por semestre.</p>
-    </div>
-    <div class="icard rv">
-      <span class="big" data-k="i4n">App-First</span>
-      <h3 data-k="i4t">Migração de jornadas para nativo</h3>
-      <p data-k="i4d">Evangelista App-First: pesquisa, MVP e migração de jornadas nativas para Flutter, elevando a cultura mobile do time.</p>
-    </div>
+  <div class="cart-list">
+    <article class="line rv">
+      <div class="ic">💳</div>
+      <div class="body">
+        <div class="sku mono">SKU · CHK-PIX-FLUTTER</div>
+        <h3 data-k="i1t">Checkout em Flutter + PIX</h3>
+        <p data-k="i1d">Liderei o novo checkout e a integração de PIX na Dafiti: conversão de dois dígitos a mais e forte alta na receita por sessão.</p>
+      </div>
+      <div class="end">
+        <div class="val">+2 díg.<small data-k="i1v">conversão</small></div>
+        <button class="add" data-add><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg> <span data-k="addl">Adicionar</span></button>
+      </div>
+    </article>
+    <article class="line rv">
+      <div class="ic">🛡️</div>
+      <div class="body">
+        <div class="sku mono">SKU · BF-ROLLBACK-RT</div>
+        <h3 data-k="i2t">Rollback antifraude na Black Friday</h3>
+        <p data-k="i2d">Arquitetei o rollback em tempo real de um provedor antifraude durante a Black Friday, evitando milhões em perdas financeiras.</p>
+      </div>
+      <div class="end">
+        <div class="val">R$ MM<small data-k="i2v">perda evitada</small></div>
+        <button class="add" data-add><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg> <span data-k="addl2">Adicionar</span></button>
+      </div>
+    </article>
+    <article class="line rv">
+      <div class="ic">🧩</div>
+      <div class="body">
+        <div class="sku mono">SKU · LEGACY-ORDER-FIX</div>
+        <h3 data-k="i3t">Falhas de criação de pedido em legado</h3>
+        <p data-k="i3d">Conduzi a análise de causa-raiz de falhas em sistema legado de criação de pedidos, estancando milhões em perdas por semestre.</p>
+      </div>
+      <div class="end">
+        <div class="val">R$ MM<small data-k="i3v">por semestre</small></div>
+        <button class="add" data-add><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg> <span data-k="addl3">Adicionar</span></button>
+      </div>
+    </article>
+    <article class="line rv">
+      <div class="ic">📱</div>
+      <div class="body">
+        <div class="sku mono">SKU · APP-FIRST-MIGRATION</div>
+        <h3 data-k="i4t">Migração de jornadas para nativo</h3>
+        <p data-k="i4d">Evangelista App-First: pesquisa, MVP e migração de jornadas nativas para Flutter, elevando a cultura mobile do time.</p>
+      </div>
+      <div class="end">
+        <div class="val">App-First<small data-k="i4v">cultura ↑</small></div>
+        <button class="add" data-add><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg> <span data-k="addl4">Adicionar</span></button>
+      </div>
+    </article>
+  </div>
+  <div class="subtotal rv">
+    <span class="l" data-k="subl">Subtotal de impacto</span>
+    <span class="r" data-k="subr">incalculável — peça orçamento ☕</span>
   </div>
 </section>
 
-<!-- ABOUT -->
-<section class="sec" id="about">
-  <div class="sec-head rv"><span class="eyebrow" data-k="ak">Sobre</span></div>
-  <div class="about-grid">
-    <p class="lead-q rv" data-k="aq">“Produto bom em pagamentos é invisível: ninguém percebe quando funciona — <span class="em">e todo mundo percebe quando falha.</span>”</p>
-    <div class="about-body rv">
-      <p data-k="ap1">Sou Product Manager Sênior com 6 anos de experiência escalando produtos digitais B2B e B2C. Comecei como desenvolvedora, o que me dá fluência técnica para liderar modernização de legado e conversas profundas com engenharia.</p>
-      <p data-k="ap2">Hoje lidero o ecossistema transacional completo — carrinho, login, cadastro e checkout — da Dafiti para Brasil e Colômbia, à frente de frentes de Growth, Lean e resposta a incidentes críticos, com foco em conversão, receita e cultura App-First.</p>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section class="sec" id="exp">
+<!-- 03 — ENTREGA (experiência / rastreamento) -->
+<section class="sec" id="entrega">
   <div class="sec-head rv">
-    <span class="eyebrow" data-k="ek">Trajetória</span>
-    <h2 data-k="eh">Experiência</h2>
+    <span class="eyebrow" data-k="ek">Rastreamento</span>
+    <h2 data-k="eh">Em rota desde 2019 — histórico do pedido</h2>
+    <p class="sub" data-k="esub">Acompanhe cada parada da entrega. Atualização mais recente no topo.</p>
   </div>
-  <div class="tl">
+  <div class="track">
 
-    <div class="job rv">
-      <div class="when"><span data-k="j1d">nov 2022 — Presente</span><span class="loc" data-k="j1l">Brasil & Colômbia</span></div>
-      <div>
-        <div class="role-row"><img src="assets/dafiti_logo.png" alt="" width="20" height="20"><h3 data-k="j1r">Senior Product Manager</h3></div>
-        <div class="co" data-k="j1c">Dafiti Group</div>
+    <div class="event now rv">
+      <div class="status"><span class="dot"></span> <span data-k="es1">Em rota de entrega · atual</span></div>
+      <div class="card">
+        <div class="top"><img src="assets/dafiti_logo.png" alt="Dafiti" width="26" height="26"><h3 data-k="j1r">Senior Product Manager</h3></div>
+        <span class="co mono" data-k="j1c">Dafiti Group</span>
+        <div class="when mono"><span data-k="j1d">nov 2022 — Presente</span> · <span data-k="j1l">Brasil & Colômbia</span></div>
         <ul>
           <li data-k="j1b1">Lidera o ecossistema transacional completo (carrinho, login, cadastro e checkout) em App, Web e Mobile Web para BR e CO.</li>
           <li data-k="j1b2">Conduz simultaneamente três frentes: Growth (experimentação), Lean (eficiência) e Snipers (incidentes críticos).</li>
@@ -333,29 +458,32 @@ img{max-width:100%;display:block}
       </div>
     </div>
 
-    <div class="job rv">
-      <div class="when"><span data-k="j2d">ago 2021 — dez 2022</span></div>
-      <div>
-        <div class="role-row"><img src="assets/dafiti_logo.png" alt="" width="20" height="20"><h3 data-k="j2r">Product Manager</h3></div>
-        <div class="co" data-k="j2c">Dafiti Group</div>
+    <div class="event rv">
+      <div class="status" data-k="es2">Entregue</div>
+      <div class="card">
+        <div class="top"><img src="assets/dafiti_logo.png" alt="Dafiti" width="26" height="26"><h3 data-k="j2r">Product Manager</h3></div>
+        <span class="co mono" data-k="j2c">Dafiti Group</span>
+        <div class="when mono" data-k="j2d">ago 2021 — dez 2022</div>
         <ul><li data-k="j2b1">Evoluiu jornadas de checkout e pagamentos, consolidando a base para a liderança sênior do ecossistema transacional.</li></ul>
       </div>
     </div>
 
-    <div class="job rv">
-      <div class="when"><span data-k="j3d">jul 2021 — ago 2021</span></div>
-      <div>
-        <div class="role-row"><img src="assets/beyond_logo.png" alt="" width="20" height="20"><h3 data-k="j3r">Product Manager</h3></div>
-        <div class="co" data-k="j3c">BEYOND Soluções</div>
+    <div class="event rv">
+      <div class="status" data-k="es3">Entregue</div>
+      <div class="card">
+        <div class="top"><img src="assets/beyond_logo.png" alt="BEYOND" width="26" height="26"><h3 data-k="j3r">Product Manager</h3></div>
+        <span class="co mono" data-k="j3c">BEYOND Soluções</span>
+        <div class="when mono" data-k="j3d">jul 2021 — ago 2021</div>
         <ul><li data-k="j3b1">Discovery e planejamento de delivery para o lançamento de seguros de vida no app da corretora Órama.</li></ul>
       </div>
     </div>
 
-    <div class="job rv">
-      <div class="when"><span data-k="j4d">nov 2020 — jul 2021</span></div>
-      <div>
-        <div class="role-row"><img src="assets/dti_logo.png" alt="" width="20" height="20"><h3 data-k="j4r">Product Manager</h3></div>
-        <div class="co" data-k="j4c">dti digital</div>
+    <div class="event rv">
+      <div class="status" data-k="es4">Entregue</div>
+      <div class="card">
+        <div class="top"><img src="assets/dti_logo.png" alt="dti digital" width="26" height="26"><h3 data-k="j4r">Product Manager</h3></div>
+        <span class="co mono" data-k="j4c">dti digital</span>
+        <div class="when mono" data-k="j4d">nov 2020 — jul 2021</div>
         <ul>
           <li data-k="j4b1">Ciclo de vida de sistema omnichannel de Customer Service (Hermes Pardini), via imersão operacional (shadowing).</li>
           <li data-k="j4b2">Concepção e desenvolvimento de gateway de pagamentos proprietário, eliminando custos de licenciamento.</li>
@@ -363,11 +491,12 @@ img{max-width:100%;display:block}
       </div>
     </div>
 
-    <div class="job rv">
-      <div class="when"><span data-k="j5d">jan 2020 — nov 2020</span><span class="loc" data-k="j5l">Lavras, MG</span></div>
-      <div>
-        <div class="role-row"><img src="assets/zetta_logo.png" alt="" width="20" height="20"><h3 data-k="j5r">Product Owner</h3></div>
-        <div class="co" data-k="j5c">Agência Zetta</div>
+    <div class="event rv">
+      <div class="status" data-k="es5">Entregue</div>
+      <div class="card">
+        <div class="top"><img src="assets/zetta_logo.png" alt="Zetta" width="26" height="26"><h3 data-k="j5r">Product Owner</h3></div>
+        <span class="co mono" data-k="j5c">Agência Zetta</span>
+        <div class="when mono"><span data-k="j5d">jan 2020 — nov 2020</span> · <span data-k="j5l">Lavras, MG</span></div>
         <ul>
           <li data-k="j5b1">Criação do SIGERH-PA (gestão de recursos hídricos do Pará) do zero, mapeando regras de negócio sem documentação.</li>
           <li data-k="j5b2">Gestão de stakeholders do setor público 100% remota, em ambiente de forte resistência tecnológica.</li>
@@ -376,11 +505,12 @@ img{max-width:100%;display:block}
       </div>
     </div>
 
-    <div class="job rv">
-      <div class="when"><span data-k="j6d">mar 2019 — dez 2019</span></div>
-      <div>
-        <div class="role-row"><img src="assets/zetta_logo.png" alt="" width="20" height="20"><h3 data-k="j6r">Desenvolvedora Web</h3></div>
-        <div class="co" data-k="j6c">Agência Zetta</div>
+    <div class="event rv">
+      <div class="status" data-k="es6">Pedido criado</div>
+      <div class="card">
+        <div class="top"><img src="assets/zetta_logo.png" alt="Zetta" width="26" height="26"><h3 data-k="j6r">Desenvolvedora Web</h3></div>
+        <span class="co mono" data-k="j6c">Agência Zetta</span>
+        <div class="when mono" data-k="j6d">mar 2019 — dez 2019</div>
         <ul><li data-k="j6b1">Desenvolvedora web full stack do sistema de Licenciamento Ambiental do Amazonas.</li></ul>
       </div>
     </div>
@@ -388,135 +518,169 @@ img{max-width:100%;display:block}
   </div>
 </section>
 
-<!-- SKILLS -->
-<section class="sec" id="skills">
+<!-- 04 — PAGAMENTO (skills) -->
+<section class="sec" id="pagamento">
   <div class="sec-head rv">
-    <span class="eyebrow" data-k="sk">Competências</span>
-    <h2 data-k="sh">Skills & Certificações</h2>
+    <span class="eyebrow" data-k="pk">Pagamento</span>
+    <h2 data-k="ph">Formas de pagamento aceitas</h2>
+    <p class="sub" data-k="psub">Competências e credenciais que entram na transação. Todas aprovadas.</p>
   </div>
-  <div class="skills-grid">
-    <div class="rv">
-      <div class="kicker" data-k="st1">Principais competências</div>
-      <div class="chips">
-        <span class="chip" data-k="c1">Checkout & Pagamentos</span>
-        <span class="chip" data-k="c2">Growth & Experimentação</span>
-        <span class="chip" data-k="c3">Zero to One</span>
-        <span class="chip" data-k="c4">Modernização de legado</span>
-        <span class="chip" data-k="c5">App-First</span>
-        <span class="chip" data-k="c6">Transformação digital</span>
-        <span class="chip" data-k="c7">Gestão de stakeholders</span>
-        <span class="chip" data-k="c8">Discovery</span>
-        <span class="chip" data-k="c9">Métricas de Produto</span>
-        <span class="chip" data-k="c10">Agile / Scrum</span>
-        <span class="chip" data-k="c11">PIX</span>
+  <div class="pay-grid">
+    <div class="panel rv">
+      <div class="kicker"><span class="dot"></span> <span data-k="pm1">Métodos principais</span></div>
+      <div class="methods">
+        <span class="method" data-k="c1">Checkout & Pagamentos</span>
+        <span class="method" data-k="c2">Growth & Experimentação</span>
+        <span class="method" data-k="c3">Zero to One</span>
+        <span class="method" data-k="c4">Modernização de legado</span>
+        <span class="method" data-k="c5">App-First</span>
+        <span class="method" data-k="c6">Transformação digital</span>
+        <span class="method" data-k="c7">Gestão de stakeholders</span>
+        <span class="method" data-k="c8">Discovery</span>
+        <span class="method" data-k="c9">Métricas de Produto</span>
+        <span class="method" data-k="c10">Agile / Scrum</span>
+        <span class="method">PIX</span>
       </div>
-      <div class="kicker" style="margin-top:28px" data-k="st3">Certificações</div>
-      <div class="chips">
-        <span class="chip o" data-k="cc1">Fundamentos do Scrum</span>
-        <span class="chip o" data-k="cc2">Técnicas Avançadas de Scrum</span>
-        <span class="chip o" data-k="cc3">Histórias de Usuários Ágeis</span>
-        <span class="chip o" data-k="cc4">Retrospectivas Ágeis</span>
-        <span class="chip o" data-k="cc5">Métricas de Produto</span>
+      <div class="kicker" style="margin-top:26px"><span class="dot" style="background:var(--sale);box-shadow:0 0 0 4px var(--sale-soft)"></span> <span data-k="pm2">Certificações (cartões adicionais)</span></div>
+      <div class="methods">
+        <span class="method o" data-k="cc1">Fundamentos do Scrum</span>
+        <span class="method o" data-k="cc2">Técnicas Avançadas de Scrum</span>
+        <span class="method o" data-k="cc3">Histórias de Usuários Ágeis</span>
+        <span class="method o" data-k="cc4">Retrospectivas Ágeis</span>
+        <span class="method o" data-k="cc5">Métricas de Produto</span>
       </div>
     </div>
-    <div class="rv">
-      <div class="kicker" data-k="st2">Formação</div>
-      <div class="edu">
-        <img src="assets/pm3_logo.png" alt="PM3">
-        <div><strong data-k="e1n">Cursos PM3 — Product Manager</strong><span data-k="e1d">jan 2022 — mar 2022</span></div>
+
+    <div class="panel rv">
+      <div class="kicker" data-k="pm3">Documentos fiscais (formação)</div>
+      <div class="docs">
+        <div class="doc">
+          <img src="assets/pm3_logo.png" alt="PM3">
+          <div><strong data-k="e1n">Cursos PM3 — Product Manager</strong><span data-k="e1d">jan 2022 — mar 2022</span></div>
+        </div>
+        <div class="doc">
+          <img src="assets/ufla_logo.png" alt="UFLA">
+          <div><strong data-k="e2n">UFLA — Bacharelado em Sistemas de Informação</strong><span data-k="e2d">2014 — 2020</span></div>
+        </div>
       </div>
-      <div class="edu">
-        <img src="assets/ufla_logo.png" alt="UFLA">
-        <div><strong data-k="e2n">UFLA — Bacharelado em Sistemas de Informação</strong><span data-k="e2d">2014 — 2020</span></div>
+      <div class="pix-box">
+        <div class="qr" aria-hidden="true"></div>
+        <div class="pt">
+          <strong data-k="pixt">Pagar com PIX</strong>
+          <span data-k="pixd">Copia e cola: bruggomes79@gmail.com</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section class="sec" id="contact">
-  <div class="contact rv">
-    <span class="eyebrow" data-k="ck">Contato</span>
-    <h2 data-k="ct">Vamos construir algo que importa?</h2>
-    <p data-k="cp">Aberta a desafios de produto em jornadas transacionais, pagamentos e modernização de legado. Responder é rápido.</p>
+<!-- 05 — CONFIRMADO (contato) -->
+<section class="sec" id="confirmado">
+  <div class="confirm rv">
+    <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+    <div class="order mono" data-k="ord">Pedido #BG-2026-PM · aguardando seu sim</div>
+    <h2 data-k="ct">Vamos fechar esse pedido?</h2>
+    <p data-k="cp">Aberta a desafios de produto em jornadas transacionais, pagamentos e modernização de legado. Confirmação rápida — costumo responder no mesmo dia.</p>
     <div class="btns">
       <a class="btn btn-light" href="mailto:bruggomes79@gmail.com">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        <span data-k="cb1">bruggomes79@gmail.com</span>
+        bruggomes79@gmail.com
       </a>
-      <a class="btn btn-ghost" href="https://www.linkedin.com/in/bruna-gomes-product-manager" target="_blank" rel="noopener">
+      <a class="btn btn-line" href="https://www.linkedin.com/in/bruna-gomes-product-manager" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
         LinkedIn
       </a>
     </div>
+    <div class="receipt">
+      <span data-k="r1">Entrega: <b>remoto · LatAm</b></span>
+      <span data-k="r2">Prazo: <b>resposta no mesmo dia</b></span>
+      <span data-k="r3">Devolução: <b>não prevista 😏</b></span>
+    </div>
   </div>
 </section>
 
-<footer class="ft">
-  <span data-k="ft">© 2026 Bruna Gomes — feito com cuidado</span>
-  <a href="https://www.linkedin.com/in/bruna-gomes-product-manager" target="_blank" rel="noopener">LinkedIn ↗</a>
-</footer>
-
 </main>
+
+<footer class="ft wrap">
+  <hr class="rule">
+  <span data-k="ft">© 2026 bruna.store — obrigada pela visita · feito com café e curiosidade</span>
+  · <a href="https://www.linkedin.com/in/bruna-gomes-product-manager" target="_blank" rel="noopener">LinkedIn ↗</a>
+</footer>
 
 <script>
 const D={
 pt:{
-hk:'Senior Product Manager',
+st_a:'Produto',st_b:'Carrinho',st_c:'Entrega',st_d:'Pagamento',st_e:'Confirmado',
+cr1:'Talentos',cr2:'Product Managers',cr3:'Sênior · Checkout & Pagamentos',
+badge:'Edição limitada · 1 de 1',stock:'Em estoque · pronta entrega',
+th1:'anos',th2:'países LatAm',th3:'frentes',th4:'díg. conv.',
+rate:'6 anos no mercado · sem devoluções',by:'por Bruna Gomes · E-commerce transacional na LatAm',
 lede:'Construo produto onde o impacto é <b>financeiro</b> e o erro custa caro — checkout, pagamentos e jornadas transacionais que movem conversão e receita na LatAm.',
-cta1:'Vamos conversar',loc:'São Sebastião, SP · remoto para São Paulo',avail:'· Aberta a desafios de produto',chip:'Dafiti Group · LatAm',
-s1:'anos escalando produtos B2B & B2C',s2n:'<span class="accent">+2</span> díg.',s2:'de crescimento em conversão no checkout',s3:'operações LatAm que lidero',s4:'frentes simultâneas: Growth, Lean & Snipers',
-ik:'Impacto',ih:'Resultados que defendo numa sala de diretoria',isub:'Quando o produto é a camada transacional, cada decisão vira receita, perda evitada ou confiança. Alguns marcos:',
-i1n:'+2 dígitos',i1t:'Checkout em Flutter + PIX',i1d:'Liderei o novo checkout e a integração de PIX na Dafiti: crescimento de conversão de dois dígitos e forte alta na receita por sessão.',
-i2n:'R$ milhões',i2t:'Rollback antifraude na Black Friday',i2d:'Arquitetei o rollback em tempo real de um provedor antifraude durante a Black Friday, evitando milhões em perdas financeiras.',
-i3n:'Zero perda',i3t:'Falhas de criação de pedido em legado',i3d:'Conduzi a análise de causa-raiz de falhas em sistema legado de criação de pedidos, estancando milhões em perdas por semestre.',
-i4n:'App-First',i4t:'Migração de jornadas para nativo',i4d:'Evangelista App-First: pesquisa, MVP e migração de jornadas nativas para Flutter, elevando a cultura mobile do time.',
-ak:'Sobre',aq:'“Produto bom em pagamentos é invisível: ninguém percebe quando funciona — <span class="em">e todo mundo percebe quando falha.</span>”',
-ap1:'Sou Product Manager Sênior com 6 anos de experiência escalando produtos digitais B2B e B2C. Comecei como desenvolvedora, o que me dá fluência técnica para liderar modernização de legado e conversas profundas com engenharia.',
-ap2:'Hoje lidero o ecossistema transacional completo — carrinho, login, cadastro e checkout — da Dafiti para Brasil e Colômbia, à frente de frentes de Growth, Lean e resposta a incidentes críticos, com foco em conversão, receita e cultura App-First.',
-ek:'Trajetória',eh:'Experiência',
-j1d:'nov 2022 — Presente',j1l:'Brasil & Colômbia',j1r:'Senior Product Manager',j1c:'Dafiti Group',j1b1:'Lidera o ecossistema transacional completo (carrinho, login, cadastro e checkout) em App, Web e Mobile Web para BR e CO.',j1b2:'Conduz simultaneamente três frentes: Growth (experimentação), Lean (eficiência) e Snipers (incidentes críticos).',j1b3:'À frente do rollout do checkout na Colômbia (Webview → Flutter) e do Milkrun 2.0.',
-j2d:'ago 2021 — dez 2022',j2r:'Product Manager',j2c:'Dafiti Group',j2b1:'Evoluiu jornadas de checkout e pagamentos, consolidando a base para a liderança sênior do ecossistema transacional.',
-j3d:'jul 2021 — ago 2021',j3r:'Product Manager',j3c:'BEYOND Soluções',j3b1:'Discovery e planejamento de delivery para o lançamento de seguros de vida no app da corretora Órama.',
-j4d:'nov 2020 — jul 2021',j4r:'Product Manager',j4c:'dti digital',j4b1:'Ciclo de vida de sistema omnichannel de Customer Service (Hermes Pardini), via imersão operacional (shadowing).',j4b2:'Concepção e desenvolvimento de gateway de pagamentos proprietário, eliminando custos de licenciamento.',
-j5d:'jan 2020 — nov 2020',j5l:'Lavras, MG',j5r:'Product Owner',j5c:'Agência Zetta',j5b1:'Criação do SIGERH-PA (gestão de recursos hídricos do Pará) do zero, mapeando regras de negócio sem documentação.',j5b2:'Gestão de stakeholders do setor público 100% remota, em ambiente de forte resistência tecnológica.',j5b3:'Redução na emissão de outorgas de água de anos para dias — em alguns casos, horas.',
-j6d:'mar 2019 — dez 2019',j6r:'Desenvolvedora Web',j6c:'Agência Zetta',j6b1:'Desenvolvedora web full stack do sistema de Licenciamento Ambiental do Amazonas.',
-sk:'Competências',sh:'Skills & Certificações',st1:'Principais competências',st2:'Formação',st3:'Certificações',
-c1:'Checkout & Pagamentos',c2:'Growth & Experimentação',c3:'Zero to One',c4:'Modernização de legado',c5:'App-First',c6:'Transformação digital',c7:'Gestão de stakeholders',c8:'Discovery',c9:'Métricas de Produto',c10:'Agile / Scrum',c11:'PIX',
+pl:'Investimento',pn:'Garantia inclusa: fluência técnica de ex-dev + visão de negócio de quem mede receita.',cta1:'Comprar agora',
+sk_cat:'Categoria',sv_cat:'Product Management · Transacional',sk_loc:'Local',sv_loc:'São Sebastião, SP · remoto p/ São Paulo',sk_ops:'Operações',sv_ops:'Brasil 🇧🇷 · Colômbia 🇨🇴',sk_src:'Origem',sv_src:'Ex-desenvolvedora full-stack',
+tr1:'Garantia ex-dev',tr2:'Pagamento seguro (literalmente)',tr3:'Entrega LatAm',
+ck2:'No carrinho',ch:'O que já entreguei — itens com nota',csub:'Quando o produto é a camada transacional, cada decisão vira receita, perda evitada ou confiança. Adicione os que importam pra você:',
+i1t:'Checkout em Flutter + PIX',i1d:'Liderei o novo checkout e a integração de PIX na Dafiti: conversão de dois dígitos a mais e forte alta na receita por sessão.',i1v:'conversão',
+i2t:'Rollback antifraude na Black Friday',i2d:'Arquitetei o rollback em tempo real de um provedor antifraude durante a Black Friday, evitando milhões em perdas financeiras.',i2v:'perda evitada',
+i3t:'Falhas de criação de pedido em legado',i3d:'Conduzi a análise de causa-raiz de falhas em sistema legado de criação de pedidos, estancando milhões em perdas por semestre.',i3v:'por semestre',
+i4t:'Migração de jornadas para nativo',i4d:'Evangelista App-First: pesquisa, MVP e migração de jornadas nativas para Flutter, elevando a cultura mobile do time.',i4v:'cultura ↑',
+addl:'Adicionar',addl2:'Adicionar',addl3:'Adicionar',addl4:'Adicionar',
+subl:'Subtotal de impacto',subr:'incalculável — peça orçamento ☕',
+ek:'Rastreamento',eh:'Em rota desde 2019 — histórico do pedido',esub:'Acompanhe cada parada da entrega. Atualização mais recente no topo.',
+es1:'Em rota de entrega · atual',es2:'Entregue',es3:'Entregue',es4:'Entregue',es5:'Entregue',es6:'Pedido criado',
+j1r:'Senior Product Manager',j1c:'Dafiti Group',j1d:'nov 2022 — Presente',j1l:'Brasil & Colômbia',j1b1:'Lidera o ecossistema transacional completo (carrinho, login, cadastro e checkout) em App, Web e Mobile Web para BR e CO.',j1b2:'Conduz simultaneamente três frentes: Growth (experimentação), Lean (eficiência) e Snipers (incidentes críticos).',j1b3:'À frente do rollout do checkout na Colômbia (Webview → Flutter) e do Milkrun 2.0.',
+j2r:'Product Manager',j2c:'Dafiti Group',j2d:'ago 2021 — dez 2022',j2b1:'Evoluiu jornadas de checkout e pagamentos, consolidando a base para a liderança sênior do ecossistema transacional.',
+j3r:'Product Manager',j3c:'BEYOND Soluções',j3d:'jul 2021 — ago 2021',j3b1:'Discovery e planejamento de delivery para o lançamento de seguros de vida no app da corretora Órama.',
+j4r:'Product Manager',j4c:'dti digital',j4d:'nov 2020 — jul 2021',j4b1:'Ciclo de vida de sistema omnichannel de Customer Service (Hermes Pardini), via imersão operacional (shadowing).',j4b2:'Concepção e desenvolvimento de gateway de pagamentos proprietário, eliminando custos de licenciamento.',
+j5r:'Product Owner',j5c:'Agência Zetta',j5d:'jan 2020 — nov 2020',j5l:'Lavras, MG',j5b1:'Criação do SIGERH-PA (gestão de recursos hídricos do Pará) do zero, mapeando regras de negócio sem documentação.',j5b2:'Gestão de stakeholders do setor público 100% remota, em ambiente de forte resistência tecnológica.',j5b3:'Redução na emissão de outorgas de água de anos para dias — em alguns casos, horas.',
+j6r:'Desenvolvedora Web',j6c:'Agência Zetta',j6d:'mar 2019 — dez 2019',j6b1:'Desenvolvedora web full stack do sistema de Licenciamento Ambiental do Amazonas.',
+pk:'Pagamento',ph:'Formas de pagamento aceitas',psub:'Competências e credenciais que entram na transação. Todas aprovadas.',
+pm1:'Métodos principais',pm2:'Certificações (cartões adicionais)',pm3:'Documentos fiscais (formação)',
+c1:'Checkout & Pagamentos',c2:'Growth & Experimentação',c3:'Zero to One',c4:'Modernização de legado',c5:'App-First',c6:'Transformação digital',c7:'Gestão de stakeholders',c8:'Discovery',c9:'Métricas de Produto',c10:'Agile / Scrum',
 cc1:'Fundamentos do Scrum',cc2:'Técnicas Avançadas de Scrum',cc3:'Histórias de Usuários Ágeis',cc4:'Retrospectivas Ágeis',cc5:'Métricas de Produto',
 e1n:'Cursos PM3 — Product Manager',e1d:'jan 2022 — mar 2022',e2n:'UFLA — Bacharelado em Sistemas de Informação',e2d:'2014 — 2020',
-ck:'Contato',ct:'Vamos construir algo que importa?',cp:'Aberta a desafios de produto em jornadas transacionais, pagamentos e modernização de legado. Responder é rápido.',cb1:'bruggomes79@gmail.com',
-ft:'© 2026 Bruna Gomes — feito com cuidado'
+pixt:'Pagar com PIX',pixd:'Copia e cola: bruggomes79@gmail.com',
+ord:'Pedido #BG-2026-PM · aguardando seu sim',ct:'Vamos fechar esse pedido?',cp:'Aberta a desafios de produto em jornadas transacionais, pagamentos e modernização de legado. Confirmação rápida — costumo responder no mesmo dia.',
+r1:'Entrega: <b>remoto · LatAm</b>',r2:'Prazo: <b>resposta no mesmo dia</b>',r3:'Devolução: <b>não prevista 😏</b>',
+ft:'© 2026 bruna.store — obrigada pela visita · feito com café e curiosidade'
 },
 en:{
-hk:'Senior Product Manager',
+st_a:'Product',st_b:'Cart',st_c:'Shipping',st_d:'Payment',st_e:'Confirmed',
+cr1:'Talent',cr2:'Product Managers',cr3:'Senior · Checkout & Payments',
+badge:'Limited edition · 1 of 1',stock:'In stock · ships now',
+th1:'years',th2:'LatAm countries',th3:'workstreams',th4:'dig. conv.',
+rate:'6 years on the market · no returns',by:'by Bruna Gomes · Transactional e-commerce across LatAm',
 lede:'I build product where the impact is <b>financial</b> and mistakes are costly — checkout, payments and transactional journeys that move conversion and revenue across LatAm.',
-cta1:"Let's talk",loc:'São Sebastião, SP · remote for São Paulo',avail:'· Open to product challenges',chip:'Dafiti Group · LatAm',
-s1:'years scaling B2B & B2C products',s2n:'<span class="accent">+2</span> dig.',s2:'double-digit conversion growth in checkout',s3:'LatAm operations I lead',s4:'parallel workstreams: Growth, Lean & Snipers',
-ik:'Impact',ih:'Results I can defend in a boardroom',isub:'When product is the transactional layer, every decision becomes revenue, prevented loss or trust. A few milestones:',
-i1n:'Double-digit',i1t:'Flutter checkout + PIX',i1d:'Led the new checkout and PIX integration at Dafiti: double-digit conversion growth and a strong lift in revenue per session.',
-i2n:'Millions',i2t:'Anti-fraud rollback on Black Friday',i2d:'Architected a real-time anti-fraud provider rollback during Black Friday, preventing millions in financial losses.',
-i3n:'Loss stopped',i3t:'Legacy order-creation failures',i3d:'Led the root-cause fix of legacy order-creation failures, stopping millions in losses per semester.',
-i4n:'App-First',i4t:'Migrating journeys to native',i4d:'App-First evangelist: research, MVP and migration of native journeys to Flutter, raising the team’s mobile culture.',
-ak:'About',aq:'“Good payments product is invisible: no one notices when it works — <span class="em">and everyone notices when it fails.</span>”',
-ap1:'Senior Product Manager with 6 years of experience scaling B2B and B2C digital products. I started as a developer, which gives me the technical fluency to lead legacy modernization and deep conversations with engineering.',
-ap2:'Today I lead the full transactional ecosystem — cart, login, sign-up and checkout — at Dafiti for Brazil and Colombia, heading Growth, Lean and critical-incident response, focused on conversion, revenue and an App-First culture.',
-ek:'Career',eh:'Experience',
-j1d:'Nov 2022 — Present',j1l:'Brazil & Colombia',j1r:'Senior Product Manager',j1c:'Dafiti Group',j1b1:'Leads the full transactional ecosystem (cart, login, sign-up, checkout) across App, Web and Mobile Web for BR and CO.',j1b2:'Simultaneously runs three workstreams: Growth (experimentation), Lean (efficiency) and Snipers (critical incidents).',j1b3:'Leading the new checkout rollout in Colombia (Webview → Flutter) and Milkrun 2.0.',
-j2d:'Aug 2021 — Dec 2022',j2r:'Product Manager',j2c:'Dafiti Group',j2b1:'Evolved checkout and payments journeys, building the foundation for senior leadership of the transactional ecosystem.',
-j3d:'Jul 2021 — Aug 2021',j3r:'Product Manager',j3c:'BEYOND Soluções',j3b1:'Discovery and delivery planning for the life insurance launch on the Órama brokerage app.',
-j4d:'Nov 2020 — Jul 2021',j4r:'Product Manager',j4c:'dti digital',j4b1:'End-to-end lifecycle of an omnichannel Customer Service system (Hermes Pardini), via operational immersion (shadowing).',j4b2:'Designed and developed a proprietary payment gateway, eliminating third-party licensing costs.',
-j5d:'Jan 2020 — Nov 2020',j5l:'Lavras, MG',j5r:'Product Owner',j5c:'Agência Zetta',j5b1:'Built SIGERH-PA (water resource management) from scratch, mapping complex business rules with no prior documentation.',j5b2:'Managed public-sector stakeholders 100% remotely in an environment of strong tech resistance.',j5b3:'Reduced water grant issuance from years to days — in some cases, hours.',
-j6d:'Mar 2019 — Dec 2019',j6r:'Software Developer',j6c:'Agência Zetta',j6b1:'Full-stack web developer for the Environmental Licensing system of Amazonas state.',
-sk:'Skills',sh:'Skills & Certifications',st1:'Core competencies',st2:'Education',st3:'Certifications',
-c1:'Checkout & Payments',c2:'Growth & Experimentation',c3:'Zero to One',c4:'Legacy modernization',c5:'App-First',c6:'Digital transformation',c7:'Stakeholder management',c8:'Discovery',c9:'Product metrics',c10:'Agile / Scrum',c11:'PIX',
+pl:'Investment',pn:'Warranty included: ex-developer technical fluency + the business sense of someone who measures revenue.',cta1:'Buy now',
+sk_cat:'Category',sv_cat:'Product Management · Transactional',sk_loc:'Location',sv_loc:'São Sebastião, SP · remote for São Paulo',sk_ops:'Operations',sv_ops:'Brazil 🇧🇷 · Colombia 🇨🇴',sk_src:'Origin',sv_src:'Ex full-stack developer',
+tr1:'Ex-dev warranty',tr2:'Secure payment (literally)',tr3:'LatAm delivery',
+ck2:'In cart',ch:'What I have shipped — itemized',csub:'When product is the transactional layer, every decision becomes revenue, prevented loss or trust. Add the ones that matter to you:',
+i1t:'Flutter checkout + PIX',i1d:'Led the new checkout and PIX integration at Dafiti: double-digit conversion growth and a strong lift in revenue per session.',i1v:'conversion',
+i2t:'Anti-fraud rollback on Black Friday',i2d:'Architected a real-time anti-fraud provider rollback during Black Friday, preventing millions in financial losses.',i2v:'loss prevented',
+i3t:'Legacy order-creation failures',i3d:'Led the root-cause fix of legacy order-creation failures, stopping millions in losses per semester.',i3v:'per semester',
+i4t:'Migrating journeys to native',i4d:'App-First evangelist: research, MVP and migration of native journeys to Flutter, raising the team’s mobile culture.',i4v:'culture ↑',
+addl:'Add',addl2:'Add',addl3:'Add',addl4:'Add',
+subl:'Impact subtotal',subr:'priceless — request a quote ☕',
+ek:'Tracking',eh:'In transit since 2019 — order history',esub:'Follow every stop along the way. Latest update on top.',
+es1:'Out for delivery · current',es2:'Delivered',es3:'Delivered',es4:'Delivered',es5:'Delivered',es6:'Order placed',
+j1r:'Senior Product Manager',j1c:'Dafiti Group',j1d:'Nov 2022 — Present',j1l:'Brazil & Colombia',j1b1:'Leads the full transactional ecosystem (cart, login, sign-up, checkout) across App, Web and Mobile Web for BR and CO.',j1b2:'Simultaneously runs three workstreams: Growth (experimentation), Lean (efficiency) and Snipers (critical incidents).',j1b3:'Leading the new checkout rollout in Colombia (Webview → Flutter) and Milkrun 2.0.',
+j2r:'Product Manager',j2c:'Dafiti Group',j2d:'Aug 2021 — Dec 2022',j2b1:'Evolved checkout and payments journeys, building the foundation for senior leadership of the transactional ecosystem.',
+j3r:'Product Manager',j3c:'BEYOND Soluções',j3d:'Jul 2021 — Aug 2021',j3b1:'Discovery and delivery planning for the life insurance launch on the Órama brokerage app.',
+j4r:'Product Manager',j4c:'dti digital',j4d:'Nov 2020 — Jul 2021',j4b1:'End-to-end lifecycle of an omnichannel Customer Service system (Hermes Pardini), via operational immersion (shadowing).',j4b2:'Designed and developed a proprietary payment gateway, eliminating third-party licensing costs.',
+j5r:'Product Owner',j5c:'Agência Zetta',j5d:'Jan 2020 — Nov 2020',j5l:'Lavras, MG',j5b1:'Built SIGERH-PA (water resource management) from scratch, mapping complex business rules with no prior documentation.',j5b2:'Managed public-sector stakeholders 100% remotely in an environment of strong tech resistance.',j5b3:'Reduced water grant issuance from years to days — in some cases, hours.',
+j6r:'Software Developer',j6c:'Agência Zetta',j6d:'Mar 2019 — Dec 2019',j6b1:'Full-stack web developer for the Environmental Licensing system of Amazonas state.',
+pk:'Payment',ph:'Accepted payment methods',psub:'Competencies and credentials that go into the transaction. All approved.',
+pm1:'Primary methods',pm2:'Certifications (extra cards)',pm3:'Receipts (education)',
+c1:'Checkout & Payments',c2:'Growth & Experimentation',c3:'Zero to One',c4:'Legacy modernization',c5:'App-First',c6:'Digital transformation',c7:'Stakeholder management',c8:'Discovery',c9:'Product metrics',c10:'Agile / Scrum',
 cc1:'Scrum Fundamentals',cc2:'Advanced Scrum',cc3:'Agile User Stories',cc4:'Agile Retrospectives',cc5:'Product Metrics',
 e1n:'PM3 — Product Manager',e1d:'Jan 2022 — Mar 2022',e2n:'UFLA — BSc in Information Systems',e2d:'2014 — 2020',
-ck:'Contact',ct:"Let's build something that matters?",cp:'Open to product challenges in transactional journeys, payments and legacy modernization. I reply fast.',cb1:'bruggomes79@gmail.com',
-ft:'© 2026 Bruna Gomes — carefully crafted'
+pixt:'Pay with PIX',pixd:'Copy & paste: bruggomes79@gmail.com',
+ord:'Order #BG-2026-PM · awaiting your yes',ct:'Shall we close this order?',cp:'Open to product challenges in transactional journeys, payments and legacy modernization. Quick confirmation — I usually reply same day.',
+r1:'Delivery: <b>remote · LatAm</b>',r2:'Lead time: <b>same-day reply</b>',r3:'Returns: <b>not expected 😏</b>',
+ft:'© 2026 bruna.store — thanks for stopping by · made with coffee and curiosity'
 }};
 
-const HTML_KEYS=new Set(['lede','aq','s2n']);
+const HTML_KEYS=new Set(['lede','r1','r2','r3']);
 function sl(l){
   document.documentElement.lang=l==='en'?'en':'pt-BR';
   const dict=D[l]||D.pt;
@@ -529,6 +693,28 @@ function sl(l){
   try{localStorage.setItem('l',l)}catch(e){}
 }
 
+// ponytail: decorative PIX "QR" — random-but-stable pattern, not a real code
+function buildQR(){
+  const qr=document.querySelector('.qr');if(!qr)return;
+  const on=[0,1,2,4,5,6,7,13,14,16,18,20,21,24,26,28,29,30,32,34,35,41,42,43,45,46,48];
+  for(let i=0;i<49;i++){const c=document.createElement('i');if(!on.includes(i))c.className='off';qr.appendChild(c);}
+}
+
+function cart(){
+  const btn=document.getElementById('cartBtn'),count=document.getElementById('cartCount');
+  let n=0;
+  document.querySelectorAll('[data-add]').forEach(b=>{
+    b.addEventListener('click',()=>{
+      if(b.classList.contains('done'))return;
+      b.classList.add('done');
+      b.querySelector('span').textContent=(D[cur()].addl==='Add')?'Added ✓':'Adicionado ✓';
+      n++;count.textContent=n;
+      btn.classList.remove('bump');void btn.offsetWidth;btn.classList.add('bump');
+    });
+  });
+}
+function cur(){return document.getElementById('ben').classList.contains('on')?'en':'pt';}
+
 function reveal(){
   const els=document.querySelectorAll('.rv');
   if(!('IntersectionObserver'in window)){els.forEach(e=>e.classList.add('in'));return;}
@@ -538,13 +724,31 @@ function reveal(){
   els.forEach(e=>io.observe(e));
 }
 
+function spy(){
+  const links=[...document.querySelectorAll('.stepper a')];
+  const map={};links.forEach(a=>map[a.dataset.step]=a);
+  const secs=['hero','cart','entrega','pagamento','confirmado'].map(id=>document.getElementById(id));
+  const io=new IntersectionObserver(ent=>{
+    ent.forEach(en=>{
+      if(en.isIntersecting){
+        links.forEach(a=>a.classList.remove('active'));
+        const a=map[en.target.id];if(a)a.classList.add('active');
+      }
+    });
+  },{rootMargin:'-45% 0px -50% 0px',threshold:0});
+  secs.forEach(s=>s&&io.observe(s));
+}
+
 document.addEventListener('DOMContentLoaded',()=>{
   const saved=(()=>{try{return localStorage.getItem('l')}catch(e){return null}})();
   sl(saved||'pt');
-  reveal();
+  buildQR();cart();reveal();spy();
   const bar=document.getElementById('bar');
   const onScroll=()=>bar.classList.toggle('scrolled',window.scrollY>12);
   onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+  document.getElementById('cartBtn').addEventListener('click',()=>{
+    document.getElementById('cart').scrollIntoView({behavior:'smooth'});
+  });
 });
 </script>
 </body>
