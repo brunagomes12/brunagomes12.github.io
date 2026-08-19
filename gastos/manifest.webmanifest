@@ -1,0 +1,14 @@
+{
+  "name": "Gastos — cartão de crédito",
+  "short_name": "Gastos",
+  "description": "Controle e categorização dos gastos do cartão de crédito, mês a mês.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F4F0E9",
+  "theme_color": "#9A2B4F",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

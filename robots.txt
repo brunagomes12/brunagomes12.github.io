@@ -1,6 +1,8 @@
 # Allow everyone, including AI search crawlers (citation visibility)
 User-agent: *
 Allow: /
+# App pessoal de finanças — fora do portfólio, não indexar
+Disallow: /gastos/
 
 User-agent: GPTBot
 Allow: /
