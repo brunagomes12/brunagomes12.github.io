@@ -202,7 +202,9 @@ a{color:var(--data)}
 .filters{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-end;margin-bottom:14px}
 .field{display:flex;flex-direction:column;gap:5px;min-width:0}
 .field label{font-size:12.5px;font-weight:500;color:var(--muted)}
-.field.grow{flex:1 1 180px}
+/* dois controles curtos dividem a linha no celular em vez de empilhar */
+.filters > .field{flex:1 1 146px}
+.field.grow{flex:1 1 200px}
 input[type=text],input[type=date],input[type=number],input[type=month],select,textarea{
   background:var(--surface);color:var(--ink);
   border:1px solid var(--line-strong);border-radius:var(--radius-sm);

@@ -586,6 +586,8 @@ const estado = {
   meses: 12,          // janela dos relatórios
   catFiltro: 'todas',
   evtFiltro: 'todos',
+  mesRelatorio: null,   // usado quando o período é "um mês só"
+  catAberta: null,      // categoria aberta no detalhe
 };
 
 function fecharModal() {
@@ -833,10 +835,15 @@ function telaMes() {
   if (cats.length) {
     view.push(figura({
       titulo: 'Onde o dinheiro foi',
-      sub: `Gasto por categoria em ${ymLong(estado.ym)}. Toque numa barra para ver só essa categoria nos relatórios.`,
+      sub: `Gasto por categoria em ${ymLong(estado.ym)}. Toque numa categoria para ver todos os gastos dela.`,
       grafico: barrasH({
         itens: cats.map((c) => ({ key: c.cat.id, emoji: c.cat.emoji, nome: c.cat.nome, cents: c.cents })),
-        aoClicar: (it) => { estado.catFiltro = it.key; irPara('relatorios'); },
+        aoClicar: (it) => {
+          // no mês, a lista da categoria é a daquele mês
+          estado.meses = 'mes';
+          estado.mesRelatorio = estado.ym;
+          abrirCategoria(it.key);
+        },
       }),
       tabela: tabelaSimples(
         [{ t: 'Categoria' }, { t: 'Valor', num: true }, { t: '% do mês', num: true }],
@@ -905,53 +912,55 @@ function listaLancamentos(ocs) {
  * 9. Tela: Relatórios
  * ---------------------------------------------------------- */
 
-function telaRelatorios() {
-  if (!db.lancamentos.length) {
-    return h('div', { class: 'card' }, vazio('📊', 'Os relatórios aparecem assim que houver gastos lançados.',
-      h('button', { class: 'btn primary', type: 'button', text: 'Lançar um gasto', onclick: () => abrirLancamento() })));
+/** Recorte de tempo dos relatórios: uma janela de meses ou um mês só. */
+function janelaRelatorio() {
+  const hoje = ymNow();
+  if (estado.meses === 'mes') {
+    const ym = estado.mesRelatorio || hoje;
+    return { modoMes: true, inicio: ym, fim: ym, janela: 1 };
   }
-
-  const fim = ymNow();
   const comDados = mesesComDados();
-  const primeiro = comDados[0] || fim;
-  const totalMeses = Math.max(1, ymDiff(fim, primeiro) + 1);
+  const primeiro = comDados[0] || hoje;
+  const totalMeses = Math.max(1, ymDiff(hoje, primeiro) + 1);
   const janela = estado.meses === 'tudo' ? totalMeses : Math.min(Number(estado.meses), totalMeses);
-  const inicio = ymAdd(fim, -(janela - 1));
-  const meses = ymRange(inicio, janela);
+  return { modoMes: false, inicio: ymAdd(hoje, -(janela - 1)), fim: hoje, janela };
+}
 
-  const dentro = (o) => o.ym >= inicio && o.ym <= fim;
-  const daCategoria = (o) => estado.catFiltro === 'todas' || o.l.cat === estado.catFiltro;
-  const doEvento = (o) => estado.evtFiltro === 'todos'
-    || (estado.evtFiltro === 'nenhum' ? !o.l.evento : o.l.evento === estado.evtFiltro);
-  const todasOcs = ocorrencias().filter(dentro).filter(doEvento);
-  const ocs = todasOcs.filter(daCategoria);
+const doEventoFiltrado = (o) => estado.evtFiltro === 'todos'
+  || (estado.evtFiltro === 'nenhum' ? !o.l.evento : o.l.evento === estado.evtFiltro);
 
-  const porMes = meses.map((ym) => ({ ym, cents: somar(ocs.filter((o) => o.ym === ym)) }));
-  const total = somar(ocs);
-  const mediaMes = Math.round(total / janela);
-  const pico = porMes.reduce((a, b) => (b.cents > a.cents ? b : a), porMes[0]);
-  const cats = porCategoria(todasOcs);
-  const catAtual = estado.catFiltro === 'todas' ? null : catPorId(estado.catFiltro);
-  const evtAtual = eventoPorId(estado.evtFiltro);
+/** Uma linha de filtros, acima de tudo que ela afeta. */
+function filtrosRelatorio({ comCategoria = true } = {}) {
+  const { modoMes } = janelaRelatorio();
 
-  // ---- uma linha de filtros, acima de tudo que ela afeta ----
-  const filtros = h('div', { class: 'filters' },
-    h('div', { class: 'field' },
-      h('label', { for: 'f-janela', text: 'Período' }),
-      h('select', {
-        id: 'f-janela',
-        onchange: (e) => { estado.meses = e.target.value === 'tudo' ? 'tudo' : Number(e.target.value); render(); },
-      },
-        [['6', 'Últimos 6 meses'], ['12', 'Últimos 12 meses'], ['24', 'Últimos 24 meses'], ['tudo', 'Tudo']]
-          .map(([v, t]) => h('option', { value: v, selected: String(estado.meses) === v, text: t })))),
-    h('div', { class: 'field grow' },
+  const periodo = h('select', {
+    id: 'f-janela',
+    onchange: (e) => {
+      const v = e.target.value;
+      estado.meses = v === 'tudo' || v === 'mes' ? v : Number(v);
+      if (v === 'mes' && !estado.mesRelatorio) estado.mesRelatorio = estado.ym || ymNow();
+      render();
+    },
+  }, [['mes', 'Um mês só'], ['6', 'Últimos 6 meses'], ['12', 'Últimos 12 meses'],
+      ['24', 'Últimos 24 meses'], ['tudo', 'Tudo']]
+    .map(([v, t]) => h('option', { value: v, selected: String(estado.meses) === v, text: t })));
+
+  const mesEscolhido = h('input', {
+    type: 'month', id: 'f-mes', value: estado.mesRelatorio || ymNow(),
+    onchange: (e) => { estado.mesRelatorio = e.target.value || ymNow(); render(); },
+  });
+
+  return h('div', { class: 'filters' },
+    h('div', { class: 'field' }, h('label', { for: 'f-janela', text: 'Período' }), periodo),
+    modoMes ? h('div', { class: 'field' }, h('label', { for: 'f-mes', text: 'Mês' }), mesEscolhido) : null,
+    comCategoria ? h('div', { class: 'field grow' },
       h('label', { for: 'f-catfiltro', text: 'Categoria' }),
       h('select', {
         id: 'f-catfiltro',
         onchange: (e) => { estado.catFiltro = e.target.value; render(); },
       },
         [h('option', { value: 'todas', selected: estado.catFiltro === 'todas', text: 'Todas as categorias' }),
-        ...db.categorias.map((c) => h('option', { value: c.id, selected: c.id === estado.catFiltro, text: `${c.emoji} ${c.nome}` }))])),
+        ...db.categorias.map((c) => h('option', { value: c.id, selected: c.id === estado.catFiltro, text: `${c.emoji} ${c.nome}` }))])) : null,
     db.eventos.length ? h('div', { class: 'field grow' },
       h('label', { for: 'f-evtfiltro', text: 'Evento' }),
       h('select', {
@@ -962,29 +971,87 @@ function telaRelatorios() {
         h('option', { value: 'nenhum', selected: estado.evtFiltro === 'nenhum', text: 'Fora de eventos' }),
         ...db.eventos.map((ev) => h('option', { value: ev.id, selected: ev.id === estado.evtFiltro, text: `${ev.emoji} ${ev.nome}` }))])) : null,
   );
+}
 
+const rotuloEvento = () => {
+  const ev = eventoPorId(estado.evtFiltro);
+  return ev ? `em ${ev.emoji} ${ev.nome}` : estado.evtFiltro === 'nenhum' ? 'fora de eventos' : null;
+};
+
+function telaRelatorios() {
+  if (!db.lancamentos.length) {
+    return h('div', { class: 'card' }, vazio('📊', 'Os relatórios aparecem assim que houver gastos lançados.',
+      h('button', { class: 'btn primary', type: 'button', text: 'Lançar um gasto', onclick: () => abrirLancamento() })));
+  }
+
+  if (estado.catAberta) {
+    const cat = db.categorias.find((c) => c.id === estado.catAberta);
+    if (cat) return detalheCategoria(cat);
+    estado.catAberta = null;
+  }
+
+  const { modoMes, inicio, fim, janela } = janelaRelatorio();
+  const dentro = (o) => o.ym >= inicio && o.ym <= fim;
+  const daCategoria = (o) => estado.catFiltro === 'todas' || o.l.cat === estado.catFiltro;
+
+  const todasOcs = ocorrencias().filter(dentro).filter(doEventoFiltrado);
+  const ocs = todasOcs.filter(daCategoria);
+
+  // o gráfico sempre mostra 12 meses de contexto — uma coluna só não é gráfico
+  const mesesGrafico = modoMes ? ymRange(ymAdd(fim, -11), 12) : ymRange(inicio, janela);
+  const ocsGrafico = ocorrencias()
+    .filter((o) => o.ym >= mesesGrafico[0] && o.ym <= mesesGrafico[mesesGrafico.length - 1])
+    .filter(doEventoFiltrado).filter(daCategoria);
+  const porMes = mesesGrafico.map((ym) => ({ ym, cents: somar(ocsGrafico.filter((o) => o.ym === ym)) }));
+
+  const total = somar(ocs);
+  const cats = porCategoria(todasOcs);
+  const catAtual = estado.catFiltro === 'todas' ? null : catPorId(estado.catFiltro);
   const escopo = [
     catAtual ? `${catAtual.emoji} ${catAtual.nome}` : 'todas as categorias',
-    evtAtual ? `em ${evtAtual.emoji} ${evtAtual.nome}` : estado.evtFiltro === 'nenhum' ? 'fora de eventos' : null,
+    rotuloEvento(),
   ].filter(Boolean).join(' · ');
 
-  const resumo = h('div', { class: 'card' },
-    h('div', { class: 'hero-label', text: `Média por mês · ${escopo}` }),
-    h('div', { class: 'hero-figure', text: fmt(mediaMes) }),
-    h('div', { class: 'delta flat' }, h('small', { text: `em ${janela} ${janela === 1 ? 'mês' : 'meses'}, de ${ymLong(inicio)} a ${ymLong(fim)}` })),
-    h('div', { class: 'tiles' },
-      tile('Total no período', fmt(total)),
-      tile('Mês mais caro', pico && pico.cents ? fmt(pico.cents) : '—', pico && pico.cents ? cap(ymLong(pico.ym)) : null),
-      tile('Este mês', fmt(somar(ocs.filter((o) => o.ym === fim))), cap(ymLong(fim))),
-      tile('Mês passado', fmt(somar(ocs.filter((o) => o.ym === ymAdd(fim, -1)))), cap(ymLong(ymAdd(fim, -1)))),
-    ));
+  let resumo;
+  if (modoMes) {
+    const anterior = somar(ocorrencias().filter((o) => o.ym === ymAdd(fim, -1)).filter(doEventoFiltrado).filter(daCategoria));
+    const doze = porMes.filter((p) => p.ym <= fim);
+    const media12 = Math.round(doze.reduce((t, p) => t + p.cents, 0) / Math.max(1, doze.length));
+    resumo = h('div', { class: 'card' },
+      h('div', { class: 'hero-label', text: `${cap(ymLong(fim))} · ${escopo}` }),
+      h('div', { class: 'hero-figure', text: fmt(total) }),
+      deltaEl(total, anterior, ymLong(ymAdd(fim, -1))),
+      h('div', { class: 'tiles' },
+        tile('Lançamentos', String(ocs.length)),
+        tile('Maior categoria', cats[0] ? fmt(cats[0].cents) : '—', cats[0] ? `${cats[0].cat.emoji} ${cats[0].cat.nome}` : 'sem gastos'),
+        tile('Média por gasto', ocs.length ? fmt(Math.round(total / ocs.length)) : '—'),
+        tile('Sua média mensal', fmt(media12), 'últimos 12 meses'),
+      ));
+  } else {
+    const pico = porMes.reduce((a, b) => (b.cents > a.cents ? b : a), porMes[0]);
+    resumo = h('div', { class: 'card' },
+      h('div', { class: 'hero-label', text: `Média por mês · ${escopo}` }),
+      h('div', { class: 'hero-figure', text: fmt(Math.round(total / janela)) }),
+      h('div', { class: 'delta flat' }, h('small', { text: `em ${janela} ${janela === 1 ? 'mês' : 'meses'}, de ${ymLong(inicio)} a ${ymLong(fim)}` })),
+      h('div', { class: 'tiles' },
+        tile('Total no período', fmt(total)),
+        tile('Mês mais caro', pico && pico.cents ? fmt(pico.cents) : '—', pico && pico.cents ? cap(ymLong(pico.ym)) : null),
+        tile('Este mês', fmt(somar(ocs.filter((o) => o.ym === fim))), cap(ymLong(fim))),
+        tile('Mês passado', fmt(somar(ocs.filter((o) => o.ym === ymAdd(fim, -1)))), cap(ymLong(ymAdd(fim, -1)))),
+      ));
+  }
 
   const evolucao = figura({
-    titulo: 'Evolução mês a mês',
-    sub: `Valores em R$ · ${escopo}. O mês atual está destacado; toque numa coluna para abrir aquele mês.`,
+    titulo: modoMes ? 'Onde este mês se encaixa' : 'Evolução mês a mês',
+    sub: modoMes
+      ? `Valores em R$ · ${escopo}. Os 12 meses até ${ymLong(fim)}, com o mês escolhido destacado.`
+      : `Valores em R$ · ${escopo}. O mês atual está destacado; toque numa coluna para abrir aquele mês.`,
     grafico: colunasMes({
       pontos: porMes, destaque: fim,
-      aoClicar: (p) => { estado.ym = p.ym; irPara('mes'); },
+      aoClicar: (p) => {
+        if (modoMes) { estado.mesRelatorio = p.ym; render(); }
+        else { estado.ym = p.ym; irPara('mes'); }
+      },
     }),
     tabela: tabelaSimples([{ t: 'Mês' }, { t: 'Total', num: true }],
       porMes.map((p) => [cap(ymLong(p.ym)), fmt(p.cents)])),
@@ -992,10 +1059,12 @@ function telaRelatorios() {
 
   const ranking = cats.length ? figura({
     titulo: 'Ranking de categorias',
-    sub: `Soma de ${ymLong(inicio)} a ${ymLong(fim)}. A porcentagem é sobre o total do período.`,
+    sub: modoMes
+      ? `Gastos de ${ymLong(fim)}. Toque numa categoria para ver os gastos dela.`
+      : `Soma de ${ymLong(inicio)} a ${ymLong(fim)}. Toque numa categoria para ver os gastos dela.`,
     grafico: barrasH({
       itens: cats.map((c) => ({ key: c.cat.id, emoji: c.cat.emoji, nome: c.cat.nome, cents: c.cents })),
-      aoClicar: (it) => { estado.catFiltro = it.key; render(); },
+      aoClicar: (it) => abrirCategoria(it.key),
     }),
     tabela: tabelaSimples(
       [{ t: 'Categoria' }, { t: 'Total', num: true }, { t: 'Média/mês', num: true }, { t: '% do total', num: true }],
@@ -1003,7 +1072,102 @@ function telaRelatorios() {
         Math.round((c.cents / (somar(todasOcs) || 1)) * 100) + '%'])),
   }) : null;
 
-  return [filtros, resumo, evolucao, ranking];
+  return [filtrosRelatorio(), resumo, evolucao, ranking];
+}
+
+function abrirCategoria(catId) {
+  estado.catAberta = catId;
+  irPara('relatorios');
+}
+
+/** Todos os gastos de uma categoria dentro do período e do evento filtrados. */
+function detalheCategoria(cat) {
+  const { modoMes, inicio, fim, janela } = janelaRelatorio();
+  const dentro = (o) => o.ym >= inicio && o.ym <= fim;
+  const daCategoria = (o) => o.l.cat === cat.id;
+
+  const ocs = ocorrencias().filter(dentro).filter(doEventoFiltrado).filter(daCategoria);
+  const totalPeriodo = somar(ocorrencias().filter(dentro).filter(doEventoFiltrado));
+  const total = somar(ocs);
+
+  const voltar = h('div', { class: 'month-nav' },
+    h('button', {
+      class: 'icon-btn', type: 'button', 'aria-label': 'Voltar para o ranking de categorias', text: '‹',
+      onclick: () => { estado.catAberta = null; render(); },
+    }),
+    h('div', { class: 'now' }, `${cat.emoji} ${cat.nome}`,
+      h('small', { text: modoMes ? cap(ymLong(fim)) : `${ymLong(inicio)} a ${ymLong(fim)}` })),
+    h('span', { style: { width: '38px' } }));
+
+  if (!ocs.length) {
+    return [voltar, filtrosRelatorio({ comCategoria: false }),
+      h('div', { class: 'card' }, vazio('🕸️', `Nenhum gasto em ${cat.nome} neste período. Experimente aumentar o período aí em cima.`))];
+  }
+
+  const mesesGrafico = modoMes ? ymRange(ymAdd(fim, -11), 12) : ymRange(inicio, janela);
+  const serie = mesesGrafico.map((ym) => ({
+    ym,
+    cents: somar(ocorrencias().filter((o) => o.ym === ym).filter(doEventoFiltrado).filter(daCategoria)),
+  }));
+
+  const maior = ocs.reduce((a, b) => (b.cents > a.cents ? b : a), ocs[0]);
+
+  const resumo = h('div', { class: 'card' },
+    h('div', { class: 'hero-label', text: modoMes ? `${cat.nome} em ${ymLong(fim)}` : `${cat.nome} no período` }),
+    h('div', { class: 'hero-figure', text: fmt(total) }),
+    h('div', { class: 'delta flat' }, h('small', {
+      text: `${Math.round((total / (totalPeriodo || 1)) * 100)}% de tudo que você gastou no recorte`,
+    })),
+    h('div', { class: 'tiles' },
+      tile('Gastos', String(ocs.length), ocs.length === 1 ? 'um lançamento' : 'lançamentos'),
+      tile('Média por mês', fmt(Math.round(total / janela)), janela === 1 ? 'só este mês' : `em ${janela} meses`),
+      tile('Média por gasto', fmt(Math.round(total / ocs.length))),
+      tile('Maior gasto', fmt(maior.cents), maior.l.desc),
+    ));
+
+  const grafico = figura({
+    titulo: `${cat.nome} mês a mês`,
+    sub: 'Valores em R$ — quanto desta categoria caiu em cada fatura.',
+    grafico: colunasMes({
+      pontos: serie, destaque: fim,
+      aoClicar: (p) => {
+        if (modoMes) { estado.mesRelatorio = p.ym; render(); }
+        else { estado.ym = p.ym; irPara('mes'); }
+      },
+    }),
+    tabela: tabelaSimples([{ t: 'Mês' }, { t: 'Total', num: true }], serie.map((p) => [cap(ymLong(p.ym)), fmt(p.cents)])),
+  });
+
+  // agrupada por fatura, da mais recente para a mais antiga
+  const porFatura = new Map();
+  for (const o of [...ocs].sort((a, b) => (a.ym === b.ym ? (a.l.data < b.l.data ? 1 : -1) : (a.ym < b.ym ? 1 : -1)))) {
+    if (!porFatura.has(o.ym)) porFatura.set(o.ym, []);
+    porFatura.get(o.ym).push(o);
+  }
+
+  const lista = h('section', { class: 'card' },
+    h('div', { class: 'card-head' }, h('h2', { text: `Gastos em ${cat.nome}` })),
+    h('p', { class: 'card-sub', text: 'Agrupados pela fatura em que caíram. Toque num gasto para editar.' }),
+    [...porFatura.entries()].map(([ym, itens]) => h('div', {},
+      h('div', { class: 'group-head' },
+        h('span', { text: cap(ymLong(ym)) }),
+        h('span', { class: 'g-total', text: fmt(somar(itens)) })),
+      h('div', { class: 'list' }, itens.map((o) => {
+        const ev = eventoPorId(o.l.evento);
+        return h('button', { class: 'item', type: 'button', onclick: () => abrirLancamento(o.l.id) },
+          h('span', { class: 'item-emoji', 'aria-hidden': 'true', text: cat.emoji }),
+          h('span', { class: 'item-main' },
+            h('span', { class: 'item-title', text: o.l.desc }),
+            h('span', { class: 'item-meta' },
+              h('span', { text: dateLabel(o.l.data) }),
+              o.de > 1 ? h('span', { class: 'badge soft', text: `${o.n}/${o.de}` }) : null,
+              ev ? h('span', { class: 'badge', text: `${ev.emoji} ${ev.nome}` }) : null,
+              db.cartoes.length > 1 ? h('span', { text: cartaoPorId(o.l.cartao).nome }) : null)),
+          h('span', { class: 'item-amount' }, fmt(o.cents),
+            o.de > 1 ? h('small', { text: `de ${fmt(o.l.cents)}` }) : null));
+      })))));
+
+  return [voltar, filtrosRelatorio({ comCategoria: false }), resumo, grafico, lista];
 }
 
 /* ---------------------------------------------------------- *
@@ -2243,6 +2407,7 @@ function iniciar() {
   for (const b of $('#tabs').children) {
     b.addEventListener('click', () => {
       if (b.dataset.route === 'eventos') estado.eventoAberto = null;
+      if (b.dataset.route === 'relatorios') estado.catAberta = null;
       irPara(b.dataset.route);
     });
   }

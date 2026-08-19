@@ -76,9 +76,21 @@ Toque em qualquer lançamento para editar ou apagar.
 
 ### Relatórios
 A visão longa: média por mês, evolução mês a mês e o ranking de categorias.
-Os dois filtros de cima (período e categoria) valem para tudo que está abaixo
-deles. Escolha uma categoria para responder coisas como "quanto eu gasto de
-delivery por mês, de verdade?".
+Os filtros de cima (período, categoria e evento) valem para tudo que está
+abaixo deles.
+
+**Um mês só.** No campo *Período*, a primeira opção é *Um mês só* — aí aparece
+um seletor de mês e tudo passa a falar daquele mês: o total, quanto subiu ou
+caiu em relação ao anterior, e o ranking de categorias daquele mês. O gráfico
+continua mostrando os 12 meses em volta, com o mês escolhido destacado, para
+você ver se ele foi fora da curva ou não. O ladrilho *Sua média mensal* está ali
+justamente para essa comparação.
+
+**Clicar numa categoria abre os gastos dela.** No ranking (ou no gráfico da aba
+Mês), toque numa categoria e você vê **todos os gastos** vinculados a ela no
+período: total, quanto ela pesa no seu gasto, média por mês, o maior gasto, a
+evolução dela mês a mês e a lista completa agrupada por fatura. Toque em
+qualquer gasto para editar. O ‹ no topo volta para o ranking.
 
 ### Eventos
 Um agrupador que atravessa categorias: uma viagem, uma reforma, uma festa.
