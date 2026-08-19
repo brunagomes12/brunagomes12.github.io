@@ -177,6 +177,7 @@ const DB_PADRAO = () => ({
   version: 1,
   cartoes: [{ id: 'principal', nome: 'Meu cartão', fechamento: null }],
   categorias: CATEGORIAS_PADRAO.map((c) => ({ ...c })),
+  eventos: [],         // viagem, reforma, festa… um agrupador que atravessa categorias
   lancamentos: [],
   regras: {},          // { termoNormalizado: categoriaId } — aprendizado
   prefs: { tema: 'auto', ultimoBackup: null },
@@ -194,6 +195,7 @@ function carregar() {
       ...base, ...parsed,
       cartoes: Array.isArray(parsed.cartoes) && parsed.cartoes.length ? parsed.cartoes : base.cartoes,
       categorias: Array.isArray(parsed.categorias) && parsed.categorias.length ? parsed.categorias : base.categorias,
+      eventos: Array.isArray(parsed.eventos) ? parsed.eventos : [],
       lancamentos: Array.isArray(parsed.lancamentos) ? parsed.lancamentos : [],
       regras: parsed.regras && typeof parsed.regras === 'object' ? parsed.regras : {},
       prefs: { ...base.prefs, ...(parsed.prefs || {}) },
@@ -215,6 +217,34 @@ function salvar() {
 
 const catPorId = (id) => db.categorias.find((c) => c.id === id) || { id: 'outros', emoji: '❓', nome: 'Sem categoria' };
 const cartaoPorId = (id) => db.cartoes.find((c) => c.id === id) || db.cartoes[0];
+const eventoPorId = (id) => (id ? db.eventos.find((e) => e.id === id) || null : null);
+
+/** Evento cujo período engloba essa data — é o que o app sugere sozinho. */
+function eventoNaData(dataISO) {
+  return db.eventos.find((e) => e.inicio && e.fim && dataISO >= e.inicio && dataISO <= e.fim) || null;
+}
+
+const lancamentosDoEvento = (id) => db.lancamentos.filter((l) => l.evento === id);
+
+/**
+ * Um evento é medido pelo valor cheio das compras (o que a viagem custou),
+ * e não pelo que caiu numa fatura — mas também mostramos quanto disso já
+ * foi pago e quanto ainda vem pela frente em parcelas.
+ */
+function resumoEvento(ev) {
+  const ls = lancamentosDoEvento(ev.id);
+  const ocs = ocorrencias(ls);
+  const hoje = ymNow();
+  const total = ls.reduce((t, l) => t + l.cents, 0);
+  const pago = somar(ocs.filter((o) => o.ym <= hoje));
+  return {
+    ls, ocs, total, pago,
+    aPagar: total - pago,
+    qtd: ls.length,
+    primeiro: ls.length ? ls.reduce((m, l) => (l.data < m ? l.data : m), ls[0].data) : null,
+    ultimo: ls.length ? ls.reduce((m, l) => (l.data > m ? l.data : m), ls[0].data) : null,
+  };
+}
 
 /* ---------------------------------------------------------- *
  * 3. Regras de negócio: fatura, parcelas, ocorrências
@@ -542,9 +572,11 @@ function colunasMes({ pontos, destaque, aoClicar }) {
 const estado = {
   rota: 'mes',
   ym: ymNow(),
+  eventoAberto: null,
   busca: '',
   meses: 12,          // janela dos relatórios
   catFiltro: 'todas',
+  evtFiltro: 'todos',
 };
 
 function fecharModal() {
@@ -561,6 +593,12 @@ function abrirModal(conteudo) {
   if (primeiro) primeiro.focus();
 }
 
+function selectEventos(id, valor, rotuloVazio = 'Nenhum — gasto avulso') {
+  return h('select', { id },
+    [h('option', { value: '', selected: !valor, text: rotuloVazio }),
+    ...db.eventos.map((e) => h('option', { value: e.id, selected: e.id === valor, text: `${e.emoji} ${e.nome}` }))]);
+}
+
 function selectCategorias(valor) {
   return h('select', { id: 'f-cat', name: 'cat' },
     db.categorias.map((c) => h('option', { value: c.id, selected: c.id === valor, text: `${c.emoji} ${c.nome}` })));
@@ -570,7 +608,7 @@ function abrirLancamento(id) {
   const edicao = id ? db.lancamentos.find((l) => l.id === id) : null;
   const l = edicao || {
     desc: '', cents: 0, data: todayISO(), cat: '', cartao: db.cartoes[0].id,
-    parcelas: 1, fatura: faturaDe(todayISO(), db.cartoes[0]), obs: '',
+    parcelas: 1, fatura: faturaDe(todayISO(), db.cartoes[0]), obs: '', evento: null,
   };
 
   let modoValor = 'total';
@@ -583,9 +621,13 @@ function abrirLancamento(id) {
   const fCartao = h('select', { id: 'f-cartao' }, db.cartoes.map((c) => h('option', { value: c.id, selected: c.id === l.cartao, text: c.nome })));
   const fFatura = h('input', { type: 'month', id: 'f-fatura', value: l.fatura });
   const fObs = h('input', { type: 'text', id: 'f-obs', value: l.obs || '', placeholder: 'opcional' });
+  const fEvento = selectEventos('f-evento', l.evento);
+  fEvento.setAttribute('aria-describedby', 'dica-evento');
+  const dicaEvento = h('div', { class: 'suggestion', id: 'dica-evento' });
   const fCat = selectCategorias(l.cat || 'outros');
+  fCat.setAttribute('aria-describedby', 'dica-cat');
 
-  const dicaSugestao = h('div', { class: 'suggestion' });
+  const dicaSugestao = h('div', { class: 'suggestion', id: 'dica-cat' });
   const dicaParcela = h('p', { class: 'hint' });
 
   const modoBtns = h('div', { class: 'seg' },
@@ -625,6 +667,18 @@ function abrirLancamento(id) {
     }
   }
 
+  function atualizarEvento() {
+    dicaEvento.replaceChildren();
+    if (!db.eventos.length) return;
+    const sug = eventoNaData(fData.value || todayISO());
+    if (!sug) return;
+    if (!fEvento.dataset.tocado && !edicao) fEvento.value = sug.id;
+    if (fEvento.value === sug.id) {
+      dicaEvento.append(document.createTextNode('A data cai dentro de '),
+        h('b', { text: `${sug.emoji} ${sug.nome}` }));
+    }
+  }
+
   function atualizarSugestao() {
     const sug = sugerirCategoria(fDesc.value);
     dicaSugestao.replaceChildren();
@@ -638,9 +692,10 @@ function abrirLancamento(id) {
 
   fDesc.addEventListener('input', atualizarSugestao);
   fCat.addEventListener('change', () => { fCat.dataset.tocado = '1'; });
+  fEvento.addEventListener('change', () => { fEvento.dataset.tocado = '1'; atualizarEvento(); });
   fValor.addEventListener('input', atualizarDicas);
   fParc.addEventListener('input', atualizarDicas);
-  fData.addEventListener('change', () => { recalcFatura(); atualizarDicas(); });
+  fData.addEventListener('change', () => { recalcFatura(); atualizarDicas(); atualizarEvento(); });
   fCartao.addEventListener('change', () => { recalcFatura(); atualizarDicas(); });
   fFatura.addEventListener('change', () => { faturaTocada = true; atualizarDicas(); });
 
@@ -656,6 +711,9 @@ function abrirLancamento(id) {
       h('div', { class: 'field' }, h('label', { for: 'f-valor', text: 'Valor (R$)' }), fValor, modoBtns),
       h('div', { class: 'field' }, h('label', { for: 'f-parc', text: 'Parcelas' }), fParc, chips),
       h('div', { class: 'field full' }, h('label', { for: 'f-cat', text: 'Categoria' }), fCat),
+      h('div', { class: 'field full' },
+        h('label', { for: 'f-evento', text: 'Evento' }), fEvento, dicaEvento,
+        db.eventos.length ? null : h('p', { class: 'hint', text: 'Você ainda não criou nenhum evento. Crie um na aba Eventos para juntar, por exemplo, tudo de uma viagem.' })),
       h('div', { class: 'field' }, h('label', { for: 'f-data', text: 'Data da compra' }), fData),
       h('div', { class: 'field' }, h('label', { for: 'f-cartao', text: 'Cartão' }), fCartao),
       h('div', { class: 'field' }, h('label', { for: 'f-fatura', text: 'Entra na fatura de' }), fFatura),
@@ -677,6 +735,7 @@ function abrirLancamento(id) {
       cartao: fCartao.value,
       parcelas: Math.min(72, Math.max(1, Number(fParc.value) || 1)),
       fatura: fFatura.value || faturaDe(fData.value || todayISO(), cartaoPorId(fCartao.value)),
+      evento: fEvento.value || null,
       obs: fObs.value.trim(),
       criadoEm: edicao ? edicao.criadoEm : new Date().toISOString(),
     };
@@ -713,6 +772,7 @@ function abrirLancamento(id) {
 
   abrirModal(card);
   atualizarSugestao();
+  atualizarEvento();
   atualizarDicas();
 }
 
@@ -816,6 +876,7 @@ function listaLancamentos(ocs) {
             h('span', { class: 'item-meta' },
               h('span', { text: c.nome }),
               o.de > 1 ? h('span', { class: 'badge soft', text: `${o.n}/${o.de}` }) : null,
+              eventoPorId(o.l.evento) ? h('span', { class: 'badge', text: `${eventoPorId(o.l.evento).emoji} ${eventoPorId(o.l.evento).nome}` }) : null,
               db.cartoes.length > 1 ? h('span', { text: cartaoPorId(o.l.cartao).nome }) : null,
               o.l.obs ? h('span', { text: o.l.obs }) : null)),
           h('span', { class: 'item-amount' }, fmt(o.cents),
@@ -851,7 +912,9 @@ function telaRelatorios() {
 
   const dentro = (o) => o.ym >= inicio && o.ym <= fim;
   const daCategoria = (o) => estado.catFiltro === 'todas' || o.l.cat === estado.catFiltro;
-  const todasOcs = ocorrencias().filter(dentro);
+  const doEvento = (o) => estado.evtFiltro === 'todos'
+    || (estado.evtFiltro === 'nenhum' ? !o.l.evento : o.l.evento === estado.evtFiltro);
+  const todasOcs = ocorrencias().filter(dentro).filter(doEvento);
   const ocs = todasOcs.filter(daCategoria);
 
   const porMes = meses.map((ym) => ({ ym, cents: somar(ocs.filter((o) => o.ym === ym)) }));
@@ -860,6 +923,7 @@ function telaRelatorios() {
   const pico = porMes.reduce((a, b) => (b.cents > a.cents ? b : a), porMes[0]);
   const cats = porCategoria(todasOcs);
   const catAtual = estado.catFiltro === 'todas' ? null : catPorId(estado.catFiltro);
+  const evtAtual = eventoPorId(estado.evtFiltro);
 
   // ---- uma linha de filtros, acima de tudo que ela afeta ----
   const filtros = h('div', { class: 'filters' },
@@ -879,9 +943,21 @@ function telaRelatorios() {
       },
         [h('option', { value: 'todas', selected: estado.catFiltro === 'todas', text: 'Todas as categorias' }),
         ...db.categorias.map((c) => h('option', { value: c.id, selected: c.id === estado.catFiltro, text: `${c.emoji} ${c.nome}` }))])),
+    db.eventos.length ? h('div', { class: 'field grow' },
+      h('label', { for: 'f-evtfiltro', text: 'Evento' }),
+      h('select', {
+        id: 'f-evtfiltro',
+        onchange: (e) => { estado.evtFiltro = e.target.value; render(); },
+      },
+        [h('option', { value: 'todos', selected: estado.evtFiltro === 'todos', text: 'Todos os gastos' }),
+        h('option', { value: 'nenhum', selected: estado.evtFiltro === 'nenhum', text: 'Fora de eventos' }),
+        ...db.eventos.map((ev) => h('option', { value: ev.id, selected: ev.id === estado.evtFiltro, text: `${ev.emoji} ${ev.nome}` }))])) : null,
   );
 
-  const escopo = catAtual ? `${catAtual.emoji} ${catAtual.nome}` : 'todas as categorias';
+  const escopo = [
+    catAtual ? `${catAtual.emoji} ${catAtual.nome}` : 'todas as categorias',
+    evtAtual ? `em ${evtAtual.emoji} ${evtAtual.nome}` : estado.evtFiltro === 'nenhum' ? 'fora de eventos' : null,
+  ].filter(Boolean).join(' · ');
 
   const resumo = h('div', { class: 'card' },
     h('div', { class: 'hero-label', text: `Média por mês · ${escopo}` }),
@@ -1068,10 +1144,11 @@ function analisarLinha(linha, faturaYm) {
 }
 
 /** Uma parcela k/n dessa fatura descreve uma compra que começou k-1 meses antes. */
-function montarCandidato(linha, faturaYm, cartaoId) {
+function montarCandidato(linha, faturaYm, cartaoId, eventoId) {
   const faturaOrigem = ymAdd(faturaYm, -(linha.n - 1));
   const total = linha.cents * linha.de;
   const sug = sugerirCategoria(linha.desc);
+  const auto = eventoNaData(linha.data);
   return {
     incluir: linha.cents > 0,
     data: linha.data,
@@ -1083,6 +1160,8 @@ function montarCandidato(linha, faturaYm, cartaoId) {
     fatura: faturaOrigem,
     cartao: cartaoId,
     cat: sug ? sug.catId : 'outros',
+    // o seletor do topo manda; sem ele, vale o evento cujo período engloba a data
+    evento: eventoId || (auto ? auto.id : null),
     credito: linha.cents < 0,
   };
 }
@@ -1097,6 +1176,7 @@ function jaLancado(cand, faturaYm) {
 function telaImportar() {
   const cartaoSel = h('select', { id: 'imp-cartao' }, db.cartoes.map((c) => h('option', { value: c.id, text: c.nome })));
   const faturaInp = h('input', { type: 'month', id: 'imp-fatura', value: estado.ym });
+  const eventoSel = selectEventos('imp-evento', '', 'Detectar pela data da compra');
   const area = h('textarea', {
     id: 'imp-texto', rows: '9',
     placeholder: 'Cole aqui as linhas da fatura. Exemplos que funcionam:\n\n12/08  IFOOD *RESTAURANTE   45,90\n03/08 DROGARIA SAO PAULO  R$ 89,00\n21/07;MAGAZINE LUIZA PARC 03/10;129,90\n2026-08-05,Netflix.com,55.90',
@@ -1114,7 +1194,7 @@ function telaImportar() {
       if (!linha.trim()) continue;
       const parsed = analisarLinha(linha, faturaYm);
       if (!parsed) { ignoradas++; continue; }
-      const cand = montarCandidato(parsed, faturaYm, cartaoId);
+      const cand = montarCandidato(parsed, faturaYm, cartaoId, eventoSel.value || null);
       cand.duplicado = jaLancado(cand, faturaYm);
       if (cand.duplicado || cand.credito) cand.incluir = false;
       candidatos.push(cand);
@@ -1144,7 +1224,7 @@ function telaImportar() {
         for (const c of sel) {
           db.lancamentos.push({
             id: uid(), desc: c.desc, cents: c.cents, data: c.data, cat: c.cat,
-            cartao: c.cartao, parcelas: c.de, fatura: c.fatura,
+            cartao: c.cartao, parcelas: c.de, fatura: c.fatura, evento: c.evento || null,
             obs: '', criadoEm: new Date().toISOString(),
           });
           aprender(c.desc, c.cat);
@@ -1171,7 +1251,9 @@ function telaImportar() {
         h('td', {}, h('select', {
           onchange: (e) => { c.cat = e.target.value; },
         }, db.categorias.map((x) => h('option', { value: x.id, selected: x.id === c.cat, text: `${x.emoji} ${x.nome}` })))),
-        h('td', { class: 'num' }, c.de > 1 ? h('span', { class: 'badge soft', text: `${c.n}/${c.de}` }) : ''),
+        h('td', { class: 'num' },
+          c.de > 1 ? h('span', { class: 'badge soft', text: `${c.n}/${c.de}` }) : '',
+          eventoPorId(c.evento) ? h('div', {}, h('span', { class: 'badge', text: `${eventoPorId(c.evento).emoji} ${eventoPorId(c.evento).nome}` })) : null),
         h('td', { class: 'num' }, fmt(c.parcelaCents),
           c.duplicado ? h('div', {}, h('span', { class: 'badge', text: 'já lançado' })) : null,
           c.credito ? h('div', {}, h('span', { class: 'badge', text: 'crédito' })) : null),
@@ -1216,7 +1298,9 @@ function telaImportar() {
       h('p', { class: 'card-sub', text: 'Copie as linhas da fatura do app ou do site do banco e cole aqui. Eu identifico data, valor, parcela e chuto a categoria — você confere antes de confirmar.' }),
       h('div', { class: 'filters' },
         h('div', { class: 'field' }, h('label', { for: 'imp-cartao', text: 'Cartão' }), cartaoSel),
-        h('div', { class: 'field' }, h('label', { for: 'imp-fatura', text: 'Fatura de' }), faturaInp)),
+        h('div', { class: 'field' }, h('label', { for: 'imp-fatura', text: 'Fatura de' }), faturaInp),
+        db.eventos.length ? h('div', { class: 'field grow' },
+          h('label', { for: 'imp-evento', text: 'Vincular ao evento' }), eventoSel) : null),
       h('div', { class: 'field' }, h('label', { for: 'imp-texto', text: 'Linhas da fatura' }), area),
       h('div', { class: 'modal-foot' },
         h('span', { class: 'spacer' }),
@@ -1438,12 +1522,290 @@ function telaAjustes() {
 }
 
 /* ---------------------------------------------------------- *
+ * 12b. Eventos (viagem, reforma, festa…)
+ * ---------------------------------------------------------- */
+
+/**
+ * Medidor de orçamento: um trilho na mesma cor do dado, mais claro,
+ * e o preenchimento carregando a severidade — sempre com ícone e texto,
+ * para a cor nunca ser a única pista.
+ */
+function medidor(gasto, meta) {
+  const frac = meta > 0 ? gasto / meta : 0;
+  const pct = Math.round(frac * 100);
+  const nivel = frac > 1 ? 'crit' : frac >= 0.9 ? 'warn' : 'ok';
+  const icone = nivel === 'crit' ? '⛔' : nivel === 'warn' ? '⚠️' : '✓';
+  const texto = nivel === 'crit'
+    ? `${fmt(gasto - meta)} acima do orçamento de ${fmt(meta)}`
+    : `${pct}% do orçamento de ${fmt(meta)} · restam ${fmt(meta - gasto)}`;
+  return h('div', { class: 'meter-wrap' },
+    h('div', { class: 'meter', role: 'img', 'aria-label': texto },
+      h('div', { class: 'meter-fill ' + nivel, style: { width: Math.min(100, pct) + '%' } })),
+    h('div', { class: 'meter-legend ' + nivel },
+      h('span', { 'aria-hidden': 'true', text: icone }), h('span', { text: texto })));
+}
+
+function periodoEvento(ev) {
+  if (ev.inicio && ev.fim) return `${dateLabel(ev.inicio)} a ${dateLabel(ev.fim)}`;
+  if (ev.inicio) return `a partir de ${dateLabel(ev.inicio)}`;
+  return 'sem datas definidas';
+}
+
+function editarEvento(id) {
+  const ev = id ? db.eventos.find((x) => x.id === id) : { id: uid(), emoji: '🧳', nome: '', inicio: '', fim: '', meta: null };
+  const emoji = h('input', { type: 'text', id: 'e-emoji', value: ev.emoji, maxlength: '4', style: { textAlign: 'center', fontSize: '20px' } });
+  const nome = h('input', { type: 'text', id: 'e-nome', value: ev.nome, placeholder: 'Ex.: Viagem ao Chile' });
+  const inicio = h('input', { type: 'date', id: 'e-inicio', value: ev.inicio || '' });
+  const fim = h('input', { type: 'date', id: 'e-fim', value: ev.fim || '' });
+  const meta = h('input', { type: 'text', id: 'e-meta', inputmode: 'decimal', placeholder: 'opcional', value: ev.meta ? String((ev.meta / 100).toFixed(2)).replace('.', ',') : '' });
+  const vinculados = id ? lancamentosDoEvento(id).length : 0;
+
+  abrirModal(h('div', {},
+    h('div', { class: 'modal-head' }, h('h2', { text: id ? 'Editar evento' : 'Novo evento' }),
+      h('button', { class: 'icon-btn', type: 'button', 'aria-label': 'Fechar', text: '✕', onclick: fecharModal })),
+    h('div', { class: 'form-grid' },
+      h('div', { class: 'field' }, h('label', { for: 'e-emoji', text: 'Ícone' }), emoji),
+      h('div', { class: 'field' }, h('label', { for: 'e-nome', text: 'Nome do evento' }), nome),
+      h('div', { class: 'field' }, h('label', { for: 'e-inicio', text: 'Começa em' }), inicio),
+      h('div', { class: 'field' }, h('label', { for: 'e-fim', text: 'Termina em' }), fim),
+      h('div', { class: 'field full' }, h('label', { for: 'e-meta', text: 'Orçamento (R$)' }), meta,
+        h('p', { class: 'hint', text: 'Se preencher as datas, todo gasto feito nesse período já vem marcado com o evento. O orçamento é opcional e vira uma barrinha de quanto já foi.' }))),
+    h('div', { class: 'modal-foot' },
+      id ? h('button', {
+        class: 'btn danger', type: 'button', text: 'Excluir',
+        onclick: () => {
+          if (!confirm(`Excluir o evento "${ev.nome}"? ${vinculados ? `Os ${vinculados} gasto(s) continuam existindo, só deixam de estar vinculados.` : ''}`)) return;
+          db.lancamentos.forEach((l) => { if (l.evento === id) l.evento = null; });
+          db.eventos = db.eventos.filter((x) => x.id !== id);
+          estado.eventoAberto = null;
+          salvar(); fecharModal(); render(); toast('Evento excluído.');
+        },
+      }) : null,
+      h('span', { class: 'spacer' }),
+      h('button', { class: 'btn', type: 'button', text: 'Cancelar', onclick: fecharModal }),
+      h('button', {
+        class: 'btn primary', type: 'button', text: 'Salvar',
+        onclick: () => {
+          if (!nome.value.trim()) { nome.focus(); toast('Dê um nome ao evento.'); return; }
+          if (inicio.value && fim.value && fim.value < inicio.value) { fim.focus(); toast('A data final não pode ser antes da inicial.'); return; }
+          ev.nome = nome.value.trim();
+          ev.emoji = emoji.value.trim() || '🧳';
+          ev.inicio = inicio.value || '';
+          ev.fim = fim.value || '';
+          ev.meta = parseMoney(meta.value) || null;
+          if (!id) { ev.criadoEm = new Date().toISOString(); db.eventos.push(ev); estado.eventoAberto = ev.id; }
+          salvar(); fecharModal(); render(); toast('Evento salvo.');
+        },
+      }))));
+}
+
+/** Marca de uma vez vários gastos que já existiam como sendo do evento. */
+function vincularGastos(eventoId) {
+  const ev = eventoPorId(eventoId);
+  let busca = '';
+  const lista = h('div', { class: 'list' });
+  const marcados = new Set();
+
+  const candidatos = () => {
+    const b = norm(busca);
+    return db.lancamentos
+      .filter((l) => l.evento !== eventoId)
+      .filter((l) => !b || norm(l.desc).includes(b) || norm(catPorId(l.cat).nome).includes(b))
+      .sort((a, c) => (a.data < c.data ? 1 : -1))
+      .slice(0, 120);
+  };
+
+  const botao = h('button', { class: 'btn primary', type: 'button', disabled: true, text: 'Vincular' });
+
+  const atualizarBotao = () => {
+    botao.disabled = marcados.size === 0;
+    botao.textContent = marcados.size
+      ? `Vincular ${marcados.size} ${marcados.size === 1 ? 'gasto' : 'gastos'}`
+      : 'Vincular';
+  };
+
+  function desenhar() {
+    const itens = candidatos();
+    lista.replaceChildren(...(itens.length ? itens.map((l) => {
+      const c = catPorId(l.cat);
+      const outro = eventoPorId(l.evento);
+      const chk = h('input', {
+        type: 'checkbox', checked: marcados.has(l.id), 'aria-label': `Vincular ${l.desc}`,
+        onchange: (e) => { e.target.checked ? marcados.add(l.id) : marcados.delete(l.id); atualizarBotao(); },
+      });
+      return h('label', { class: 'item', style: { cursor: 'pointer' } },
+        chk,
+        h('span', { class: 'item-emoji', 'aria-hidden': 'true', text: c.emoji }),
+        h('span', { class: 'item-main' },
+          h('span', { class: 'item-title', text: l.desc }),
+          h('span', { class: 'item-meta' },
+            h('span', { text: dateLabel(l.data) }),
+            h('span', { text: c.nome }),
+            l.parcelas > 1 ? h('span', { class: 'badge', text: `${l.parcelas}×` }) : null,
+            outro ? h('span', { class: 'badge soft', text: `hoje em ${outro.nome}` }) : null)),
+        h('span', { class: 'item-amount', text: fmt(l.cents) }));
+    }) : [vazio('🔍', 'Nenhum gasto encontrado.')]));
+  }
+
+  const campo = h('input', {
+    type: 'text', placeholder: 'Buscar por nome ou categoria…', 'aria-label': 'Buscar gastos',
+    oninput: (e) => { busca = e.target.value; desenhar(); },
+  });
+
+  // atalho: já deixa marcados os gastos que caem no período do evento
+  if (ev.inicio && ev.fim) {
+    db.lancamentos.forEach((l) => {
+      if (l.evento !== eventoId && l.data >= ev.inicio && l.data <= ev.fim) marcados.add(l.id);
+    });
+  }
+  desenhar();
+  atualizarBotao();
+
+  botao.addEventListener('click', () => {
+    db.lancamentos.forEach((l) => { if (marcados.has(l.id)) l.evento = eventoId; });
+    salvar(); fecharModal(); render();
+    toast(`${marcados.size} ${marcados.size === 1 ? 'gasto vinculado' : 'gastos vinculados'}.`);
+  });
+
+  abrirModal(h('div', {},
+    h('div', { class: 'modal-head' }, h('h2', { text: `Vincular gastos a ${ev.nome}` }),
+      h('button', { class: 'icon-btn', type: 'button', 'aria-label': 'Fechar', text: '✕', onclick: fecharModal })),
+    ev.inicio && ev.fim
+      ? h('p', { class: 'card-sub', text: `Já deixei marcado tudo que foi comprado entre ${dateLabel(ev.inicio)} e ${dateLabel(ev.fim)}. Desmarque o que não for do evento.` })
+      : h('p', { class: 'card-sub', text: 'Marque os gastos que fazem parte deste evento.' }),
+    h('div', { class: 'filters' }, h('div', { class: 'field grow' }, campo)),
+    h('div', { class: 'lista-vinculo' }, lista),
+    h('div', { class: 'modal-foot' },
+      h('span', { class: 'spacer' }),
+      h('button', { class: 'btn', type: 'button', text: 'Cancelar', onclick: fecharModal }),
+      botao)));
+}
+
+function telaEventos() {
+  if (estado.eventoAberto) {
+    const ev = eventoPorId(estado.eventoAberto);
+    if (ev) return detalheEvento(ev);
+    estado.eventoAberto = null;
+  }
+
+  const cabecalho = h('div', { class: 'card-head' }, h('h2', { text: 'Eventos' }),
+    h('div', { class: 'card-actions' },
+      h('button', { class: 'btn small primary', type: 'button', text: '+ Novo evento', onclick: () => editarEvento() })));
+
+  if (!db.eventos.length) {
+    return h('div', { class: 'card' }, cabecalho,
+      vazio('🧳', 'Um evento junta gastos de categorias diferentes sob um mesmo guarda-chuva: uma viagem, uma reforma, uma festa. Você vê quanto aquilo custou no total, mesmo espalhado por vários meses e faturas.',
+        h('button', { class: 'btn primary', type: 'button', text: 'Criar o primeiro evento', onclick: () => editarEvento() })));
+  }
+
+  const resumos = db.eventos.map((ev) => ({ ev, r: resumoEvento(ev) })).sort((a, b) => b.r.total - a.r.total);
+
+  return h('section', { class: 'card' }, cabecalho,
+    h('p', { class: 'card-sub', text: 'O valor é o custo cheio das compras — incluindo as parcelas que ainda vão cair.' }),
+    h('div', { class: 'list' }, resumos.map(({ ev, r }) =>
+      h('button', {
+        class: 'item', type: 'button',
+        onclick: () => { estado.eventoAberto = ev.id; render(); scrollTo({ top: 0, behavior: 'instant' }); },
+      },
+        h('span', { class: 'item-emoji', 'aria-hidden': 'true', text: ev.emoji }),
+        h('span', { class: 'item-main' },
+          h('span', { class: 'item-title', text: ev.nome }),
+          h('span', { class: 'item-meta' },
+            h('span', { text: periodoEvento(ev) }),
+            h('span', { text: `${r.qtd} ${r.qtd === 1 ? 'gasto' : 'gastos'}` }),
+            r.aPagar > 0 ? h('span', { class: 'badge soft', text: `${fmt(r.aPagar)} a pagar` }) : null,
+            ev.meta && r.total > ev.meta
+              ? h('span', { class: 'badge alerta' }, h('span', { 'aria-hidden': 'true', text: '⛔' }), ` ${fmt(r.total - ev.meta)} acima do orçamento`)
+              : ev.meta && r.total >= ev.meta * 0.9
+                ? h('span', { class: 'badge alerta' }, h('span', { 'aria-hidden': 'true', text: '⚠️' }), ' perto do limite')
+                : null)),
+        h('span', { class: 'item-amount' }, fmt(r.total),
+          ev.meta ? h('small', { text: `de ${fmt(ev.meta)}` }) : null)))));
+}
+
+function detalheEvento(ev) {
+  const r = resumoEvento(ev);
+  const cats = porCategoria(ocorrencias(r.ls));
+
+  const voltar = h('div', { class: 'month-nav' },
+    h('button', {
+      class: 'icon-btn', type: 'button', 'aria-label': 'Voltar para a lista de eventos', text: '‹',
+      onclick: () => { estado.eventoAberto = null; render(); },
+    }),
+    h('div', { class: 'now' }, `${ev.emoji} ${ev.nome}`, h('small', { text: periodoEvento(ev) })),
+    h('button', { class: 'icon-btn', type: 'button', 'aria-label': 'Editar evento', text: '✎', onclick: () => editarEvento(ev.id) }));
+
+  if (!r.qtd) {
+    return [voltar, h('div', { class: 'card' },
+      vazio('📎', 'Nenhum gasto vinculado ainda. Você pode marcar gastos que já existem ou escolher este evento ao lançar um novo.',
+        h('div', { class: 'filters', style: { justifyContent: 'center' } },
+          h('button', { class: 'btn primary', type: 'button', text: 'Vincular gastos existentes', onclick: () => vincularGastos(ev.id) }),
+          h('button', { class: 'btn', type: 'button', text: 'Lançar um gasto', onclick: () => abrirLancamento() }))))];
+  }
+
+  const meses = [...new Set(r.ocs.map((o) => o.ym))].sort();
+  const serie = meses.length > 1
+    ? ymRange(meses[0], ymDiff(meses[meses.length - 1], meses[0]) + 1)
+      .map((ym) => ({ ym, cents: somar(r.ocs.filter((o) => o.ym === ym)) }))
+    : null;
+
+  const resumo = h('div', { class: 'card' },
+    h('div', { class: 'hero-label', text: `Custo total de ${ev.nome}` }),
+    h('div', { class: 'hero-figure', text: fmt(r.total) }),
+    ev.meta ? medidor(r.total, ev.meta)
+      : h('div', { class: 'delta flat' }, h('small', { text: `${r.qtd} ${r.qtd === 1 ? 'gasto' : 'gastos'} entre ${dateLabel(r.primeiro)} e ${dateLabel(r.ultimo)}` })),
+    h('div', { class: 'tiles' },
+      tile('Já pago', fmt(r.pago), 'faturas até este mês'),
+      tile('Ainda a pagar', fmt(r.aPagar), r.aPagar > 0 ? 'parcelas nas próximas faturas' : 'nada pendente'),
+      tile('Gastos', String(r.qtd), `${r.ls.filter((l) => l.parcelas > 1).length} parcelado(s)`),
+      tile('Média por gasto', fmt(Math.round(r.total / r.qtd))),
+    ),
+    h('div', { class: 'filters', style: { marginTop: '16px', marginBottom: 0 } },
+      h('button', { class: 'btn', type: 'button', text: '📎 Vincular gastos existentes', onclick: () => vincularGastos(ev.id) }),
+      h('button', { class: 'btn', type: 'button', text: '✎ Editar evento', onclick: () => editarEvento(ev.id) })));
+
+  const porCat = figura({
+    titulo: 'Em que foi gasto',
+    sub: `Categorias dentro de ${ev.nome}.`,
+    grafico: barrasH({ itens: cats.map((c) => ({ key: c.cat.id, emoji: c.cat.emoji, nome: c.cat.nome, cents: c.cents })) }),
+    tabela: tabelaSimples([{ t: 'Categoria' }, { t: 'Valor', num: true }, { t: '% do evento', num: true }],
+      cats.map((c) => [`${c.cat.emoji} ${c.cat.nome}`, fmt(c.cents), Math.round((c.cents / (r.total || 1)) * 100) + '%'])),
+  });
+
+  const noTempo = serie ? figura({
+    titulo: 'Como se espalha pelas faturas',
+    sub: 'Valores em R$ — quanto deste evento cai em cada fatura, contando as parcelas.',
+    grafico: colunasMes({ pontos: serie, destaque: ymNow(), aoClicar: (p) => { estado.ym = p.ym; irPara('mes'); } }),
+    tabela: tabelaSimples([{ t: 'Fatura' }, { t: 'Valor', num: true }], serie.map((p) => [cap(ymLong(p.ym)), fmt(p.cents)])),
+  }) : null;
+
+  const lista = h('section', { class: 'card' },
+    h('div', { class: 'card-head' }, h('h2', { text: 'Gastos deste evento' })),
+    h('div', { class: 'list' }, [...r.ls].sort((a, b) => (a.data < b.data ? 1 : -1)).map((l) => {
+      const c = catPorId(l.cat);
+      return h('button', { class: 'item', type: 'button', onclick: () => abrirLancamento(l.id) },
+        h('span', { class: 'item-emoji', 'aria-hidden': 'true', text: c.emoji }),
+        h('span', { class: 'item-main' },
+          h('span', { class: 'item-title', text: l.desc }),
+          h('span', { class: 'item-meta' },
+            h('span', { text: dateLabel(l.data) }),
+            h('span', { text: c.nome }),
+            l.parcelas > 1 ? h('span', { class: 'badge', text: `${l.parcelas}×` }) : null)),
+        h('span', { class: 'item-amount' }, fmt(l.cents),
+          l.parcelas > 1 ? h('small', { text: `${l.parcelas}× de ${fmt(Math.floor(l.cents / l.parcelas))}` }) : null));
+    })));
+
+  return [voltar, resumo, porCat, noTempo, lista];
+}
+
+/* ---------------------------------------------------------- *
  * 13. Roteador e inicialização
  * ---------------------------------------------------------- */
 
 const TELAS = {
   mes: telaMes,
   relatorios: telaRelatorios,
+  eventos: telaEventos,
   parcelas: telaParcelas,
   importar: telaImportar,
   ajustes: telaAjustes,
@@ -1481,7 +1843,10 @@ function iniciar() {
   if (TELAS[hash]) estado.rota = hash;
 
   for (const b of $('#tabs').children) {
-    b.addEventListener('click', () => irPara(b.dataset.route));
+    b.addEventListener('click', () => {
+      if (b.dataset.route === 'eventos') estado.eventoAberto = null;
+      irPara(b.dataset.route);
+    });
   }
   addEventListener('hashchange', () => {
     const r = (location.hash || '').replace(/^#\/?/, '');

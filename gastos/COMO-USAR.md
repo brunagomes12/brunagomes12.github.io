@@ -40,7 +40,7 @@ Vale muito a pena, fica com cara de aplicativo:
 
 ---
 
-## As cinco abas
+## As seis abas
 
 ### Mês
 O painel do mês. Mostra o total daquela fatura, quanto subiu ou caiu em relação
@@ -55,7 +55,11 @@ Os dois filtros de cima (período e categoria) valem para tudo que está abaixo
 deles. Escolha uma categoria para responder coisas como "quanto eu gasto de
 delivery por mês, de verdade?".
 
-### Parcelas futuras
+### Eventos
+Um agrupador que atravessa categorias: uma viagem, uma reforma, uma festa.
+Explicado abaixo.
+
+### Parcelas
 Quanto das próximas faturas já está comprometido antes de você gastar qualquer
 coisa nova, mês a mês, e a lista das compras parceladas em andamento (quantas
 já foram, quantas faltam, até quando).
@@ -65,6 +69,56 @@ Para não digitar 60 linhas na mão. Explicado abaixo.
 
 ### Ajustes
 Backup, cartões, categorias, o que o app aprendeu e o tema (claro/escuro).
+
+---
+
+## Eventos
+
+Categoria responde "em que tipo de coisa eu gasto". Evento responde **"quanto
+me custou aquilo"** — e "aquilo" quase sempre está espalhado por várias
+categorias e vários meses.
+
+A viagem ao Chile tem passagem (Viagem), jantar (Restaurante), passeio (Lazer) e
+presentes (Presentes), em três faturas diferentes por causa do parcelamento.
+Como evento, tudo isso vira **um número só**.
+
+### Criar
+
+Aba **Eventos → + Novo evento**. Peça: ícone, nome, data de início e fim
+(opcionais) e um orçamento (opcional).
+
+As datas fazem o trabalho pesado: **todo gasto lançado dentro daquele período já
+vem marcado com o evento**, sem você precisar lembrar. Se não quiser, é só
+trocar para "Nenhum" no formulário.
+
+O orçamento vira uma barrinha mostrando quanto do previsto já foi. Quando passa
+de 90% ela avisa, e quando estoura mostra em quanto estourou.
+
+### Vincular gastos que já existem
+
+Dentro do evento, **📎 Vincular gastos existentes**. Se o evento tem datas, ele
+já abre com tudo daquele período marcado — você só desmarca o que não for.
+Também dá para buscar por nome e marcar manualmente.
+
+### O que o evento mostra
+
+- **Custo total** — o valor cheio das compras, incluindo as parcelas que ainda
+  vão cair. É quanto aquilo custou, não quanto entrou numa fatura.
+- **Já pago** e **ainda a pagar** — a divisão entre o que passou e o que vem.
+- **Em que foi gasto** — as categorias dentro do evento.
+- **Como se espalha pelas faturas** — em que meses aquilo cai.
+
+### Onde mais o evento aparece
+
+- Na **lista do mês**, cada gasto vinculado leva um selinho com o nome do evento.
+- Em **Relatórios**, o filtro *Evento* faz tudo em cima responder por ele. Tem
+  também a opção *Fora de eventos*, útil para ver o gasto "normal" do mês sem a
+  reforma distorcendo a média.
+- Na **importação**, dá para vincular a fatura inteira a um evento de uma vez —
+  ou deixar em "detectar pela data", que usa o período do evento.
+
+**Apagar um evento não apaga gasto nenhum.** Os lançamentos continuam lá, apenas
+deixam de estar vinculados.
 
 ---
 
@@ -79,6 +133,8 @@ Botão **＋ Novo gasto**, sempre visível.
 - **Parcelas** — os botõezinhos (à vista, 2×, 3×, 6×, 10×, 12×) são atalhos.
   Assim que você preenche, aparece uma linha explicando exatamente em quais
   faturas aquilo vai cair.
+- **Evento** — se a data da compra cair dentro do período de um evento, ele já
+  vem escolhido. Dá para trocar ou deixar sem evento.
 - **Entra na fatura de** — o app preenche sozinho. Só mexa se o banco jogou a
   compra para outra fatura.
 
@@ -101,8 +157,9 @@ Se ele errar, é só trocar no seletor — a correção vira aprendizado.
 1. No app ou no site do banco, selecione as linhas da fatura e copie.
 2. Aqui, aba **Importar**: escolha o cartão, confirme de que mês é a fatura e
    cole tudo na caixa de texto.
-3. **Analisar**. O app monta uma lista com data, descrição, valor, parcela e um
-   palpite de categoria para cada linha.
+3. **Analisar**. O app monta uma lista com data, descrição, valor, parcela,
+   evento e um palpite de categoria para cada linha. Se a fatura inteira for de
+   uma viagem, escolha o evento no seletor de cima e vale para todas.
 4. Confira, ajuste o que estiver errado, desmarque o que não quiser e
    **Importar**.
 
@@ -145,6 +202,10 @@ Dá para cadastrar mais de um cartão.
 
 ## Categorias
 
+Categoria é "que tipo de gasto" (mercado, transporte); evento é "de que
+acontecimento faz parte" (a viagem, a reforma). Todo gasto tem uma categoria e,
+opcionalmente, um evento.
+
 Vêm 16 prontas. Em *Ajustes → Categorias* você renomeia, troca o ícone, cria
 novas e apaga as que não usa (os gastos da categoria apagada vão para "Outros",
 nada se perde).
@@ -160,3 +221,8 @@ Basta abrir o `index.html` no navegador para testar. Os dados ficam no
 Valores são guardados **em centavos, como número inteiro**, para não sofrer com
 arredondamento de ponto flutuante. Cada compra é um registro só — as parcelas
 são calculadas na hora (`parcelasDe`), o que mantém editar e apagar simples.
+
+Categoria e evento são dimensões independentes do mesmo lançamento
+(`l.cat` e `l.evento`). Relatórios de fatura somam **ocorrências** (parcelas que
+caem num mês); relatórios de evento somam o **valor cheio** da compra — são
+perguntas diferentes, então são contas diferentes.
