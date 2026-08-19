@@ -65,7 +65,7 @@ Nenhuma atualização mexe nos seus dados.
 
 ---
 
-## As seis abas
+## As sete abas
 
 ### Mês
 O painel do mês. Mostra o total daquela fatura, quanto subiu ou caiu em relação
@@ -103,6 +103,11 @@ já foram, quantas faltam, até quando).
 
 ### Importar
 Para não digitar 60 linhas na mão. Explicado abaixo.
+
+### Conferir
+Compara o arquivo do banco com o que já está lançado e mostra o que falta e o
+que está sobrando. É a aba para quando a fatura do app não bate com a do cartão.
+Explicado abaixo.
 
 ### Ajustes
 Backup, cartões, categorias, o que o app aprendeu e o tema (claro/escuro).
@@ -242,6 +247,42 @@ Detalhes que ele resolve sozinho:
 - **Repetição.** Se você importar a mesma fatura duas vezes, ou importar
   fevereiro depois de março, as linhas já registradas aparecem marcadas como
   *já lançado* e vêm desmarcadas. Não dá para duplicar sem querer.
+
+---
+
+## Conferir a fatura
+
+Se o total do app não bate com o do cartão, é aqui que se descobre por quê. A
+aba **Conferir** recebe o mesmo arquivo CSV do banco, mas **não lança nada** —
+ela só compara, linha por linha, com o que já está no app naquele mês.
+
+O resultado começa com o veredito: os dois totais lado a lado e, se houver
+diferença, de quanto e para que lado. Abaixo vêm as duas listas que explicam
+essa diferença:
+
+- **Está na fatura, mas não no app** — o que passou batido. Cada linha tem um
+  botão *Lançar*, e há um botão para lançar todas de uma vez.
+- **Está no app, mas não na fatura** — gasto lançado duas vezes, valor digitado
+  errado, ou compra que na verdade é de outro cartão. Toque para abrir e
+  corrigir ou excluir.
+
+A conta sempre fecha: **a diferença é exatamente o que falta menos o que
+sobra**. Resolvendo as duas listas, os dois totais se encontram.
+
+Detalhes que valem saber:
+
+- **Os estornos contam.** Como eles entram desmarcados na importação, é comum
+  que o app fique *acima* da fatura do banco. Eles aparecem na lista do que
+  falta, com o selo *crédito*; lançá-los é o que faz os totais baterem.
+- **O pareamento é por nome e valor**, e por multiconjunto: três compras de
+  R$ 2,00 no arquivo casam com três lançamentos de R$ 2,00, não com o mesmo
+  três vezes.
+- **Se você renomeou um gasto**, ele ainda casa pelo valor — mas só quando não
+  há dúvida (uma linha de cada lado com aquele valor). Havendo duas compras de
+  mesmo valor, ele prefere mostrar as duas nas listas a chutar e apontar a
+  errada. Os casados só pelo valor ficam marcados em *Conferidos*.
+- **Cada cartão é conferido separadamente**, então lançamento de outro cartão
+  não aparece como sobra.
 
 ---
 

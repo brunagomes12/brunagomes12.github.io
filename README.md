@@ -28,7 +28,8 @@ Todo o conteúdo e a lógica vivem em um arquivo: [`index.html`](index.html).
 ## Também neste repositório
 
 `gastos/` — app pessoal para categorizar os gastos do cartão de crédito, com
-relatórios mensais, eventos (viagem, reforma) e projeção de parcelas futuras.
+relatórios mensais, eventos (viagem, reforma), projeção de parcelas futuras e
+conferência da fatura contra o arquivo do banco.
 PWA instalável e offline-first, estático e sem build; os dados ficam no
 `localStorage` do navegador (nada trafega). Não é linkado do
 portfólio e está fora dos buscadores (`noindex` + `robots.txt`).

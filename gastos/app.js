@@ -1245,6 +1245,39 @@ function telaParcelas() {
   return [resumo, grafico, lista];
 }
 
+/** O arquivo pode vir em UTF-8 ou no velho ISO-8859-1; tentamos nessa ordem. */
+async function lerArquivoTexto(file) {
+  const buf = await file.arrayBuffer();
+  try {
+    return new TextDecoder('utf-8', { fatal: true }).decode(buf);
+  } catch (e) {
+    return new TextDecoder('iso-8859-1').decode(buf);
+  }
+}
+
+/** Nubank e afins nomeiam o arquivo com a data da fatura: Nubank_20260906.csv */
+function faturaPeloNome(nome) {
+  let m = nome.match(/(20\d{2})[-_.]?(\d{2})[-_.]?(\d{2})/);
+  if (m) return `${m[1]}-${m[2]}`;
+  m = nome.match(/(20\d{2})[-_.](\d{2})\b/);
+  return m ? `${m[1]}-${m[2]}` : null;
+}
+
+/** Lê o texto de uma fatura (CSV com cabeçalho ou linhas soltas). */
+function lerLancamentosDoTexto(texto, faturaYm) {
+  const doCSV = analisarCSV(texto, faturaYm);
+  if (doCSV) return { linhas: doCSV, ignoradas: 0, formato: 'csv' };
+  const linhas = [];
+  let ignoradas = 0;
+  for (const linha of texto.split(/\r?\n/)) {
+    if (!linha.trim()) continue;
+    const parsed = analisarLinha(linha, faturaYm);
+    if (!parsed) { ignoradas++; continue; }
+    linhas.push(parsed);
+  }
+  return { linhas, ignoradas, formato: 'texto' };
+}
+
 /* ---------------------------------------------------------- *
  * 11. Importar fatura (texto colado ou CSV)
  * ---------------------------------------------------------- */
@@ -1528,28 +1561,10 @@ function telaImportar() {
     h('span', { class: 'dz-sub', text: 'CSV do banco (Nubank, Itaú, Inter…) — ou arraste o arquivo até aqui' }),
     entradaArquivo);
 
-  /** O arquivo pode vir em UTF-8 ou no velho ISO-8859-1; tentamos nessa ordem. */
-  async function lerTexto(file) {
-    const buf = await file.arrayBuffer();
-    try {
-      return new TextDecoder('utf-8', { fatal: true }).decode(buf);
-    } catch (e) {
-      return new TextDecoder('iso-8859-1').decode(buf);
-    }
-  }
-
-  /** Nubank e afins nomeiam o arquivo com a data da fatura: Nubank_20260906.csv */
-  function faturaPeloNome(nome) {
-    let m = nome.match(/(20\d{2})[-_.]?(\d{2})[-_.]?(\d{2})/);
-    if (m) return `${m[1]}-${m[2]}`;
-    m = nome.match(/(20\d{2})[-_.](\d{2})\b/);
-    return m ? `${m[1]}-${m[2]}` : null;
-  }
-
   async function receberArquivo(file) {
     if (file.size > 5 * 1024 * 1024) { toast('Esse arquivo é grande demais para ser uma fatura.'); return; }
     try {
-      const texto = await lerTexto(file);
+      const texto = await lerArquivoTexto(file);
       if (!texto.trim()) { toast('O arquivo está vazio.'); return; }
       area.value = texto;
 
@@ -1585,16 +1600,9 @@ function telaImportar() {
 
     // Com cabeçalho reconhecível, lemos como CSV de verdade: aspas, vírgula
     // dentro do campo e sinal de menos separado ("- 53,90") saem certos.
-    const doCSV = analisarCSV(texto, faturaYm);
-    const brutas = doCSV || [];
-    if (!doCSV) {
-      for (const linha of texto.split(/\r?\n/)) {
-        if (!linha.trim()) continue;
-        const parsed = analisarLinha(linha, faturaYm);
-        if (!parsed) { ignoradas++; continue; }
-        brutas.push(parsed);
-      }
-    }
+    const lido = lerLancamentosDoTexto(texto, faturaYm);
+    const brutas = lido.linhas;
+    ignoradas = lido.ignoradas;
 
     for (const parsed of brutas) {
       const cand = montarCandidato(parsed, faturaYm, cartaoId, eventoSel.value || null);
@@ -1720,6 +1728,308 @@ function telaImportar() {
       h('div', { class: 'modal-foot' },
         h('span', { class: 'spacer' }),
         h('button', { class: 'btn primary', type: 'button', text: 'Analisar', onclick: analisar }))),
+    saida,
+  ];
+}
+
+/* ---------------------------------------------------------- *
+ * 11b. Conferência: o arquivo do banco contra o que está lançado
+ * ---------------------------------------------------------- */
+
+/** Chave de pareamento: começo do nome normalizado + valor exato da parcela. */
+const chaveConferencia = (desc, cents) => `${norm(desc).slice(0, 24)}|${cents}`;
+
+/**
+ * Compara linha a linha o arquivo da fatura com o que o app tem naquele mês,
+ * para aquele cartão. Devolve os três montes: o que bate, o que falta lançar
+ * e o que está lançado sem estar no arquivo.
+ *
+ * O pareamento é por multiconjunto: três linhas de R$ 2,00 no arquivo consomem
+ * três lançamentos de R$ 2,00 no app, não o mesmo três vezes. Primeiro tenta
+ * nome + valor; sobrando, tenta só o valor (ela pode ter renomeado o gasto) e
+ * marca esse caso, porque é onde um pareamento errado poderia se esconder.
+ */
+function conferirFatura(linhas, faturaYm, cartaoId) {
+  const cands = linhas.map((l) => montarCandidato(l, faturaYm, cartaoId, null));
+  marcarAntecipadas(cands, faturaYm);
+
+  const noApp = ocorrenciasDoMes(faturaYm).filter((o) => o.l.cartao === cartaoId);
+
+  const porNomeValor = new Map();
+  for (const o of noApp) {
+    const k = chaveConferencia(o.l.desc, o.cents);
+    if (!porNomeValor.has(k)) porNomeValor.set(k, []);
+    porNomeValor.get(k).push(o);
+  }
+
+  const usados = new Set();
+  const conferidos = [];
+  const pendentes = [];
+
+  // Passo 1: nome + valor, para todas as linhas. Só depois de esgotar os
+  // pareamentos certos é que vale a pena arriscar um palpite.
+  for (const c of cands) {
+    const exato = (porNomeValor.get(chaveConferencia(c.desc, c.parcelaCents)) || [])
+      .find((o) => !usados.has(o));
+    if (exato) { usados.add(exato); conferidos.push({ c, o: exato, exato: true }); }
+    else pendentes.push(c);
+  }
+
+  // Passo 2: só o valor, e só quando não há dúvida — exatamente uma linha
+  // sobrando de cada lado com aquele valor. Se houver duas compras de R$ 53,90,
+  // parear no chute apontaria a errada como faltando, que é justamente o erro
+  // que esta tela existe para evitar.
+  const casados = new Set();
+  for (const c of pendentes) {
+    if (casados.has(c)) continue;
+    const doArquivo = pendentes.filter((x) => !casados.has(x) && x.parcelaCents === c.parcelaCents);
+    const doApp = noApp.filter((o) => !usados.has(o) && o.cents === c.parcelaCents);
+    if (doArquivo.length === 1 && doApp.length === 1) {
+      usados.add(doApp[0]);
+      casados.add(c);
+      conferidos.push({ c, o: doApp[0], exato: false });
+    }
+  }
+
+  const faltando = pendentes.filter((c) => !casados.has(c));
+  const sobrando = noApp.filter((o) => !usados.has(o));
+  const somar1 = (arr, f) => arr.reduce((t, x) => t + f(x), 0);
+
+  return {
+    conferidos, faltando, sobrando, noApp, cands,
+    totalArquivo: somar1(cands, (c) => c.parcelaCents),
+    totalApp: somar1(noApp, (o) => o.cents),
+    somaFaltando: somar1(faltando, (c) => c.parcelaCents),
+    somaSobrando: somar1(sobrando, (o) => o.cents),
+    aproximados: conferidos.filter((x) => !x.exato).length,
+  };
+}
+
+/** Grava um candidato como lançamento — mesmo caminho da importação. */
+function lancarCandidato(c) {
+  db.lancamentos.push({
+    id: uid(), desc: c.desc, cents: c.cents, data: c.data, cat: c.cat,
+    cartao: c.cartao, parcelas: c.antecipada ? 1 : c.de, fatura: c.fatura,
+    evento: c.evento || null,
+    obs: c.antecipada ? `parcela ${c.n}/${c.de} antecipada` : '',
+    criadoEm: new Date().toISOString(),
+  });
+  aprender(c.desc, c.cat);
+}
+
+function telaConferir() {
+  const cartaoSel = h('select', { id: 'conf-cartao' },
+    db.cartoes.map((c) => h('option', { value: c.id, text: c.nome })));
+  const faturaInp = h('input', { type: 'month', id: 'conf-fatura', value: estado.ym });
+  const nomeArquivo = h('p', { class: 'hint', id: 'conf-arquivo' });
+  const saida = h('div', { id: 'conf-saida' });
+
+  const area = h('textarea', {
+    id: 'conf-texto', rows: '6',
+    placeholder: 'Ou cole aqui as linhas da fatura, se preferir.',
+  });
+  const blocoTexto = h('div', { id: 'conf-bloco-texto' },
+    h('div', { class: 'divisor' }, h('span', { text: 'ou cole o texto' })),
+    h('div', { class: 'field' },
+      h('label', { for: 'conf-texto', class: 'sr-only', text: 'Linhas da fatura' }), area));
+
+  const entradaArquivo = h('input', {
+    type: 'file', id: 'conf-file', accept: '.csv,.txt,text/csv,text/plain',
+    style: { display: 'none' },
+    onchange: (e) => { if (e.target.files[0]) receber(e.target.files[0]); e.target.value = ''; },
+  });
+
+  const zona = h('div', {
+    class: 'dropzone', tabindex: '0', role: 'button',
+    'aria-label': 'Escolher o arquivo da fatura para conferir',
+    onclick: () => entradaArquivo.click(),
+    onkeydown: (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); entradaArquivo.click(); } },
+    ondragover: (e) => { e.preventDefault(); zona.classList.add('sobre'); },
+    ondragleave: () => zona.classList.remove('sobre'),
+    ondrop: (e) => { e.preventDefault(); zona.classList.remove('sobre'); const f = e.dataTransfer.files[0]; if (f) receber(f); },
+  },
+    h('span', { class: 'dz-emoji', 'aria-hidden': 'true', text: '🔍' }),
+    h('span', { class: 'dz-titulo', text: 'Escolher o arquivo da fatura' }),
+    h('span', { class: 'dz-sub', text: 'Nada é lançado automaticamente — isto aqui só compara' }),
+    entradaArquivo);
+
+  async function receber(file) {
+    if (file.size > 5 * 1024 * 1024) { toast('Esse arquivo é grande demais para ser uma fatura.'); return; }
+    try {
+      const texto = await lerArquivoTexto(file);
+      if (!texto.trim()) { toast('O arquivo está vazio.'); return; }
+      area.value = texto;
+      blocoTexto.hidden = true;
+      const ym = faturaPeloNome(file.name);
+      if (ym) faturaInp.value = ym;
+      nomeArquivo.replaceChildren(
+        h('b', { text: file.name }),
+        document.createTextNode(ym ? ` — fatura de ${ymLong(ym)}.` : ''),
+        h('button', {
+          class: 'btn small ghost', type: 'button', text: 'colar texto no lugar',
+          onclick: () => { blocoTexto.hidden = false; nomeArquivo.replaceChildren(); area.focus(); },
+        }));
+      conferir();
+    } catch (e) {
+      console.error(e);
+      toast('Não consegui ler esse arquivo.');
+    }
+  }
+
+  function conferir() {
+    const faturaYm = faturaInp.value || ymNow();
+    const cartaoId = cartaoSel.value;
+    const { linhas } = lerLancamentosDoTexto(area.value, faturaYm);
+    if (!linhas.length) {
+      saida.replaceChildren(h('div', { class: 'card' },
+        vazio('🤔', 'Não reconheci nenhum lançamento nesse arquivo. Confira se é mesmo o CSV da fatura.')));
+      return;
+    }
+    desenhar(conferirFatura(linhas, faturaYm, cartaoId), faturaYm);
+  }
+
+  function refazer(faturaYm) {
+    const { linhas } = lerLancamentosDoTexto(area.value, faturaYm);
+    desenhar(conferirFatura(linhas, faturaYm, cartaoSel.value), faturaYm);
+  }
+
+  function desenhar(r, faturaYm) {
+    const dif = r.totalArquivo - r.totalApp;
+    const confere = dif === 0 && !r.faltando.length && !r.sobrando.length;
+    const nivel = confere ? 'ok' : 'crit';
+
+    const veredito = h('div', { class: 'card' },
+      h('div', { class: 'hero-label', text: `Fatura de ${ymLong(faturaYm)} · ${cartaoPorId(faturaInp.value ? cartaoSel.value : cartaoSel.value).nome}` }),
+      h('div', { class: 'hero-figure', text: confere ? 'Tudo certo' : fmt(Math.abs(dif)) }),
+      h('div', { class: 'meter-legend ' + nivel },
+        h('span', { 'aria-hidden': 'true', text: confere ? '✓' : '⛔' }),
+        h('span', {
+          text: confere
+            ? 'O app e a fatura do banco batem, linha por linha.'
+            : dif > 0
+              ? `O app está ${fmt(dif)} abaixo da fatura do banco.`
+              : `O app está ${fmt(-dif)} acima da fatura do banco.`,
+        })),
+      h('div', { class: 'tiles' },
+        tile('No arquivo do banco', fmt(r.totalArquivo), `${r.cands.length} ${r.cands.length === 1 ? 'linha' : 'linhas'}`),
+        tile('Lançado no app', fmt(r.totalApp), `${r.noApp.length} ${r.noApp.length === 1 ? 'lançamento' : 'lançamentos'}`),
+        tile('Falta lançar', String(r.faltando.length),
+          r.faltando.length ? `${r.faltando.length === 1 ? 'linha, soma' : 'linhas, somam'} ${fmt(r.somaFaltando)}` : 'nada pendente'),
+        tile('Sobrando no app', String(r.sobrando.length),
+          r.sobrando.length ? `${r.sobrando.length === 1 ? 'lançamento, soma' : 'lançamentos, somam'} ${fmt(r.somaSobrando)}` : 'nada sobrando'),
+      ),
+      confere ? null : h('p', { class: 'hint', text: 'A diferença é exatamente o que falta lançar menos o que está sobrando. Resolvendo as duas listas abaixo, os dois números se encontram.' }));
+
+    const blocos = [veredito];
+
+    if (r.faltando.length) {
+      blocos.push(h('section', { class: 'card' },
+        h('div', { class: 'card-head' },
+          h('h2', { text: `Está na fatura, mas não no app (${r.faltando.length})` }),
+          h('div', { class: 'card-actions' },
+            h('button', {
+              class: 'btn small primary', type: 'button',
+              text: `Lançar ${r.faltando.length === 1 ? 'este' : 'os ' + r.faltando.length}`,
+              onclick: () => {
+                r.faltando.forEach(lancarCandidato);
+                salvar();
+                toast(`${r.faltando.length} ${r.faltando.length === 1 ? 'gasto lançado' : 'gastos lançados'}.`);
+                refazer(faturaYm);
+              },
+            }))),
+        h('p', { class: 'card-sub' },
+          'Provavelmente passou batido na importação. Os marcados como ',
+          h('b', { text: 'crédito' }),
+          ' são estornos — lançá-los é o que faz o total do app bater com o do banco.'),
+        h('div', { class: 'list' }, [...r.faltando]
+          .sort((a, b) => (a.credito === b.credito ? 0 : a.credito ? 1 : -1))
+          .map((c) => {
+          const cat = catPorId(c.cat);
+          return h('div', { class: 'item' },
+            h('span', { class: 'item-emoji', 'aria-hidden': 'true', text: cat.emoji }),
+            h('span', { class: 'item-main' },
+              h('span', { class: 'item-title', text: c.desc }),
+              h('span', { class: 'item-meta' },
+                h('span', { text: dateLabel(c.data) }),
+                h('span', { text: cat.nome }),
+                c.de > 1 ? h('span', { class: 'badge soft', text: `${c.n}/${c.de}` }) : null,
+                c.credito ? h('span', { class: 'badge', text: 'crédito' }) : null)),
+            h('span', { class: 'item-amount', text: fmt(c.parcelaCents) }),
+            h('button', {
+              class: 'btn small', type: 'button', text: 'Lançar',
+              onclick: () => { lancarCandidato(c); salvar(); toast('Lançado.'); refazer(faturaYm); },
+            }));
+        }))));
+    }
+
+    if (r.sobrando.length) {
+      blocos.push(h('section', { class: 'card' },
+        h('div', { class: 'card-head' }, h('h2', { text: `Está no app, mas não na fatura (${r.sobrando.length})` })),
+        h('p', { class: 'card-sub', text: 'Pode ser gasto lançado duas vezes, valor digitado errado, ou compra de outro cartão. Toque para abrir e corrigir ou excluir.' }),
+        h('div', { class: 'list' }, r.sobrando.map((o) => {
+          const cat = catPorId(o.l.cat);
+          return h('button', { class: 'item', type: 'button', onclick: () => abrirLancamento(o.l.id) },
+            h('span', { class: 'item-emoji', 'aria-hidden': 'true', text: cat.emoji }),
+            h('span', { class: 'item-main' },
+              h('span', { class: 'item-title', text: o.l.desc }),
+              h('span', { class: 'item-meta' },
+                h('span', { text: dateLabel(o.l.data) }),
+                h('span', { text: cat.nome }),
+                o.de > 1 ? h('span', { class: 'badge soft', text: `${o.n}/${o.de}` }) : null,
+                o.l.obs ? h('span', { text: o.l.obs }) : null)),
+            h('span', { class: 'item-amount', text: fmt(o.cents) }));
+        }))));
+    }
+
+    if (r.conferidos.length) {
+      const lista = h('div', { class: 'list', hidden: true }, r.conferidos.map(({ c, o, exato }) => {
+        const cat = catPorId(o.l.cat);
+        return h('button', { class: 'item', type: 'button', onclick: () => abrirLancamento(o.l.id) },
+          h('span', { class: 'item-emoji', 'aria-hidden': 'true', text: cat.emoji }),
+          h('span', { class: 'item-main' },
+            h('span', { class: 'item-title', text: o.l.desc }),
+            h('span', { class: 'item-meta' },
+              h('span', { text: dateLabel(o.l.data) }),
+              exato ? null : h('span', { class: 'badge alerta', text: `no banco: ${c.desc}` }))),
+          h('span', { class: 'item-amount', text: fmt(o.cents) }));
+      }));
+      const botao = h('button', {
+        class: 'btn small ghost', type: 'button', 'aria-expanded': 'false',
+        onclick: () => {
+          const ver = lista.hidden;
+          lista.hidden = !ver;
+          botao.textContent = ver ? 'Ocultar' : 'Ver lista';
+          botao.setAttribute('aria-expanded', String(ver));
+        },
+      }, 'Ver lista');
+
+      blocos.push(h('section', { class: 'card' },
+        h('div', { class: 'card-head' },
+          h('h2', { text: `Conferidos (${r.conferidos.length})` }),
+          h('div', { class: 'card-actions' }, botao)),
+        h('p', { class: 'card-sub', text: r.aproximados
+          ? `Batem em valor. ${r.aproximados} ${r.aproximados === 1 ? 'tem nome diferente do banco' : 'têm nome diferente do banco'} — vale um olhar.`
+          : 'Nome e valor batem com a fatura do banco.' }),
+        lista));
+    }
+
+    saida.replaceChildren(...blocos);
+    requestAnimationFrame(() => saida.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+  }
+
+  return [
+    h('div', { class: 'card' },
+      h('div', { class: 'card-head' }, h('h2', { text: 'Conferir a fatura' })),
+      h('p', { class: 'card-sub', text: 'Compara o arquivo do banco com o que já está lançado no app e mostra, linha por linha, o que falta e o que está sobrando. Nada é alterado sem você mandar.' }),
+      zona,
+      nomeArquivo,
+      blocoTexto,
+      h('div', { class: 'filters', style: { marginTop: '14px' } },
+        h('div', { class: 'field' }, h('label', { for: 'conf-cartao', text: 'Cartão' }), cartaoSel),
+        h('div', { class: 'field' }, h('label', { for: 'conf-fatura', text: 'Fatura de' }), faturaInp)),
+      h('div', { class: 'modal-foot' },
+        h('span', { class: 'spacer' }),
+        h('button', { class: 'btn primary', type: 'button', text: 'Conferir', onclick: conferir }))),
     saida,
   ];
 }
@@ -2369,6 +2679,7 @@ const TELAS = {
   eventos: telaEventos,
   parcelas: telaParcelas,
   importar: telaImportar,
+  conferir: telaConferir,
   ajustes: telaAjustes,
 };
 
@@ -2392,7 +2703,7 @@ function render() {
     const ativo = b.dataset.route === rota;
     b.setAttribute('aria-current', ativo ? 'page' : 'false');
   }
-  $('#fab').hidden = rota === 'importar' || rota === 'ajustes';
+  $('#fab').hidden = rota === 'importar' || rota === 'conferir' || rota === 'ajustes';
 
   requestAnimationFrame(() => graficos.forEach((g) => g.__draw && g.__draw()));
 }
