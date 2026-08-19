@@ -29,14 +29,39 @@ aparelho, não na página.
 
 ---
 
-## Deixar na tela de início do celular
+## Instalar como aplicativo
 
-Vale muito a pena, fica com cara de aplicativo:
+O Gastos é um **PWA**: um site que o celular instala e trata como aplicativo de
+verdade. Instalado, ele abre em tela cheia (sem barra de navegador), tem ícone
+próprio e **funciona sem internet**.
 
-- **iPhone (Safari):** abra o endereço → botão de compartilhar → *Adicionar à
-  Tela de Início*.
-- **Android (Chrome):** abra o endereço → menu dos três pontinhos →
-  *Adicionar à tela inicial*.
+- **Android (Chrome):** vá em *Ajustes → Instalar no aparelho* e toque em
+  **Instalar app**. Se o botão não aparecer, use o menu dos três pontinhos →
+  *Instalar aplicativo*.
+- **iPhone / iPad:** precisa ser pelo **Safari**. Botão de compartilhar (o
+  quadrado com a seta para cima) → *Adicionar à Tela de Início* → *Adicionar*.
+  No Chrome do iPhone essa opção não existe.
+- **Computador:** o ícone de instalar no canto direito da barra de endereço.
+
+### Funciona no avião
+
+Depois da primeira visita, o app inteiro fica guardado no aparelho. Dá para
+lançar gastos no metrô, no avião ou no meio do nada — nada aqui depende de
+internet, porque os dados nunca saem do seu aparelho de qualquer forma.
+
+### Atalhos do ícone
+
+Segure o ícone do app na tela de início: aparecem atalhos para **Novo gasto**,
+**Importar fatura** e **Parcelas futuras**, que já abrem na tela certa.
+
+### Como ele se atualiza
+
+Quando eu publicar uma versão nova, ela **não entra sozinha no meio do seu uso**.
+Aparece uma faixa embaixo dizendo *"Uma versão nova do app está pronta"* com um
+botão **Atualizar** — você troca na hora que quiser. Se ignorar, continua na
+versão atual e o aviso volta depois.
+
+Nenhuma atualização mexe nos seus dados.
 
 ---
 
@@ -214,8 +239,15 @@ nada se perde).
 
 ## Para quem for mexer no código
 
-Site estático, sem build e sem dependências: `index.html`, `app.css`, `app.js`.
-Basta abrir o `index.html` no navegador para testar. Os dados ficam no
+Site estático, sem build e sem dependências: `index.html`, `app.css`, `app.js`,
+mais `sw.js`, `manifest.webmanifest` e `icons/`.
+Basta abrir o `index.html` no navegador para testar — o service worker só entra
+em contexto seguro (`https`, `localhost` ou `127.0.0.1`), então abrir do disco
+não registra nada e não atrapalha o desenvolvimento. Para testar o PWA:
+`python3 -m http.server 8765` e abrir `http://127.0.0.1:8765/gastos/`.
+
+**Ao publicar mudança, bump o `VERSAO` no topo do `sw.js`.** É isso que troca o
+nome do cache, limpa o antigo e dispara o aviso de atualização. Os dados ficam no
 `localStorage`, na chave `gastos.v1`.
 
 Valores são guardados **em centavos, como número inteiro**, para não sofrer com

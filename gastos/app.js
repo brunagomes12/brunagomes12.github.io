@@ -1452,6 +1452,8 @@ function telaAjustes() {
       h('p', { class: 'hint', text: db.prefs.ultimoBackup ? `Último backup: ${dateFull(db.prefs.ultimoBackup)}.` : 'Você ainda não baixou nenhum backup.' }),
       h('p', { class: 'hint', text: `Hoje: ${db.lancamentos.length} lançamento(s) guardados.` })),
 
+    cartaoInstalar(),
+
     h('div', { class: 'card' },
       h('div', { class: 'card-head' }, h('h2', { text: 'Cartões' }),
         h('div', { class: 'card-actions' }, h('button', { class: 'btn small', type: 'button', text: '+ Novo cartão', onclick: () => editarCartao() }))),
@@ -1799,6 +1801,150 @@ function detalheEvento(ev) {
 }
 
 /* ---------------------------------------------------------- *
+ * 14. PWA: instalar no aparelho, funcionar offline, atualizar
+ * ---------------------------------------------------------- */
+
+let promptInstalar = null;   // guardado quando o navegador oferece a instalação
+
+const ehStandalone = () =>
+  matchMedia('(display-mode: standalone)').matches ||
+  matchMedia('(display-mode: minimal-ui)').matches ||
+  navigator.standalone === true;
+
+const ehIOS = () => /iphone|ipad|ipod/i.test(navigator.userAgent)
+  || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+/**
+ * Registra o service worker e, quando chega versão nova, mostra uma barra
+ * em vez de trocar o código embaixo do pé de quem está usando.
+ */
+function registrarServiceWorker() {
+  if (!('serviceWorker' in navigator)) return;
+  // service worker só roda em contexto seguro (https, localhost, 127.0.0.1);
+  // abrir o index.html direto do disco não registra nada, e tudo bem.
+  if (!self.isSecureContext) return;
+
+  const barra = $('#pwa-atualizar');
+  let pediuAtualizar = false;
+  let recarregando = false;
+
+  // Só recarregamos quando ELA pediu a atualização. Na primeira visita o
+  // clients.claim() também dispara este evento, e recarregar ali seria um
+  // susto — pior ainda se houvesse um formulário preenchido pela metade.
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (!pediuAtualizar || recarregando) return;
+    recarregando = true;
+    location.reload();
+  });
+
+  navigator.serviceWorker.register('sw.js').then((reg) => {
+    const mostrarBarra = (visivel) => {
+      barra.hidden = !visivel;
+      document.body.classList.toggle('com-aviso', visivel);
+    };
+
+    const oferecer = (worker) => {
+      if (!worker || !navigator.serviceWorker.controller) return;
+      mostrarBarra(true);
+      $('#pwa-atualizar-btn').onclick = () => {
+        mostrarBarra(false);
+        pediuAtualizar = true;
+        worker.postMessage({ tipo: 'ATUALIZAR_AGORA' });
+      };
+      $('#pwa-atualizar-fechar').onclick = () => mostrarBarra(false);
+    };
+
+    if (reg.waiting) oferecer(reg.waiting);
+
+    reg.addEventListener('updatefound', () => {
+      const novo = reg.installing;
+      if (!novo) return;
+      novo.addEventListener('statechange', () => {
+        if (novo.state === 'installed') oferecer(novo);
+      });
+    });
+
+    // procura atualização quando o app volta para a frente, no máximo de hora em hora
+    let ultimaChecagem = 0;
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState !== 'visible') return;
+      if (Date.now() - ultimaChecagem < 36e5) return;
+      ultimaChecagem = Date.now();
+      reg.update().catch(() => {});
+    });
+  }).catch((e) => console.warn('[pwa] service worker não registrado:', e));
+}
+
+function prepararInstalacao() {
+  addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    promptInstalar = e;
+    if (estado.rota === 'ajustes') render();
+  });
+  addEventListener('appinstalled', () => {
+    promptInstalar = null;
+    toast('App instalado. Ele agora abre direto da sua tela de início.');
+    if (estado.rota === 'ajustes') render();
+  });
+}
+
+/** O cartão de instalação em Ajustes muda conforme o que o aparelho permite. */
+function cartaoInstalar() {
+  const card = (corpo) => h('div', { class: 'card' },
+    h('div', { class: 'card-head' }, h('h2', { text: 'Instalar no aparelho' })), corpo);
+
+  if (ehStandalone()) {
+    return card(h('div', {},
+      h('p', { class: 'card-sub', style: { marginBottom: '8px' } },
+        '✓ O app já está instalado neste aparelho — você está usando a versão instalada.'),
+      h('p', { class: 'hint', text: 'Ele abre em tela cheia e funciona sem internet. Os dados continuam sendo deste aparelho.' })));
+  }
+
+  if (promptInstalar) {
+    return card(h('div', {},
+      h('p', { class: 'card-sub', text: 'Instale para abrir direto da tela de início, em tela cheia e sem barra de navegador. Funciona sem internet.' }),
+      h('button', {
+        class: 'btn primary', type: 'button', text: '⬇ Instalar app',
+        onclick: async () => {
+          const p = promptInstalar;
+          promptInstalar = null;
+          p.prompt();
+          const { outcome } = await p.userChoice;
+          if (outcome !== 'accepted') toast('Sem problema — dá para instalar depois por aqui.');
+          render();
+        },
+      })));
+  }
+
+  if (ehIOS()) {
+    return card(h('div', {},
+      h('p', { class: 'card-sub', text: 'No iPhone e iPad a instalação é manual, pelo Safari:' }),
+      h('ol', { class: 'passos' },
+        h('li', {}, 'Toque no botão de ', h('b', { text: 'compartilhar' }), ' (o quadrado com a seta para cima).'),
+        h('li', {}, 'Escolha ', h('b', { text: 'Adicionar à Tela de Início' }), '.'),
+        h('li', {}, 'Confirme em ', h('b', { text: 'Adicionar' }), '.')),
+      h('p', { class: 'hint', text: 'Precisa ser pelo Safari — no Chrome do iPhone essa opção não aparece.' })));
+  }
+
+  return card(h('div', {},
+    h('p', { class: 'card-sub', text: 'Dá para instalar e abrir direto da tela de início, sem barra de navegador.' }),
+    h('ol', { class: 'passos' },
+      h('li', {}, 'No ', h('b', { text: 'Android (Chrome)' }), ': menu dos três pontinhos → ', h('b', { text: 'Instalar aplicativo' }), '.'),
+      h('li', {}, 'No ', h('b', { text: 'computador' }), ': o ícone de instalar do lado direito da barra de endereço.')),
+    h('p', { class: 'hint', text: 'Se o botão automático não apareceu, é só usar o menu do navegador — dá no mesmo.' })));
+}
+
+/** Atalhos do ícone (segurar o app na tela de início) chegam por ?acao=… */
+function tratarAtalho() {
+  const acao = new URLSearchParams(location.search).get('acao');
+  if (!acao) return;
+  history.replaceState(null, '', location.pathname + location.hash);
+  if (acao === 'novo') { render(); abrirLancamento(); return true; }
+  if (TELAS[acao]) { estado.rota = acao; return false; }
+  return false;
+}
+
+/* ---------------------------------------------------------- *
  * 13. Roteador e inicialização
  * ---------------------------------------------------------- */
 
@@ -1838,6 +1984,7 @@ function render() {
 
 function iniciar() {
   aplicarTema();
+  prepararInstalacao();
 
   const hash = (location.hash || '').replace(/^#\/?/, '');
   if (TELAS[hash]) estado.rota = hash;
@@ -1875,7 +2022,10 @@ function iniciar() {
     t = setTimeout(() => graficos.forEach((g) => g.__draw && g.__draw()), 120);
   });
 
-  render();
+  const abriuModal = tratarAtalho();
+  if (!abriuModal) render();
+
+  registrarServiceWorker();
 }
 
 document.addEventListener('DOMContentLoaded', iniciar);

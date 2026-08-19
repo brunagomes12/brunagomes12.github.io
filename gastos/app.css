@@ -115,6 +115,10 @@ a{color:var(--data)}
   border-bottom:1px solid var(--line);
   margin:0 -16px 18px;padding:12px 16px 0;
 }
+@media (display-mode: standalone), (display-mode: minimal-ui){
+  .topbar{padding-top:calc(12px + env(safe-area-inset-top))}
+  body{overscroll-behavior-y:none}   /* sem o "puxar para recarregar" dentro do app */
+}
 .topbar-row{display:flex;align-items:center;gap:12px;max-width:960px;margin:0 auto}
 .brand{display:flex;align-items:center;gap:9px;font-weight:600;letter-spacing:-.02em;margin-right:auto}
 .brand-mark{
@@ -308,8 +312,8 @@ table.data tr:last-child td{border-bottom:0}
   width:36px;height:36px;border-radius:10px;background:var(--surface-2);
   display:grid;place-items:center;font-size:17px;flex:none;
 }
-.item-main{min-width:0;flex:1}
-.item-title{font-size:14.5px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.item-main{display:block;min-width:0;flex:1}
+.item-title{display:block;font-size:14.5px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .item-meta{font-size:12.5px;color:var(--muted);display:flex;gap:7px;flex-wrap:wrap;margin-top:1px}
 .item-amount{font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right}
 .item-amount small{display:block;font-size:11.5px;font-weight:500;color:var(--muted)}
@@ -360,9 +364,9 @@ dialog.modal::backdrop{background:rgba(20,16,12,.45);backdrop-filter:blur(2px)}
   display:flex;align-items:center;gap:8px;background:var(--surface-2);
   border-radius:var(--radius-sm);padding:8px 10px;
 }
-.row-edit .r-main{flex:1;min-width:0}
-.row-edit .r-title{font-size:14.5px;font-weight:500}
-.row-edit .r-note{font-size:12.5px;color:var(--muted)}
+.row-edit .r-main{display:block;flex:1;min-width:0}
+.row-edit .r-title{display:block;font-size:14.5px;font-weight:500}
+.row-edit .r-note{display:block;font-size:12.5px;color:var(--muted)}
 .chip-emoji{width:34px;height:34px;border-radius:9px;background:var(--surface);display:grid;place-items:center;font-size:17px;flex:none;border:1px solid var(--line)}
 .seg{display:inline-flex;background:var(--surface-2);border-radius:9px;padding:3px;gap:2px}
 .seg button{
@@ -385,6 +389,29 @@ dialog.modal::backdrop{background:rgba(20,16,12,.45);backdrop-filter:blur(2px)}
 .imp-table select{padding:6px 7px;font-size:13px}
 .imp-table input[type=text]{padding:6px 7px;font-size:13px}
 .imp-off{opacity:.42}
+
+/* ---------- barra de atualização do app ---------- */
+.pwa-bar{
+  position:fixed;left:0;right:0;bottom:0;z-index:65;
+  background:var(--surface);border-top:1px solid var(--line-strong);
+  box-shadow:0 -6px 24px -18px rgba(0,0,0,.5);
+  padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+}
+.pwa-bar[hidden]{display:none}
+.pwa-bar-inner{
+  max-width:960px;margin:0 auto;
+  display:flex;align-items:center;gap:10px;
+}
+.pwa-bar-txt{flex:1 1 auto;min-width:0;font-size:14px;color:var(--ink-2)}
+.pwa-bar .btn,.pwa-bar .icon-btn{flex:none}
+.pwa-bar .icon-btn{width:34px;height:34px;border:0;background:none}
+/* enquanto o aviso estiver na tela, o botão flutuante sobe para não brigar com ele */
+body.com-aviso .fab{bottom:calc(80px + env(safe-area-inset-bottom))}
+
+/* passo a passo de instalação */
+ol.passos{margin:10px 0 0;padding-left:20px;font-size:14px;color:var(--ink-2);line-height:1.65}
+ol.passos li{margin-bottom:4px}
+ol.passos b{color:var(--ink)}
 
 /* ---------- toast ---------- */
 .toast{

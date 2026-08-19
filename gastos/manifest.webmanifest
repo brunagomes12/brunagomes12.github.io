@@ -1,14 +1,46 @@
 {
+  "id": "/gastos/",
   "name": "Gastos — cartão de crédito",
   "short_name": "Gastos",
-  "description": "Controle e categorização dos gastos do cartão de crédito, mês a mês.",
+  "description": "Categorize os gastos do cartão de crédito, acompanhe as parcelas futuras e veja quanto custou cada viagem ou evento.",
+  "lang": "pt-BR",
+  "dir": "ltr",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
   "orientation": "portrait",
   "background_color": "#F4F0E9",
   "theme_color": "#9A2B4F",
+  "categories": ["finance", "productivity"],
+  "launch_handler": { "client_mode": "navigate-existing" },
   "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
     { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ],
+  "shortcuts": [
+    {
+      "name": "Novo gasto",
+      "short_name": "Novo gasto",
+      "description": "Lançar um gasto agora",
+      "url": "./?acao=novo",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Importar fatura",
+      "short_name": "Importar",
+      "description": "Colar as linhas da fatura",
+      "url": "./?acao=importar",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Parcelas futuras",
+      "short_name": "Parcelas",
+      "description": "O que já está comprometido",
+      "url": "./?acao=parcelas",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    }
   ]
 }
