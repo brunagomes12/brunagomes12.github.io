@@ -8,7 +8,7 @@
    ============================================================ */
 'use strict';
 
-const VERSAO = 'gastos-2026-08-19a';
+const VERSAO = 'gastos-2026-08-19b';
 const CACHE_APP = `app-${VERSAO}`;
 const CACHE_FONTES = 'fontes-v1';   // sobrevive às atualizações do app
 

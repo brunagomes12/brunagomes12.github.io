@@ -179,16 +179,24 @@ Se ele errar, é só trocar no seletor — a correção vira aprendizado.
 
 ## Importar a fatura de uma vez
 
-1. No app ou no site do banco, selecione as linhas da fatura e copie.
-2. Aqui, aba **Importar**: escolha o cartão, confirme de que mês é a fatura e
-   cole tudo na caixa de texto.
-3. **Analisar**. O app monta uma lista com data, descrição, valor, parcela,
-   evento e um palpite de categoria para cada linha. Se a fatura inteira for de
-   uma viagem, escolha o evento no seletor de cima e vale para todas.
+### Pelo arquivo do banco (o jeito bom)
+
+1. No app do banco, baixe a fatura em **CSV**. No Nubank: abra a fatura →
+   *Exportar* → CSV. O arquivo vem com um nome tipo `Nubank_20260906.csv`.
+2. Aqui, aba **Importar** → toque em **Escolher o arquivo da fatura** (ou
+   arraste o arquivo para cima da área tracejada, no computador).
+3. Pronto. Ele lê o arquivo, deduz de que mês é a fatura pelo nome, e já
+   mostra a conferência.
 4. Confira, ajuste o que estiver errado, desmarque o que não quiser e
    **Importar**.
 
-Formatos que ele entende (não precisa arrumar nada antes):
+Estornos e créditos vêm desmarcados, "Pagamento recebido" é descartado, e o
+sinal de menos é respeitado — um estorno nunca entra como gasto.
+
+### Colando o texto
+
+Se preferir, dá para copiar as linhas da tela do banco e colar em *ou cole o
+texto*. Formatos que ele entende (não precisa arrumar nada antes):
 
 ```
 12/08  IFOOD *RESTAURANTE            45,90
@@ -198,6 +206,11 @@ Formatos que ele entende (não precisa arrumar nada antes):
 09/08	POSTO IPIRANGA	250,00
 ```
 
+Arquivos CSV com cabeçalho (`date,title,amount`, `Data;Descrição;Valor` e
+parecidos) são lidos como CSV de verdade: aspas, vírgula dentro do campo e
+acentuação em ISO-8859-1 saem certos. Separador pode ser vírgula, ponto e
+vírgula ou tabulação.
+
 Detalhes que ele resolve sozinho:
 
 - **Cabeçalhos, totais e "pagamento efetuado" são descartados.**
@@ -206,6 +219,14 @@ Detalhes que ele resolve sozinho:
 - **Parcelas.** Se a linha diz `03/10`, ele entende que essa compra começou dois
   meses atrás e monta a compra inteira: as parcelas passadas entram no histórico
   e as sete que faltam aparecem em *Parcelas futuras*.
+- **Parcelas antecipadas.** Se você antecipou e o banco lançou `1/3`, `2/3` e
+  `3/3` juntas na mesma fatura, ele percebe (mesma loja, mesmo total de
+  parcelas, mesmo valor) e lança as três inteiras naquele mês, sem inventar
+  parcelas futuras. Duas compras diferentes na mesma loja continuam sendo
+  tratadas como duas compras.
+- **Maquininhas.** Prefixos tipo `Pg *`, `Asaas *`, `Mlp *` são ignorados na
+  hora de adivinhar a categoria — o que vale é o nome do estabelecimento. A
+  descrição que você vê continua igual à da fatura, para você reconhecer.
 - **Repetição.** Se você importar a mesma fatura duas vezes, ou importar
   fevereiro depois de março, as linhas já registradas aparecem marcadas como
   *já lançado* e vêm desmarcadas. Não dá para duplicar sem querer.

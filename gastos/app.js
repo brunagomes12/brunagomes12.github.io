@@ -155,21 +155,21 @@ const CATEGORIAS_PADRAO = [
 
 /** Palavras que identificam o estabelecimento → categoria. */
 const DICIONARIO = {
-  mercado: ['supermercado', 'mercado', 'hortifruti', 'sacolao', 'atacadao', 'assai', 'carrefour', 'pao de acucar', 'extra ', 'supermercado dia', 'zona sul', 'oba ', 'st marche', 'mambo', 'natural da terra', 'emporio', 'padaria', 'acougue', 'quitanda', 'minuto', 'tenda atacado', 'sams club', 'makro', 'big box'],
-  alimentacao: ['ifood', 'rappi', 'ubereats', 'uber eats', 'restaurante', 'lanchonete', 'pizzaria', 'burger', 'mcdonald', 'bk ', 'burger king', 'subway', 'outback', 'starbucks', 'cafe', 'cafeteria', 'bar ', 'boteco', 'sushi', 'temaki', 'churrascaria', 'espetinho', 'doceria', 'sorveteria', 'acai', 'habib', 'giraffas', 'divino fogao', 'coco bambu', 'madero', 'delivery'],
+  mercado: ['supermercado', 'mercado', 'hortifruti', 'sacolao', 'atacadao', 'assai', 'carrefour', 'pao de acucar', 'extra ', 'supermercado dia', 'zona sul', 'oba ', 'st marche', 'mambo', 'natural da terra', 'emporio', 'padaria', 'acougue', 'quitanda', 'minuto', 'tenda atacado', 'sams club', 'makro', 'big box', 'shibata', 'sonda', 'violeta', 'roldao'],
+  alimentacao: ['ifood', 'rappi', 'ubereats', 'uber eats', 'restaurante', 'lanchonete', 'pizzaria', 'burger', 'mcdonald', 'bk ', 'burger king', 'subway', 'outback', 'starbucks', 'cafe', 'cafeteria', 'bar ', 'boteco', 'sushi', 'temaki', 'churrascaria', 'espetinho', 'doceria', 'sorveteria', 'acai', 'habib', 'giraffas', 'divino fogao', 'coco bambu', 'madero', 'delivery', 'ifd*', '99food', 'ze delivery', 'zedelivery', 'gelato', 'confeitaria', 'hamburgueria', 'bistro', 'gastrobar', 'cervejaria', 'padoca', 'brunch'],
   transporte: ['uber', '99app', '99 app', '99pop', 'cabify', 'taxi', 'posto ', 'ipiranga', 'shell', 'petrobras', 'br mania', 'combustivel', 'gasolina', 'etanol', 'estacionamento', 'zul ', 'estapar', 'pedagio', 'sem parar', 'conectcar', 'veloe', 'metro', 'cptm', 'bilhete unico', 'onibus', 'rodoviaria', 'localiza', 'movida', 'unidas', 'oficina', 'autopecas', 'pneu', 'lavagem', 'ipva', 'detran'],
   casa: ['magazine luiza', 'magalu', 'casas bahia', 'ponto frio', 'fast shop', 'eletro', 'leroy', 'telhanorte', 'c&c', 'obramax', 'casa e construcao', 'tok stok', 'mobly', 'madeiramadeira', 'camicado', 'havan', 'ikea', 'eletricista', 'encanador', 'faxina', 'diarista', 'condominio', 'aluguel', 'enel', 'cpfl', 'light ', 'sabesp', 'comgas', 'internet', 'vivo ', 'claro ', 'tim ', 'oi fibra', 'net ', 'iptu'],
-  saude: ['drogaria', 'farmacia', 'droga raia', 'drogasil', 'pacheco', 'panvel', 'pague menos', 'ultrafarma', 'hospital', 'clinica', 'laboratorio', 'fleury', 'dasa', 'delboni', 'einstein', 'sirio', 'dentista', 'odonto', 'psicolog', 'terapia', 'exame', 'consulta', 'unimed', 'amil', 'bradesco saude', 'sulamerica', 'porto saude', 'oculos', 'otica'],
+  saude: ['drogaria', 'farmacia', 'droga raia', 'drogasil', 'pacheco', 'panvel', 'pague menos', 'ultrafarma', 'hospital', 'clinica', 'laboratorio', 'fleury', 'dasa', 'delboni', 'einstein', 'sirio', 'dentista', 'odonto', 'psicolog', 'terapia', 'exame', 'consulta', 'unimed', 'amil', 'bradesco saude', 'sulamerica', 'porto saude', 'oculos', 'otica', 'raia', 'rd saude', 'dermato', 'fisioterapia', 'nutricionista', 'vacina'],
   cuidados: ['salao', 'cabeleireiro', 'barbearia', 'manicure', 'esteti', 'spa ', 'depilacao', 'sephora', 'boticario', 'natura', 'avon', 'quem disse berenice', 'mac ', 'beleza na web', 'epoca cosmeticos', 'perfumaria'],
-  vestuario: ['renner', 'c&a', 'riachuelo', 'zara', 'hering', 'marisa', 'shein', 'shopee', 'aliexpress', 'nike', 'adidas', 'centauro', 'decathlon', 'netshoes', 'dafiti', 'arezzo', 'schutz', 'melissa', 'farm ', 'animale', 'reserva', 'lojas americanas', 'calcados', 'sapataria'],
-  lazer: ['cinema', 'cinemark', 'kinoplex', 'uci ', 'teatro', 'ingresso', 'ticketmaster', 'sympla', 'eventim', 'show ', 'parque', 'boliche', 'academia', 'smartfit', 'bluefit', 'bodytech', 'pilates', 'crossfit', 'natacao', 'livraria', 'saraiva', 'cultura', 'steam', 'playstation', 'xbox', 'nintendo', 'jogo'],
+  vestuario: ['renner', 'c&a', 'riachuelo', 'zara', 'hering', 'marisa', 'shein', 'nike', 'adidas', 'centauro', 'decathlon', 'netshoes', 'dafiti', 'arezzo', 'schutz', 'melissa', 'farm ', 'animale', 'reserva', 'lojas americanas', 'calcados', 'sapataria', 'inditex', 'cotton on', 'youcom', 'lojas pompeia', 'haight'],
+  lazer: ['cinema', 'cinemark', 'kinoplex', 'cinepolis', 'uci ', 'teatro', 'ingresso', 'ticketmaster', 'sympla', 'eventim', 'show ', 'parque', 'boliche', 'academia', 'smartfit', 'bluefit', 'bodytech', 'pilates', 'crossfit', 'natacao', 'livraria', 'saraiva', 'cultura', 'steam', 'playstation', 'xbox', 'nintendo', 'jogo'],
   assinaturas: ['netflix', 'spotify', 'amazon prime', 'prime video', 'disney', 'hbo', 'globoplay', 'paramount', 'apple.com', 'apple servi', 'itunes', 'icloud', 'google one', 'youtube premium', 'deezer', 'kindle', 'audible', 'canva', 'adobe', 'microsoft', 'office 365', 'chatgpt', 'openai', 'anthropic', 'claude', 'notion', 'dropbox', 'assinatura', 'mensalidade'],
   educacao: ['faculdade', 'universidade', 'curso', 'escola', 'colegio', 'udemy', 'alura', 'coursera', 'pm3', 'hotmart', 'workshop', 'certificacao', 'material escolar', 'mensalidade escolar'],
-  viagem: ['latam', 'gol ', 'azul ', 'smiles', 'decolar', 'booking', 'airbnb', 'hotel', 'pousada', 'hostel', '123milhas', 'maxmilhas', 'cvc', 'aeroporto', 'seguro viagem', 'passagem'],
+  viagem: ['latam', 'gol ', 'azul ', 'smiles', 'decolar', 'booking', 'airbnb', 'hotel', 'pousada', 'hostel', '123milhas', 'maxmilhas', 'cvc', 'aeroporto', 'seguro viagem', 'passagem', 'bagaggio', 'latam air', 'gol linhas'],
   pets: ['petz', 'cobasi', 'petlove', 'veterinar', 'pet shop', 'petshop', 'racao', 'banho e tosa'],
   presentes: ['presente', 'floricultura', 'flores', 'cesta'],
   trabalho: ['coworking', 'wework', 'impressao', 'papelaria', 'kalunga'],
-  outros: ['mercado livre', 'mercadolivre', 'mercado pago', 'mercadopago', 'mercadolibre', 'paypal', 'picpay', 'pagseguro'],
+  outros: ['mercado livre', 'mercadolivre', 'mercado pago', 'mercadopago', 'mercadolibre', 'paypal', 'picpay', 'pagseguro', 'shopee', 'aliexpress', 'amazon', 'temu', 'magazine you'],
   taxas: ['anuidade', 'tarifa', 'juros', 'iof', 'multa', 'encargos', 'seguro cartao', 'protecao'],
 };
 
@@ -302,9 +302,18 @@ function mesesComDados() {
  * 4. Categorização automática
  * ---------------------------------------------------------- */
 
+/**
+ * Maquininhas e intermediadores carimbam um prefixo na fatura
+ * ("Pg *", "Asaas *", "Mlp *"). Para adivinhar a categoria e para aprender,
+ * o que importa é o que vem depois. A descrição que ela vê continua a original.
+ */
+const PREFIXO_INTERMEDIARIO = /^(pg|pp|ec|mlp|mp|vmt|asa|asaas|pag|pags|pagseguro|iz|sumup|cielo|rede|stone|mercado|jim\.com|nfs|dl|ppro)\s*\*+\s*/i;
+
+const textoParaMatch = (desc) => norm(desc).replace(PREFIXO_INTERMEDIARIO, '');
+
 /** Chave de aprendizado: as primeiras palavras significativas da descrição. */
 function chaveRegra(desc) {
-  const limpo = norm(desc)
+  const limpo = textoParaMatch(desc)
     .replace(/[*#]/g, ' ')
     .replace(/\b(parc|parcela|par)\s*\d+\s*\/\s*\d+\b/g, ' ')
     .replace(/\d+\s*\/\s*\d+/g, ' ')
@@ -317,7 +326,7 @@ function chaveRegra(desc) {
 /** Sugere uma categoria: primeiro o que ela já ensinou, depois o dicionário. */
 function sugerirCategoria(desc) {
   if (!desc || !desc.trim()) return null;
-  const t = norm(desc);
+  const t = textoParaMatch(desc);
 
   const chave = chaveRegra(desc);
   if (chave && db.regras[chave]) return { catId: db.regras[chave], origem: 'aprendida' };
@@ -1092,6 +1101,124 @@ function anoProvavel(mes, faturaYm) {
   return melhor;
 }
 
+/**
+ * Tira "Parcela 3/6", "PARC 3/10", "(3/6)" ou "3 de 6" da descrição.
+ * Devolve {n, de, desc} com a descrição já limpa.
+ */
+function extrairParcela(desc) {
+  const re = /\s*[-–—]?\s*\b(?:parc(?:ela)?\.?\s*)?\(?\s*(\d{1,2})\s*(?:\/|\s+de\s+|-)\s*(\d{1,2})\s*\)?/i;
+  const m = desc.match(re);
+  if (!m) return { n: 1, de: 1, desc };
+  const n = Number(m[1]), de = Number(m[2]);
+  if (!(de > 1 && de <= 72 && n >= 1 && n <= de)) return { n: 1, de: 1, desc };
+  return { n, de, desc: limparDescricao(desc.replace(m[0], ' ')) };
+}
+
+/** Tira aspas soltas, separadores duplicados e sobras de pontuação nas pontas. */
+function limparDescricao(t) {
+  return String(t)
+    .replace(/["']{2,}/g, '"')
+    .replace(/[;,|]+/g, ' ')
+    .replace(/\s{2,}/g, ' ')
+    .replace(/^[\s\-–—.:"']+|[\s\-–—.:"']+$/g, '')
+    .trim();
+}
+
+/**
+ * Divide um CSV respeitando aspas (RFC 4180): campo entre aspas pode conter
+ * vírgula, quebra de linha e aspas duplicadas ("" vira ").
+ */
+function dividirCSV(texto, delim) {
+  const linhas = [];
+  let campo = '', linha = [], dentro = false;
+  for (let i = 0; i < texto.length; i++) {
+    const c = texto[i];
+    if (dentro) {
+      if (c === '"') {
+        if (texto[i + 1] === '"') { campo += '"'; i++; } else dentro = false;
+      } else campo += c;
+      continue;
+    }
+    if (c === '"') { dentro = true; continue; }
+    if (c === delim) { linha.push(campo); campo = ''; continue; }
+    if (c === '\n' || c === '\r') {
+      if (c === '\r' && texto[i + 1] === '\n') i++;
+      linha.push(campo); campo = '';
+      if (linha.some((x) => x.trim())) linhas.push(linha);
+      linha = [];
+      continue;
+    }
+    campo += c;
+  }
+  linha.push(campo);
+  if (linha.some((x) => x.trim())) linhas.push(linha);
+  return linhas;
+}
+
+/** Qual separador o arquivo usa: vírgula, ponto e vírgula ou tabulação. */
+function detectarDelimitador(texto) {
+  const amostra = texto.split(/\r?\n/).slice(0, 5).join('\n');
+  const contar = (d) => (amostra.match(new RegExp('\\' + d, 'g')) || []).length;
+  const candidatos = [[',', contar(',')], [';', contar(';')], ['\t', contar('\t')]];
+  candidatos.sort((a, b) => b[1] - a[1]);
+  return candidatos[0][1] > 0 ? candidatos[0][0] : ',';
+}
+
+const COL_DATA = /^(date|data|data da compra|data compra|dt|dia)$/;
+const COL_DESC = /^(title|desc|descri|descricao|descrição|estabelecimento|historico|histórico|lancamento|lançamento|memo|detalhe|titulo|título)/;
+const COL_VALOR = /^(amount|valor|value|montante|quantia|valor r\$|valor \(r\$\))/;
+
+/**
+ * Lê o CSV exportado pelo banco. Devolve null se o arquivo não tiver um
+ * cabeçalho reconhecível — aí o texto cai no interpretador linha a linha.
+ */
+function analisarCSV(texto, faturaYm) {
+  const delim = detectarDelimitador(texto);
+  const linhas = dividirCSV(texto, delim);
+  if (linhas.length < 2) return null;
+
+  const cab = linhas[0].map((c) => norm(c));
+  const iData = cab.findIndex((c) => COL_DATA.test(c));
+  const iDesc = cab.findIndex((c) => COL_DESC.test(c));
+  const iValor = cab.findIndex((c) => COL_VALOR.test(c));
+  if (iData < 0 || iDesc < 0 || iValor < 0) return null;
+
+  const saida = [];
+  for (const linha of linhas.slice(1)) {
+    const bruto = (linha[iDesc] || '').trim();
+    if (!bruto || LINHA_IGNORAR.test(bruto)) continue;
+
+    const cents = parseMoney(linha[iValor]);
+    if (cents == null || cents === 0) continue;
+
+    const data = analisarData(linha[iData], faturaYm) || `${faturaYm}-01`;
+    const { n, de, desc } = extrairParcela(bruto);
+    const limpa = limparDescricao(desc);
+    if (!limpa) continue;
+    saida.push({ data, desc: limpa, cents, n, de });
+  }
+  return saida.length ? saida : null;
+}
+
+/** Data em ISO, dd/mm[/aaaa] ou "12 ago". */
+function analisarData(txt, faturaYm) {
+  const t = String(txt || '').trim();
+  let m = t.match(/(\d{4})-(\d{2})-(\d{2})/);
+  if (m) return `${m[1]}-${m[2]}-${m[3]}`;
+  m = t.match(/\b(\d{1,2})[/\-.](\d{1,2})(?:[/\-.](\d{2,4}))?\b/);
+  if (m && Number(m[2]) >= 1 && Number(m[2]) <= 12 && Number(m[1]) >= 1 && Number(m[1]) <= 31) {
+    let ano = m[3] ? Number(m[3]) : anoProvavel(Number(m[2]), faturaYm);
+    if (ano < 100) ano += 2000;
+    return `${ano}-${pad2(Number(m[2]))}-${pad2(Number(m[1]))}`;
+  }
+  m = t.match(/\b(\d{1,2})\s*(?:de\s*)?(jan|fev|mar|abr|mai|jun|jul|ago|set|out|nov|dez)\w*\b/i);
+  if (m) {
+    const mes = MESES_ABREV[m[2].toLowerCase()];
+    return `${anoProvavel(mes, faturaYm)}-${pad2(mes)}-${pad2(Number(m[1]))}`;
+  }
+  return null;
+}
+
 /** Lê uma linha de fatura e devolve {data, desc, cents, n, de} — ou null se não der. */
 function analisarLinha(linha, faturaYm) {
   let t = linha.replace(/\t/g, ' ; ').trim();
@@ -1130,17 +1257,10 @@ function analisarLinha(linha, faturaYm) {
   if (!data) data = `${faturaYm}-01`;
 
   // 3) parcela — só depois de tirar a data, para não confundir 12/08 com 12 de 8
-  let n = 1, de = 1;
-  const reParc = /\b(?:parc(?:ela)?\.?\s*)?\(?\s*(\d{1,2})\s*(?:\/|de|-)\s*(\d{1,2})\s*\)?/i;
-  const p = t.match(reParc);
-  if (p && Number(p[2]) > 1 && Number(p[2]) <= 72 && Number(p[1]) >= 1 && Number(p[1]) <= Number(p[2])) {
-    n = Number(p[1]); de = Number(p[2]);
-    t = t.replace(p[0], ' ');
-  }
-
-  const desc = t.replace(/[;,|]+/g, ' ').replace(/\s{2,}/g, ' ').replace(/^[\s\-–—.]+|[\s\-–—.]+$/g, '').trim();
+  const parc = extrairParcela(t);
+  const desc = limparDescricao(parc.desc);
   if (!desc) return null;
-  return { data, desc, cents, n, de };
+  return { data, desc, cents, n: parc.n, de: parc.de };
 }
 
 /** Uma parcela k/n dessa fatura descreve uma compra que começou k-1 meses antes. */
@@ -1173,6 +1293,36 @@ function jaLancado(cand, faturaYm) {
     (o) => o.cents === cand.parcelaCents && norm(o.l.desc).slice(0, 24) === chave);
 }
 
+/**
+ * Quando alguém antecipa parcelas, o banco lança 1/3, 2/3 e 3/3 juntas na
+ * mesma fatura. Reconstruir cada uma como uma compra separada triplicaria o
+ * valor e inventaria parcelas futuras que não existem — então essas caem
+ * inteiras nesta fatura mesmo.
+ *
+ * O sinal é: mesma loja, mesmo total de parcelas e praticamente o mesmo valor.
+ * Duas compras diferentes na mesma loja (3/6 de R$ 277 e 2/6 de R$ 132)
+ * continuam sendo tratadas como compras diferentes.
+ */
+function marcarAntecipadas(candidatos, faturaYm) {
+  const grupos = new Map();
+  for (const c of candidatos) {
+    if (c.de < 2) continue;
+    const chave = `${chaveRegra(c.desc)}|${c.de}`;
+    if (!grupos.has(chave)) grupos.set(chave, []);
+    grupos.get(chave).push(c);
+  }
+  for (const grupo of grupos.values()) {
+    if (grupo.length < 2) continue;
+    for (const c of grupo) {
+      const iguais = grupo.filter((o) => Math.abs(o.parcelaCents - c.parcelaCents) <= 5);
+      if (iguais.length < 2) continue;
+      c.antecipada = true;
+      c.fatura = faturaYm;
+      c.cents = c.parcelaCents;
+    }
+  }
+}
+
 function telaImportar() {
   const cartaoSel = h('select', { id: 'imp-cartao' }, db.cartoes.map((c) => h('option', { value: c.id, text: c.nome })));
   const faturaInp = h('input', { type: 'month', id: 'imp-fatura', value: estado.ym });
@@ -1182,22 +1332,115 @@ function telaImportar() {
     placeholder: 'Cole aqui as linhas da fatura. Exemplos que funcionam:\n\n12/08  IFOOD *RESTAURANTE   45,90\n03/08 DROGARIA SAO PAULO  R$ 89,00\n21/07;MAGAZINE LUIZA PARC 03/10;129,90\n2026-08-05,Netflix.com,55.90',
   });
   const saida = h('div', { id: 'imp-saida' });
+  const nomeArquivo = h('p', { class: 'hint', id: 'imp-arquivo' });
+
+  const blocoTexto = h('div', { id: 'imp-bloco-texto' },
+    h('div', { class: 'divisor' }, h('span', { text: 'ou cole o texto' })),
+    h('div', { class: 'field' },
+      h('label', { for: 'imp-texto', class: 'sr-only', text: 'Linhas da fatura' }), area));
+
+  const entradaArquivo = h('input', {
+    type: 'file', id: 'imp-file', accept: '.csv,.txt,text/csv,text/plain',
+    style: { display: 'none' },
+    onchange: (e) => { if (e.target.files[0]) receberArquivo(e.target.files[0]); e.target.value = ''; },
+  });
+
+  const zona = h('div', {
+    class: 'dropzone', tabindex: '0', role: 'button',
+    'aria-label': 'Escolher um arquivo de fatura',
+    onclick: () => entradaArquivo.click(),
+    onkeydown: (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); entradaArquivo.click(); } },
+    ondragover: (e) => { e.preventDefault(); zona.classList.add('sobre'); },
+    ondragleave: () => zona.classList.remove('sobre'),
+    ondrop: (e) => {
+      e.preventDefault();
+      zona.classList.remove('sobre');
+      const f = e.dataTransfer.files[0];
+      if (f) receberArquivo(f);
+    },
+  },
+    h('span', { class: 'dz-emoji', 'aria-hidden': 'true', text: '📄' }),
+    h('span', { class: 'dz-titulo', text: 'Escolher o arquivo da fatura' }),
+    h('span', { class: 'dz-sub', text: 'CSV do banco (Nubank, Itaú, Inter…) — ou arraste o arquivo até aqui' }),
+    entradaArquivo);
+
+  /** O arquivo pode vir em UTF-8 ou no velho ISO-8859-1; tentamos nessa ordem. */
+  async function lerTexto(file) {
+    const buf = await file.arrayBuffer();
+    try {
+      return new TextDecoder('utf-8', { fatal: true }).decode(buf);
+    } catch (e) {
+      return new TextDecoder('iso-8859-1').decode(buf);
+    }
+  }
+
+  /** Nubank e afins nomeiam o arquivo com a data da fatura: Nubank_20260906.csv */
+  function faturaPeloNome(nome) {
+    let m = nome.match(/(20\d{2})[-_.]?(\d{2})[-_.]?(\d{2})/);
+    if (m) return `${m[1]}-${m[2]}`;
+    m = nome.match(/(20\d{2})[-_.](\d{2})\b/);
+    return m ? `${m[1]}-${m[2]}` : null;
+  }
+
+  async function receberArquivo(file) {
+    if (file.size > 5 * 1024 * 1024) { toast('Esse arquivo é grande demais para ser uma fatura.'); return; }
+    try {
+      const texto = await lerTexto(file);
+      if (!texto.trim()) { toast('O arquivo está vazio.'); return; }
+      area.value = texto;
+
+      const ym = faturaPeloNome(file.name);
+      if (ym) faturaInp.value = ym;
+
+      // o CSV cru não interessa a ninguém: escondemos e mostramos a conferência
+      blocoTexto.hidden = true;
+      nomeArquivo.replaceChildren(
+        h('b', { text: file.name }),
+        document.createTextNode(ym
+          ? ` — entendi que é a fatura de ${ymLong(ym)}. Se não for, corrija abaixo.`
+          : ' — confira abaixo de que fatura ele é.'),
+        h('button', {
+          class: 'btn small ghost', type: 'button', text: 'colar texto no lugar',
+          onclick: () => { blocoTexto.hidden = false; nomeArquivo.replaceChildren(); area.focus(); },
+        }));
+
+      analisar();
+      requestAnimationFrame(() => saida.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+    } catch (e) {
+      console.error(e);
+      toast('Não consegui ler esse arquivo.');
+    }
+  }
 
   function analisar() {
     const faturaYm = faturaInp.value || ymNow();
     const cartaoId = cartaoSel.value;
-    const linhas = area.value.split(/\r?\n/);
+    const texto = area.value;
     const candidatos = [];
     let ignoradas = 0;
 
-    for (const linha of linhas) {
-      if (!linha.trim()) continue;
-      const parsed = analisarLinha(linha, faturaYm);
-      if (!parsed) { ignoradas++; continue; }
+    // Com cabeçalho reconhecível, lemos como CSV de verdade: aspas, vírgula
+    // dentro do campo e sinal de menos separado ("- 53,90") saem certos.
+    const doCSV = analisarCSV(texto, faturaYm);
+    const brutas = doCSV || [];
+    if (!doCSV) {
+      for (const linha of texto.split(/\r?\n/)) {
+        if (!linha.trim()) continue;
+        const parsed = analisarLinha(linha, faturaYm);
+        if (!parsed) { ignoradas++; continue; }
+        brutas.push(parsed);
+      }
+    }
+
+    for (const parsed of brutas) {
       const cand = montarCandidato(parsed, faturaYm, cartaoId, eventoSel.value || null);
+      candidatos.push(cand);
+    }
+
+    marcarAntecipadas(candidatos, faturaYm);
+    for (const cand of candidatos) {
       cand.duplicado = jaLancado(cand, faturaYm);
       if (cand.duplicado || cand.credito) cand.incluir = false;
-      candidatos.push(cand);
     }
 
     if (!candidatos.length) {
@@ -1224,8 +1467,10 @@ function telaImportar() {
         for (const c of sel) {
           db.lancamentos.push({
             id: uid(), desc: c.desc, cents: c.cents, data: c.data, cat: c.cat,
-            cartao: c.cartao, parcelas: c.de, fatura: c.fatura, evento: c.evento || null,
-            obs: '', criadoEm: new Date().toISOString(),
+            cartao: c.cartao, parcelas: c.antecipada ? 1 : c.de, fatura: c.fatura,
+            evento: c.evento || null,
+            obs: c.antecipada ? `parcela ${c.n}/${c.de} antecipada` : '',
+            criadoEm: new Date().toISOString(),
           });
           aprender(c.desc, c.cat);
         }
@@ -1253,6 +1498,7 @@ function telaImportar() {
         }, db.categorias.map((x) => h('option', { value: x.id, selected: x.id === c.cat, text: `${x.emoji} ${x.nome}` })))),
         h('td', { class: 'num' },
           c.de > 1 ? h('span', { class: 'badge soft', text: `${c.n}/${c.de}` }) : '',
+          c.antecipada ? h('div', {}, h('span', { class: 'badge alerta', text: 'antecipada' })) : null,
           eventoPorId(c.evento) ? h('div', {}, h('span', { class: 'badge', text: `${eventoPorId(c.evento).emoji} ${eventoPorId(c.evento).nome}` })) : null),
         h('td', { class: 'num' }, fmt(c.parcelaCents),
           c.duplicado ? h('div', {}, h('span', { class: 'badge', text: 'já lançado' })) : null,
@@ -1276,8 +1522,11 @@ function telaImportar() {
           h('button', { class: 'btn small', type: 'button', text: 'Marcar todos', onclick: () => marcarTodos(true) }),
           h('button', { class: 'btn small', type: 'button', text: 'Desmarcar todos', onclick: () => marcarTodos(false) }))),
       contador,
-      candidatos.some((c) => c.de > 1)
+      candidatos.some((c) => c.de > 1 && !c.antecipada)
         ? h('p', { class: 'hint', text: 'Nas compras parceladas eu reconstruo a compra inteira: as parcelas passadas entram no histórico e as futuras aparecem na aba "Parcelas futuras".' })
+        : null,
+      candidatos.some((c) => c.antecipada)
+        ? h('p', { class: 'hint', text: 'Algumas parcelas da mesma compra vieram juntas nesta fatura — parece antecipação. Essas eu lanço inteiras aqui, sem jogar nada para os meses seguintes.' })
         : null,
       ignoradas ? h('p', { class: 'hint', text: `${ignoradas} ${ignoradas === 1 ? 'linha foi ignorada' : 'linhas foram ignoradas'} por não ter valor reconhecível (cabeçalhos, totais e afins).` }) : null,
       h('div', { class: 'table-wrap' },
@@ -1295,13 +1544,15 @@ function telaImportar() {
   return [
     h('div', { class: 'card' },
       h('div', { class: 'card-head' }, h('h2', { text: 'Importar fatura' })),
-      h('p', { class: 'card-sub', text: 'Copie as linhas da fatura do app ou do site do banco e cole aqui. Eu identifico data, valor, parcela e chuto a categoria — você confere antes de confirmar.' }),
-      h('div', { class: 'filters' },
+      h('p', { class: 'card-sub', text: 'Baixe o CSV da fatura no app do banco e solte aqui — ou cole as linhas na mão. Eu identifico data, valor, parcela e chuto a categoria; você confere antes de confirmar.' }),
+      zona,
+      nomeArquivo,
+      blocoTexto,
+      h('div', { class: 'filters', style: { marginTop: '14px' } },
         h('div', { class: 'field' }, h('label', { for: 'imp-cartao', text: 'Cartão' }), cartaoSel),
         h('div', { class: 'field' }, h('label', { for: 'imp-fatura', text: 'Fatura de' }), faturaInp),
         db.eventos.length ? h('div', { class: 'field grow' },
           h('label', { for: 'imp-evento', text: 'Vincular ao evento' }), eventoSel) : null),
-      h('div', { class: 'field' }, h('label', { for: 'imp-texto', text: 'Linhas da fatura' }), area),
       h('div', { class: 'modal-foot' },
         h('span', { class: 'spacer' }),
         h('button', { class: 'btn primary', type: 'button', text: 'Analisar', onclick: analisar }))),
