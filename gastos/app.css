@@ -266,6 +266,8 @@ button.bar-row:hover{background:var(--surface-2)}
   min-width:2px;
 }
 .bar-fill.deemph{background:var(--deemph)}
+/* saldo negativo (estorno maior que a compra) não é gasto: sai da cor de dado */
+.bar-fill.credito{background:var(--deemph)}
 .bar-value{font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
 .bar-pct{color:var(--muted);font-size:12px;font-weight:500;margin-left:5px}
 

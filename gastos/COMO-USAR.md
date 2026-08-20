@@ -231,8 +231,13 @@ vírgula ou tabulação.
 Detalhes que ele resolve sozinho:
 
 - **Cabeçalhos, totais e "pagamento efetuado" são descartados.**
-- **Estornos e créditos** (valores negativos) entram desmarcados — se você
-  quiser registrar, é só marcar.
+- **Estornos e créditos** entram desmarcados — se você quiser registrar, é só
+  marcar. Eles sempre **subtraem**: um estorno de R$ 50 tira R$ 50 do total do
+  mês, da categoria e do evento. No arquivo CSV o sinal do banco é respeitado
+  tal como veio. No texto colado, onde o sinal costuma se perder (`ESTORNO - 53,90`
+  com espaço, ou sem sinal nenhum), o app deduz pelo nome — estorno, reembolso,
+  devolução, cancelamento — e marca a linha como *crédito (pelo nome)* para você
+  conferir. Um hífen que é só separador (`LOJA - 45,90`) não vira desconto.
 - **Parcelas.** Se a linha diz `03/10`, ele entende que essa compra começou dois
   meses atrás e monta a compra inteira: as parcelas passadas entram no histórico
   e as sete que faltam aparecem em *Parcelas futuras*.
@@ -271,8 +276,8 @@ sobra**. Resolvendo as duas listas, os dois totais se encontram.
 
 Detalhes que valem saber:
 
-- **Os estornos contam.** Como eles entram desmarcados na importação, é comum
-  que o app fique *acima* da fatura do banco. Eles aparecem na lista do que
+- **Os estornos contam, e contam como subtração.** Como eles entram desmarcados
+  na importação, é comum que o app fique *acima* da fatura do banco. Eles aparecem na lista do que
   falta, com o selo *crédito*; lançá-los é o que faz os totais baterem.
 - **O pareamento é por nome e valor**, e por multiconjunto: três compras de
   R$ 2,00 no arquivo casam com três lançamentos de R$ 2,00, não com o mesmo
@@ -304,6 +309,10 @@ Dá para cadastrar mais de um cartão.
 Categoria é "que tipo de gasto" (mercado, transporte); evento é "de que
 acontecimento faz parte" (a viagem, a reforma). Todo gasto tem uma categoria e,
 opcionalmente, um evento.
+
+Uma categoria pode aparecer com valor **negativo** se os estornos do mês
+superarem as compras dela. Nesse caso a barra sai da cor de gasto e vira cinza,
+para não parecer que houve despesa.
 
 Vêm 16 prontas. Em *Ajustes → Categorias* você renomeia, troca o ícone, cria
 novas e apaga as que não usa (os gastos da categoria apagada vão para "Outros",

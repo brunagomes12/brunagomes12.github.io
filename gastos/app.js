@@ -452,12 +452,17 @@ function vazio(emoji, texto, botao) {
  * Nome à esquerda, valor sempre visível à direita (nunca dentro da barra).
  */
 function barrasH({ itens, aoClicar }) {
-  const max = Math.max(1, ...itens.map((i) => i.cents));
+  // a escala usa o módulo: uma categoria que ficou negativa por estorno
+  // ainda tem tamanho, só não é gasto
+  const max = Math.max(1, ...itens.map((i) => Math.abs(i.cents)));
   const total = itens.reduce((t, i) => t + i.cents, 0) || 1;
 
   return h('div', { class: 'bars' }, itens.map((it) => {
     const pct = Math.round((it.cents / total) * 100);
-    const rotulo = `${it.nome} · ${pct}% do total`;
+    const credito = it.cents < 0;
+    const rotulo = credito
+      ? `${it.nome} · entrou mais do que saiu no período`
+      : `${it.nome} · ${pct}% do total`;
     const linha = h(aoClicar ? 'button' : 'div', {
       class: 'bar-row',
       type: aoClicar ? 'button' : null,
@@ -468,7 +473,10 @@ function barrasH({ itens, aoClicar }) {
       onblur: esconderTip,
     },
       h('span', { class: 'bar-name' }, it.emoji ? h('span', { 'aria-hidden': 'true', text: it.emoji }) : null, h('span', { text: it.nome })),
-      h('span', { class: 'bar-track' }, h('span', { class: 'bar-fill', style: { width: Math.max(2, (it.cents / max) * 100) + '%' } })),
+      h('span', { class: 'bar-track' }, h('span', {
+        class: 'bar-fill' + (credito ? ' credito' : ''),
+        style: { width: Math.max(2, (Math.abs(it.cents) / max) * 100) + '%' },
+      })),
       h('span', { class: 'bar-value' }, fmt(it.cents), h('span', { class: 'bar-pct', text: pct + '%' })),
     );
     return linha;
@@ -1286,6 +1294,14 @@ const MESES_ABREV = { jan: 1, fev: 2, mar: 3, abr: 4, mai: 5, jun: 6, jul: 7, ag
 
 const LINHA_IGNORAR = /^(data|descri|lan[cç]amento|total|subtotal|saldo|limite|valor a pagar|vencimento|fatura|pagamento (efetuado|recebido)|encargos|resumo|compras nacionais|compras internacionais|demonstrativo)/i;
 
+/**
+ * No texto colado o sinal se perde: "ESTORNO  - 53,90" tem o menos separado
+ * do número (e um hífen solto costuma ser só separador, como em "LOJA - 45,90"),
+ * e às vezes o extrato nem traz sinal. Nesses casos o nome é a única pista
+ * confiável. No CSV isso não se aplica: lá o sinal do campo é a verdade.
+ */
+const PALAVRA_CREDITO = /(estorno|estornad|reembols|devoluc|devolu[çc]|cancelament|cr[eé]dito de|ajuste a cr[eé]dito|desconto antecipa|iof de volta)/i;
+
 /** Escolhe o ano mais plausível para um dia/mês sem ano, dada a fatura de destino. */
 function anoProvavel(mes, faturaYm) {
   const anoF = Number(faturaYm.slice(0, 4));
@@ -1457,7 +1473,13 @@ function analisarLinha(linha, faturaYm) {
   const parc = extrairParcela(t);
   const desc = limparDescricao(parc.desc);
   if (!desc) return null;
-  return { data, desc, cents, n: parc.n, de: parc.de };
+
+  // 4) sinal: estorno tem que subtrair, mesmo quando o menos se perdeu no caminho
+  let valor = cents;
+  let sinalInferido = false;
+  if (valor > 0 && PALAVRA_CREDITO.test(desc)) { valor = -valor; sinalInferido = true; }
+
+  return { data, desc, cents: valor, n: parc.n, de: parc.de, sinalInferido };
 }
 
 /** Uma parcela k/n dessa fatura descreve uma compra que começou k-1 meses antes. */
@@ -1480,6 +1502,7 @@ function montarCandidato(linha, faturaYm, cartaoId, eventoId) {
     // o seletor do topo manda; sem ele, vale o evento cujo período engloba a data
     evento: eventoId || (auto ? auto.id : null),
     credito: linha.cents < 0,
+    sinalInferido: !!linha.sinalInferido,
   };
 }
 
@@ -1674,7 +1697,7 @@ function telaImportar() {
           eventoPorId(c.evento) ? h('div', {}, h('span', { class: 'badge', text: `${eventoPorId(c.evento).emoji} ${eventoPorId(c.evento).nome}` })) : null),
         h('td', { class: 'num' }, fmt(c.parcelaCents),
           c.duplicado ? h('div', {}, h('span', { class: 'badge', text: 'já lançado' })) : null,
-          c.credito ? h('div', {}, h('span', { class: 'badge', text: 'crédito' })) : null),
+          c.credito ? h('div', {}, h('span', { class: 'badge', text: c.sinalInferido ? 'crédito (pelo nome)' : 'crédito' })) : null),
       );
       return tr;
     });
@@ -1953,7 +1976,7 @@ function telaConferir() {
                 h('span', { text: dateLabel(c.data) }),
                 h('span', { text: cat.nome }),
                 c.de > 1 ? h('span', { class: 'badge soft', text: `${c.n}/${c.de}` }) : null,
-                c.credito ? h('span', { class: 'badge', text: 'crédito' }) : null)),
+                c.credito ? h('span', { class: 'badge', text: c.sinalInferido ? 'crédito (pelo nome)' : 'crédito' }) : null)),
             h('span', { class: 'item-amount', text: fmt(c.parcelaCents) }),
             h('button', {
               class: 'btn small', type: 'button', text: 'Lançar',
